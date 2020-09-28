@@ -21,7 +21,6 @@
 
                     <div class="userDetailsArea">
                         <h4 class="text-capitalize pb-3">Refer Friend</h4>
-                        <h6 class="text-capitalize pb-3">Refer your friend to spread our brand you will award credit</h6>
                         <form method="post" action="{{url('/user-details/referral-send-email')}}">
                             @csrf
                             <div>

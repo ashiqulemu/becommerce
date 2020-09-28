@@ -104,7 +104,7 @@ class AuctionController extends Controller
                 $this->removeImage($media);
             }
             $auction->delete();
-            return redirect('/admin/auction')
+            return back()
                 ->with(['type'=>'success','message'=>'Auction deleted successfully']);
         }
     }

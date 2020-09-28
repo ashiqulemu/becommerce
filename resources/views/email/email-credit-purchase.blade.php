@@ -12,11 +12,11 @@
             If you need any help please call us. Your <b>Purchase No : # {{$data['order_no']}}</b><br>
             you can see your credit purchase flowing this link</p><br>
 
-        <a href="http://{{env("APP_NAME")}}/generate-invoice/{{$data['order_id']}}">
+        <a href="http://www.billboardbd.com/generate-invoice/{{$data['order_id']}}">
             Show Invoice </a><br>
         <small>Note: Login needed to see your invoice</small>
         <p>Thanks<br>
-            {{env("APP_NAME")}}<br>
+            BillBoardBD<br>
         </p>
     </div>
 </div>

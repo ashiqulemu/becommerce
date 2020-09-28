@@ -204,9 +204,6 @@
                         <div class="form-group">
                             <label for="">Auction Image</label>
                             <input type="file" class="form-control" name="images[]" accept="image/*" multiple>
-                            @if ($errors->has('images.*'))
-                                <div class="error">{{ $errors->first('images.*') }}</div>
-                            @endif
                         </div>
                         <div>
                             @if(count($auction->medias))
@@ -218,9 +215,9 @@
                                                 <input type="checkbox" name="deleted_images[]" value="{{$media->id}}" checked/>
                                                 <span><i class="fa fa-times"></i></span>
                                             </label>
-
                                         </div>
                                     @endforeach
+
                                 </div>
                             @endif
                         </div>

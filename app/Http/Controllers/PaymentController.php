@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\partialPayment;
+
 use App\Auction;
 use App\Bid;
 use App\Contact;
@@ -19,11 +19,8 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Cart;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use PayPal\Api\Payment;
-use Illuminate\Session;
 
 
 class PaymentController extends Controller
@@ -84,44 +81,22 @@ class PaymentController extends Controller
         }
 
         $cartItems = Cart::content();
-        $partial=0;
         $shippingCost = ShippingCost::orderBy('id', 'desc')->first();
         return view('site.pages.payment.confirmation', [
             'shippingCost' => $shippingCost,
             'cartItems' => $cartItems,
             'promotion' => $promotion,
             'districts' => $districts,
-            'partial' =>$partial,
-            'user' => $user,
-
+            'user' => $user
         ]);
     }
 
     public function makePayment(Request $request)
     {
-
         if(Cart::count() < 1) return redirect()->back()->with([
             'type' => 'error',
             'message' => 'First Select product to order'
         ]);
-        $credit = auth()->user()->credit_balance;
-
-        $partials=$request->session()->get('partial');
-        if($partials==null)
-        {
-            $part=0;
-        } else {
-            $part = (int)$partials->partial;
-            if($part>$credit)
-            {
-                return redirect()->back()->with([
-                    'type' => 'error',
-                    'message' => 'You do not have sufficient fund'
-                ]);
-            }
-
-        }
-
         $promotionCode = $request->input('package_code');
         $promotion = Promotion::whereCode($promotionCode)->first();
         $shippingCost = ShippingCost::orderBy('id', 'DESC')->first();
@@ -135,46 +110,18 @@ class PaymentController extends Controller
                 $promoId = $promotion->id;
                 if ($promotion->sign == 'Amount') {
                     $discount = (float)$promotion->amount;
-                    $grandTotal = ((float)$subTotal - (float)$promotion->amount) + $shippingCost->amount-$part;
-                    if($grandTotal<=0)
-                    {
-                        return redirect()->back()->with([
-                            'type' => 'error',
-                            'message' => 'Please check your partial payment input'
-                        ]);
-                    }
+                    $grandTotal = ((float)$subTotal - (float)$promotion->amount) + $shippingCost->amount;
+
                 } elseif ($promotion->sign == 'Percentage') {
                     $discount = (((float)$subTotal * (float)$promotion->amount) / 100);
-                    $grandTotal = ((float)$subTotal - $discount) + (float)$shippingCost->amount-$part;
-                    if($grandTotal<=0)
-                    {
-                        return redirect()->back()->with([
-                            'type' => 'error',
-                            'message' => 'Please check your partial payment input'
-                        ]);
-                    }
+                    $grandTotal = ((float)$subTotal - $discount) + (float)$shippingCost->amount;
+
                 }
             } else {
-                $grandTotal = (float)$subTotal + $shippingCost->amount-$part;
-
-                if($grandTotal<=0)
-                {
-                    return redirect()->back()->with([
-                        'type' => 'error',
-                        'message' => 'Please check your partial payment input'
-                    ]);
-                }
+                $grandTotal = (float)$subTotal + $shippingCost->amount;
             }
         } else {
-            $grandTotal = (float)$subTotal + $shippingCost->amount-$part;
-
-            if($grandTotal<=0)
-            {
-                return redirect()->back()->with([
-                    'type' => 'error',
-                    'message' => 'Please check your partial payment input'
-                ]);
-            }
+            $grandTotal = (float)$subTotal + $shippingCost->amount;
         }
 
         $user = User::whereId(auth()->user()->id);
@@ -189,7 +136,6 @@ class PaymentController extends Controller
         if ($request->input('payment_method') == 'ssl') {
             return $this->sslPayment($request, $grandTotal, null, $promoId, 'product', $discount);
         } elseif ($request->input('payment_method') == 'paypal') {
-
             return $this->payPalIntegration($request, $grandTotal, null, $promoId, 'product', $discount);
 
         } elseif ($request->input('payment_method') == 'cash_on_delivery') {
@@ -207,35 +153,6 @@ class PaymentController extends Controller
                 A copy of invoice send to your E-mail: ".auth()->user()->email." and your Order no is ".$orderNo
 
             ]);
-
-        }elseif ($request->input('payment_method') == 'user_account') {
-
-            if((auth()->user()->credit_balance)<$grandTotal)
-
-            {
-                return back()
-                    ->with(['type' => 'error',
-                        'message' => "You do not have Sufficient amount in your account"]);
-            }else{ $orderNo = $this->makeSales($discount, (float)$shippingCost->amount, 'user_account');
-
-                $newCredit=auth()->user()->credit_balance - $grandTotal;
-                DB::update('update users set credit_balance = ? where id = ?',[$newCredit,auth()->user()->id]);
-
-                Cart::destroy();
-                $mailData = [
-                    'name' => auth()->user()->name,
-                    'order_no' => $orderNo,
-                ];
-                $this->sendEmail('email.email-order-confirmation', $mailData,'Order Confirmation',  auth()->user()->email);
-                $this->sendEmail('email.email-admin-order-confirmation', $mailData,'New Order',  env('ADMIN_MAIL_ADDRESS'));
-                return redirect('/user-details/all-order')->with([
-                    'type' => 'success',
-                    'message' => "Thank you ".auth()->user()->name.", You order has been received.  
-                A copy of invoice send to your E-mail: ".auth()->user()->email." and your Order no is ".$orderNo
-
-                ]);
-            }
-
 
         } else {
             return redirect()->back();
@@ -369,36 +286,20 @@ class PaymentController extends Controller
         ]);
 
         foreach (Cart::content() as $item){
-            SaleItem::create([
-                'sales_id' => $sales->id,
-                'product_id' => $item->id,
-                'quantity' => $item->qty,
-                'unit_price' => $item->price,
-                'total_price' => $item->price * (float)$item->qty,
-                'source' => $item->options['source'],
-                'source_id' => $item->options['source_id'],
-            ]);
+          SaleItem::create([
+             'sales_id' => $sales->id,
+             'product_id' => $item->id,
+             'quantity' => $item->qty,
+             'unit_price' => $item->price,
+             'total_price' => $item->price * (float)$item->qty,
+             'source' => $item->options['source'],
+             'source_id' => $item->options['source_id'],
+          ]);
 
-            $product= Product::find($item->id);
-            $product->update(['quantity' => $product->quantity - (int)$item->qty]);
+          $product= Product::find($item->id);
+          $product->update(['quantity' => $product->quantity - (int)$item->qty]);
         }
         return $order_no;
     }
-    public function setpartial(Request $request)
-    {
-        $request->session()->flash('partial');
-        $partialss=$request->value;
-        $partial=new partialPayment($partialss);
-
-        $request->session()->put('partial',$partial);
-
-        $partials = $request->session()->get('partial');
-
-        return response()->json(['success' => true, 'partials' => $partials]);
-
-
-
-    }
-
 
 }

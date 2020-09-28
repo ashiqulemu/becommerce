@@ -11,7 +11,7 @@
     <div class="container bg-white">
         <div class="row">
             <div class="col-md-12 h-first-row">
-                <h1>You can always save on {{env("APP_NAME")}}</h1>
+                <h1>You can always save on BillBoardbd.com </h1>
                 <h3>win an auction or use Buy Now</h3>
                 <hr>
             </div>

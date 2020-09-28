@@ -10,12 +10,9 @@
     @endif
 
     <div class="container bg-white">
-
         <form method="post" action="{{url('/make-payment')}}">
             @csrf
             <div class="row py-2 header">
-
-
                 <div class="col-md-4"><br>
                     <h6 class="font-weight-bold">Delivery Information </h6>
                     <p></p>
@@ -58,21 +55,20 @@
                             @endif
                         </div>
                         <div class="form-group">
-                            <input type="hidden" name="district" value="null">
-                            {{--<label for=""> District <span class="text-danger">*</span></label>--}}
+                            <label for=""> District <span class="text-danger">*</span></label>
 
-                            {{--<select class="form-control" name="district" required>--}}
-                            {{--@foreach($districts as $district)--}}
-                            {{--<option value="{{$district['name']}}"--}}
-                            {{--@if ( old('district', $user->contact ? $user->contact->district : '' ) == $district['name'] )--}}
-                            {{--selected--}}
-                            {{--@endif--}}
-                            {{-->{{$district['name']}}</option>--}}
-                            {{--@endforeach--}}
-                            {{--</select>--}}
-                            {{--@if ($errors->has('district'))--}}
-                            {{--<div class="error">{{ $errors->first('district') }}</div>--}}
-                            {{--@endif--}}
+                            <select class="form-control" name="district" required>
+                                @foreach($districts as $district)
+                                <option value="{{$district['name']}}"
+                                    @if ( old('district', $user->contact ? $user->contact->district : '' ) == $district['name'] )
+                                        selected
+                                    @endif
+                                >{{$district['name']}}</option>
+                                @endforeach
+                            </select>
+                            @if ($errors->has('district'))
+                                <div class="error">{{ $errors->first('district') }}</div>
+                            @endif
                         </div>
                         <div class="form-group">
                             <label for=""> City <span class="text-danger">*</span> </label>
@@ -101,75 +97,47 @@
                     <h6 class="font-weight-bold">Select a Payment Method</h6>
                     <p></p>
                     <ul class="payments">
-                        {{--<li>--}}
-                        {{--<label class="payment-items">--}}
-                        {{--<img src="/images/bkash.png" class="img-fluid">--}}
-                        {{--<p>Bkash, Rocket, U-cash, Debit Card, Credit Card or Online Banking</p>--}}
-                        {{--<input type="radio"--}}
-                        {{--name="payment_method"--}}
-                        {{--class="radioBtn"--}}
-                        {{--value="ssl" required--}}
-                        {{--@if (old('payment_method')=='ssl')--}}
-                        {{--checked--}}
-                        {{--@endif>--}}
-                        {{--</label>--}}
-                        {{--</li>--}}
+                        <li>
+                            <label class="payment-items">
+                                <img src="/images/bkash.png" class="img-fluid">
+                                <p>Bkash, Rocket, U-cash, Debit Card, Credit Card or Online Banking</p>
+                                <input type="radio"
+                                       name="payment_method"
+                                       value="ssl" required
+                                       @if (old('payment_method')=='ssl')
+                                            checked
+                                        @endif>
+                            </label>
+                        </li>
                         <li>
                             <label class="payment-items">
                                 <img src="/images/dbbl.png" class="img-fluid">
                                 <p>PayPal</p>
                                 <input type="radio"
-                                       class="radioBtn"
                                        name="payment_method"
                                        value="paypal"
                                        @if (old('payment_method')=='paypal')
-                                       checked
+                                             checked
                                         @endif>
                             </label>
                         </li>
-                        {{--<li>--}}
-                        {{--<label class="payment-items">--}}
-                        {{--<img src="/images/master-card.png" class="img-fluid">--}}
-                        {{--<p>Cash On Deliver</p>--}}
-                        {{--<input type="radio"--}}
-                        {{--class="radioBtn"--}}
-                        {{--name="payment_method"--}}
-                        {{--value="cash_on_delivery"--}}
-                        {{--@if (old('payment_method')=='cash_on_delivery')--}}
-                        {{--checked--}}
-                        {{--@endif>--}}
-                        {{--</label>--}}
-                        {{--</li>--}}
-
                         <li>
                             <label class="payment-items">
-
-                                <i class="fa fa-user "></i> <p>Full Payment from User Account:</p>
+                                <img src="/images/master-card.png" class="img-fluid">
+                                <p>Cash On Deliver</p>
                                 <input type="radio"
                                        name="payment_method"
-                                       class="radioBtn"
-                                       value="user_account"
-                                       @if (old('payment_method')=='user_account')
-                                       checked
+                                       value="cash_on_delivery"
+                                       @if (old('payment_method')=='cash_on_delivery')
+                                        checked
                                         @endif>
                             </label>
                         </li>
-
-                        <li>
-                        <label class="payment-items">
-                        <i class="fa fa-user "></i>
-                        <p>Partial Amount from User Account:</p>
-
-                        <input type="number"
-                          id="partial"
-                          placeholder="you must choose paypal payment method" disabled="disabled">
-                        </label>
-                        </li>
-
                     </ul>
                 </div>
                 <div class="col-md-4">
                     <br>
+
 
                     <div class="basket">
                         <p class="title">Your Items</p>
@@ -202,44 +170,34 @@
                                     <span>{{$setting->amount_sign}}{{$shippingCost?$shippingCost->amount:0}}</span>
                                 </p>
                                 <p>
-                                    @if($promotion)
+                                @if($promotion)
 
-                                        <span>(-) Discount {{$promotion->sign=='Percentage'?
+                                    <span>(-) Discount {{$promotion->sign=='Percentage'?
                                         '('.$promotion->amount.'%)':''}}</span>
-                                        @if($promotion->sign=='Percentage')
-                                            @php
-                                                $discountAmount=($subTotal*
-                                            $promotion->amount)/100
-                                            @endphp
-                                            <span>{{$setting->amount_sign}}{{$discountAmount}}</span>
-                                        @else
-                                            @php
-                                                $discountAmount=$promotion->amount
-                                            @endphp
-                                            <span>{{$setting->amount_sign}}{{$promotion->amount}}</span>
-                                        @endif
-
+                                    @if($promotion->sign=='Percentage')
+                                        @php
+                                            $discountAmount=($subTotal*
+                                        $promotion->amount)/100
+                                        @endphp
+                                        <span>{{$setting->amount_sign}}{{$discountAmount}}</span>
                                     @else
+                                        @php
+                                            $discountAmount=$promotion->amount
+                                        @endphp
+                                        <span>{{$setting->amount_sign}}{{$promotion->amount}}</span>
+                                    @endif
+
+                                @else
                                         @php
                                             $discountAmount=0
                                         @endphp
-                                        <span>(-) Discount</span>
-                                        <span>{{$setting->amount_sign}}0</span>
-                                    @endif
-                                </p>
-
-                                <p>
-                                    <span>(-)Paid from-account:</span>
-                                    <span id="getvalue">
-
-
-
-
-                                    </span>
+                                    <span>(-) Discount</span>
+                                    <span>{{$setting->amount_sign}}0</span>
+                                @endif
                                 </p>
                                 <p class="mt-2 font-weight-bold">
                                     <span>Grand Total </span>
-                                    <span id="total" >
+                                    <span>{{$setting->amount_sign}}
                                         {{($subTotal+($shippingCost?$shippingCost->amount:0)-$discountAmount)}}</span>
                                 </p>
                             </div>
@@ -247,17 +205,15 @@
                     </div>
                     <div class="buttonSection">
 
-                        <a href="{{url('/all-products')}}"
-                           class="confirmPay shopping"
-                           style="color: black;text-decoration: none"
-                        >Continue Shopping!</a>
+                            <a href="{{url('/all-products')}}"
+                               class="confirmPay shopping"
+                               style="color: black;text-decoration: none"
+                            >Continue Shopping!</a>
 
                         <button type="submit" class="confirmPay">Confirm Order!</button>
                     </div>
 
                 </div>
-
-
             </div>
         </form>
     </div>
@@ -270,53 +226,6 @@
 
 
 @section('scripts')
-
-    <script >
-        $(document).ready(function() {
-
-
-            $(".radioBtn").click(function () {
-                $("#partial").attr("disabled", true);
-                if ($("input[name=payment_method]:checked").val() == "paypal") {
-                    $("#partial").attr("disabled", false);
-                }
-
-
-            });
-            $("#partial").keyup(function () {
-                var value = $("#partial").val();
-
-
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-
-
-                $.ajax({
-                    url: '/partial-payment',
-
-                    type: 'get',
-                    cache: false,
-                    dataType: 'json',
-                    data: {value,},
-                    success: function (data) {
-                        var partial = data.partials.partial;
-
-                        $('#getvalue').html(partial);
-                        var total = $('#total').val()
-                        console.log(total);
-
-                    }
-
-                });
-
-            });
-        });
-    </script>
-
-
 
     <style>
 

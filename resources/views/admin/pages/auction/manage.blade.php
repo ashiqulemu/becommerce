@@ -17,13 +17,8 @@
                             <th>SL </th>
                             <th>Name</th>
                             <th>Category</th>
-                            <th>Starting Price</th>
-                            <th>Cost per Bid</th>
-                            <th>Total Bids</th>
-                            <th>Auto Bids</th>
-                            <th>Real Bids</th>
-                            <th>Winner</th>
-                            <th>Status</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
                             <th>Image</th>
                             <th>Action</th>
                         </tr>
@@ -36,11 +31,6 @@
                                 <td>{{$auction->product->category->name}}</td>
                                 <td>{{$auction->starting_price}}</td>
                                 <td>{{$auction->cost_per_bid}}</td>
-                                <td>{{count($auction->bids)}}</td>
-                                <td>{{count($auction->bids->where('from_auto_bid', '=', 1))}}</td>
-                                <td>{{count($auction->bids->where('from_auto_bid', '=', 0))}}</td>
-                                <td>{{(new App\Auction)->getWinner($auction) ? (new App\Auction)->getWinner($auction)->name : 'No winner'}}</td>
-                                <td>{{(new \App\Auction)->getCurrentStatus($auction)}}</td>
                                 <td width="100px">
                                     @foreach($auction->medias as $key=>$media)
                                         @if($key==0)

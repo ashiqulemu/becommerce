@@ -106,8 +106,8 @@
 
 
             <strong>
-                <h6 align='center'> www.{{env("APP_NAME")}} Dhaka Bangladesh Phone: 77665544222, Email:
-                    order{{"@".env("APP_NAME")}}
+                <h6 align='center'> www.billboardbd.com Dhaka Bangladesh Phone: 77665544222, Email:
+                    order@billboardbd.com
                 </h6>
             </strong>
 

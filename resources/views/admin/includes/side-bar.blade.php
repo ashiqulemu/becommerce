@@ -53,18 +53,14 @@
             <li>
                 <a href="#"><i class="fa fa-files-o fa-fw"></i> Sale<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
+{{--                    <li>--}}
+{{--                        <a href="blank.html">Add Sale</a>--}}
+{{--                    </li>--}}
                     <li>
                         <a href="{{url('/admin/sales')}}">Manage Sale</a>
                     </li>
                 </ul>
-            </li>
-            <li>
-                <a href="#"><i class="fa fa-files-o fa-fw"></i> Credit Sales<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="{{url('/admin/show-credit-sales')}}">Manage Credit Sales</a>
-                    </li>
-                </ul>
+                <!-- /.nav-second-level -->
             </li>
             <li>
                 <a href="#"><i class="fa fa-users"></i> Customer<span class="fa arrow"></span></a>
@@ -126,8 +122,7 @@
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
-            <li>
-                <a href="{{url('/admin/quiz')}}"><i class="fa fa-book"></i>Quiz<span class="fa arrow"></span></a>
+{{--            <li>--}}
 {{--                <a href="#"><i class="fa fa-pie-chart"></i> Report<span class="fa arrow"></span></a>--}}
 {{--                <ul class="nav nav-second-level">--}}
 {{--                    <li>--}}
@@ -138,7 +133,7 @@
 {{--                    </li>--}}
 {{--                </ul>--}}
 {{--                <!-- /.nav-second-level -->--}}
-            </li>
+{{--            </li>--}}
 
         </ul>
     </div>

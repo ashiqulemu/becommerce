@@ -8,7 +8,7 @@
                         <div class="product-head default-a">
                             <a :href="'/auction/details/'+item.id+'/'+item.name">
                                 <div>{{item.name}} </div>
-                                <div v-if="item.product">RRP {{item.product.price}}</div>
+                                <div v-if="item.product">RRP ${{item.product.price}}</div>
                             </a>
 
                         </div>
@@ -29,14 +29,14 @@
                         <div class="bottom-box">
                             <div>
                                 <template v-if="item.bids.length">
-                                    <b style="font-weight: bold; font-family: sans-serif; color: #ff9412;">
-                                        {{parseFloat(item.starting_price +
-                                    (item.price_increase_every_bid * item.bids.length)).toFixed(2)}}
+                                    <b>
+                                        ${{item.starting_price +
+                                    (item.price_increase_every_bid * item.bids.length)}}
                                     </b>
                                 </template>
                                 <template v-else>
-                                    <b style="font-weight: bold;    font-family: sans-serif;    color: #ff9412;">
-                                        {{parseFloat(item.starting_price).toFixed(2)}}
+                                    <b>
+                                        ${{item.starting_price}}
                                     </b>
 
                                 </template>
@@ -47,11 +47,11 @@
                             <div id="stopMama">
                                 <template v-if="item.bids.length">
                                     <template v-if="item.bids[item.bids.length-1].user">
-                                        <span style="padding-left: 5px"> {{item.bids[item.bids.length - 1].user.username}} </span> <br>
+                                        {{item.bids[item.bids.length - 1].user.username}} <br>
                                     </template>
                                 </template>
                                 <template v-else>
-                                    <span style="padding-left: 5px">No bid place yet</span>
+                                    No bid place yet
                                 </template>
 
                                 <b>
@@ -60,7 +60,10 @@
                                         <div :id="'bid'+item.id" v-show="false">false</div>
                                         <!--<div  :id="''+item.id" v-show="false">{{item.id}}</div>-->
                                         <div style="display: none;">
-                                            {{ auctionTimeSlot(item)}}
+                                            {{ auctionTimeSlot(item.up_time, item.slots,
+                                            item.id, item.is_closed, item.cost_per_bid,
+                                            item.price_increase_every_bid,
+                                            item.starting_price, item.bids)}}
                                         </div>
                                     </template>
 
@@ -69,7 +72,7 @@
                             <div :id="'hideBidOption'+item.id">
 
                                 <button type="button" v-if="currentPath=='/'" >
-                                    <a href="/#login-area" onclick="return confirm('you are not logged in please login first, NEW? then register first.')">
+                                    <a href="#login-area">
                                         <img src="/images/home/hammer-bidding.png" alt="">
                                     </a>
 
@@ -85,17 +88,9 @@
                                 </button>
 
                                 <button type="button">
-                                    <template v-if="$root._data.user.hasOwnProperty('id')">
-                                        <a :href="'/auto-bid/create?id='+item.id">
-                                            <img src="/images/home/auto-bid.png" alt="">
-                                        </a>
-                                    </template>
-                                    <template v-else>
-                                        <a href="/#login-area"  onclick="return confirm('you are not logged in please login first, NEW? then register first.')">
-                                            <img src="/images/home/auto-bid.png" alt="">
-                                        </a>
-                                    </template>
-
+                                    <a href="/auto-bid/create">
+                                        <img src="/images/home/auto-bid.png" alt="">
+                                    </a>
                                 </button>
                             </div>
                         </div>
@@ -103,7 +98,7 @@
                         <div class="bottom-box-two">
                             <div>
 
-                                Price Drop as YOU BID <br> YOUR Price {{getPriceDrop(item)}}
+                                Price Drop as YOU BID <br> YOUR Price ${{getPriceDrop(item)}}
 
                             </div>
                             <div>

@@ -3,23 +3,29 @@ import {Auction} from "../../auctionClass";
 export default {
     data() {
         return {
-            auctions: [],
+            auctions: {},
+            slotRunningCount: 0,
             serverTime: window.serverTime,
             currentPath: window.currentPath,
+            auctionObjects: [],
             renderComponent: true,
+            bidBtnHit: false,
             onBidServerTime: '',
             autoBids: [],
+            costBid:0,
         }
     },
     created() {
+
         this.getData()
         Echo.channel('bidChannel')
-            .listen('.BidUpdate', async (e) => {
-                await this.clearRuningTimeOut()
-                await this.clearRuningTimeOut()
-                await this.clearRuningTimeOut()
-                await this.clearRuningTimeOut()
-                // this.forceRerender()
+            .listen('.BidUpdate', (e) => {
+                var ids = window.setTimeout(function () {
+                }, 0);
+                while (ids--) {
+                    window.clearTimeout(ids);
+                }
+                this.forceRerender()
                 $('#timer' + e.message).html('00:00:00');
                 $('#timer' + e.message).css("background-color", "#ffa500")
 
@@ -30,11 +36,11 @@ export default {
 
 
             });
-    },
-    computed: {
 
     },
+
     methods: {
+
         getData() {
             var urls = window.currentPath.split('/')
             axios.get('/auction-single-data/' + urls[2]).then(res => {
@@ -43,24 +49,40 @@ export default {
                 this.autoBids = res.data.autoBidByUser
             })
         },
-        async auctionTimeSlot(auction) {
+        auctionTimeSlot(upTime, slots, id, isClosed, costPerBid, price_increase_every_bid, starting_price, bids) {
 
-            await this.clearRuningTimeOut()
-            $('#timer' + auction.id).css("background-color", "")
-            $('#timer' + auction.id).html('00:00:00');
+            var ids = window.setTimeout(function () {
+            }, 0);
+
+            while (ids--) {
+                window.clearTimeout(ids);
+            }
+
+            $('#timer' + id).css("background-color", "")
+
             var serTime = this.onBidServerTime ? this.onBidServerTime : this.serverTime
-            if (this.moment(auction.up_time).format('YYYY-MM-DD HH:mm:ss') <=
+            if (this.moment(upTime).format('YYYY-MM-DD HH:mm:ss') <=
                 this.moment(serTime).format('YYYY-MM-DD HH:mm:ss')) {
-                var newAuction = new Auction(auction, serTime);
-                if (auction.bids.length < 2) {
-                    newAuction.setTimerWithServerTime()
+
+                var currentItemAutoBids = this.autoBids.filter(data => data.auction_id == id)
+                var userIds = currentItemAutoBids.map(data => data.user_id)
+                var randUserId = userIds[Math.floor(Math.random() * userIds.length)]
+
+                var auction = new Auction(upTime, slots, id, isClosed, serTime,
+                    costPerBid, price_increase_every_bid, starting_price, bids, currentItemAutoBids,
+                    Math.floor(Math.random() * (9 - 5) + 5).toString(), randUserId, userIds);
+
+                var bids = this.auctions.bids
+                if (bids.length < 2) {
+                    auction.setTimerWithServerTime()
                 } else {
-                    newAuction.setTimerWithBid(auction.bids)
+                    auction.setTimerWithBid(bids)
                 }
+
                 this.$nextTick(() => {
-                    $('#timer' + auction.id).html(newAuction.currentDiffTime ?
-                        newAuction.currentDiffTime : '00:00:00');
-                    newAuction.startTimer();
+
+                    $('#timer' + id).html(auction.currentDiffTime ? auction.currentDiffTime : '');
+                    auction.startTimer();
                 })
 
             }
@@ -72,7 +94,9 @@ export default {
                 return false;
             }
 
+
             var currentBalance = this.$root._data.user.credit_balance - costPerBid
+
             if (currentBalance >= 0) {
                 axios.post('/bid', {
                     auction_id: id,
@@ -82,7 +106,7 @@ export default {
 
                 })
             } else {
-                alert("You don't have enough credit Please buy first. Please top up.")
+                alert("You don't have enough credit Please buy first.")
             }
 
 
@@ -94,20 +118,8 @@ export default {
                 this.renderComponent = true;
             });
         },
-        clearRuningTimeOut() {
-            var ids = window.allAuctionSetTimout
-            ids.forEach(data => {
-                window.clearTimeout(data);
-                var index = window.allAuctionSetTimout.indexOf(data);
-                if (index !== -1) window.allAuctionSetTimout.splice(index, 1);
-            })
-        },
         getItem() {
             return _.orderBy(this.auctions.bids, ['id'], ['desc'])
-        },
-        getPrice(auction) {
-            return parseFloat(parseFloat(auction.starting_price) +
-                (parseFloat(auction.price_increase_every_bid) * auction.bids.length)).toFixed(2)
         },
         getPriceDrop(item) {
             if (item) {
@@ -115,17 +127,23 @@ export default {
                     var userBids = item.bids.filter(data => data.user_id == this.$root._data.user.id)
                     if (item.product) {
                         var totalExpnes = userBids.length == 0 ? 0 :
-                            userBids.length * (parseFloat(item.cost_per_bid) * 10)
+                            userBids.length * (parseFloat(item.cost_per_bid)*10)
                         return parseFloat(item.product.price - ((parseFloat(totalExpnes) *
                             item.price_drop_percentage) / 100)).toFixed(2)
                     }
+
                 } else {
                     return item.product.price
                 }
-
-
             }
+        },
+        getItemCostBid(cost){
+
+            // this.costBid = (parseFloat(this.costBid)+parseFloat(cost))
+            this.costBid+=cost
+            return this.costBid
         }
+
 
     }
 

@@ -13,11 +13,11 @@
             <b>Order No : # {{$data['order_no']}}</b><br>
             you can see your order flowing this link</p><br>
 
-        <a href="http://{{env('APP_NAME')}}/order-invoice/{{$data['order_no']}}">
+        <a href="http://www.billboardbd.com/order-invoice/{{$data['order_no']}}">
             Show Invoice </a><br>
         <small>Note: Login needed to see your invoice</small>
         <p>Thanks<br>
-            {{env("APP_NAME")}}<br>
+            BillBoardBD<br>
         </p>
     </div>
 </div>

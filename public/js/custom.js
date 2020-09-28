@@ -44,11 +44,12 @@ $(document).ready(function () {
         let preload = document.getElementById("preload");
         // preload.classList.add("changeOpacity")
     })
-    $('.sp-wrap').smoothproducts();
-    setTimeout(function () {
-        $('#successMessage').css('display','none')
-        $('#successMessage').css('display','none')
-    },4000)
+    //
+    // $('.sp-wrap').smoothproducts();
+    // setTimeout(function () {
+    //     $('#successMessage').css('display','none')
+    //     $('#successMessage').css('display','none')
+    // },4000)
 
 
 });

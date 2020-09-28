@@ -20,37 +20,32 @@ Route::middleware(['init'])->group(function () {
     Route::get('/fire-event/{id}','AuctionController@fireEvent');
     Route::get('/auction-single-data/{id}','AuctionController@getSingleAuctionData');
 
-    Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth'])->group(function () {
 
-        Route::get('/user-home', 'UserHomeController@index');
-        Route::redirect('/user-details','/user-details/my-information');
-        Route::get('/user-details/my-information','UserHomeController@show');
-        Route::get('/user-details/statistic', 'UserHomeController@statistic');
-        Route::get('/user-details/settings', 'UserHomeController@settings');
-        Route::get('/user-details/referral', 'UserHomeController@referral');
-        Route::get('/user-details/referral-friend', 'UserHomeController@referralFriend');
-        Route::post('/user-details/referral-send-email', 'UserHomeController@referralSendEmail');
-        Route::get('/user-details/change-password', 'UserHomeController@changePassword');
-        Route::post('/user-details/update', 'UserHomeController@updateInfo');
-        Route::post('/user-details/update-password', 'UserHomeController@updatePassword');
-        Route::get('/user-details/all-order', 'UserHomeController@allOrder');
-        Route::get('/user-details/shipment-order', 'UserHomeController@shipmentOrder');
-        Route::get('/user-details/completed-order', 'UserHomeController@completedOrder');
-        Route::get('/user-details/cancel-order', 'UserHomeController@cancelOrder');
-        Route::get('/user-details/bidding-history', 'UserHomeController@biddingHistory');
-        Route::get('/user-details/credit-buy-history', 'UserHomeController@creditBuyingHistory');
-        Route::get('/user-details/order-cancel/{order_no}', 'UserHomeController@orderCancel');
-        Route::get('/generate-invoice/{id}', 'PaymentController@generateCreditInvoice');
-        Route::get('/order-invoice/{order_no}', 'PaymentController@generateOrderInvoice');
-        Route::get('/quiz-result', 'PrizeController@userResult');
-    });
-    Route::get('auth/facebook', 'Auth\LoginController@redirect');
-    Route::get('auth/facebook/callback', 'Auth\LoginController@callback');
-    Route::post('/count/fb', 'FacebookShareController@addcredit');
+    Route::get('/user-home', 'UserHomeController@index');
+    Route::redirect('/user-details','/user-details/my-information');
+    Route::get('/user-details/my-information','UserHomeController@show');
+    Route::get('/user-details/statistic', 'UserHomeController@statistic');
+    Route::get('/user-details/settings', 'UserHomeController@settings');
+    Route::get('/user-details/referral', 'UserHomeController@referral');
+    Route::get('/user-details/referral-friend', 'UserHomeController@referralFriend');
+    Route::post('/user-details/referral-send-email', 'UserHomeController@referralSendEmail');
+    Route::get('/user-details/change-password', 'UserHomeController@changePassword');
+    Route::post('/user-details/update', 'UserHomeController@updateInfo');
+    Route::post('/user-details/update-password', 'UserHomeController@updatePassword');
+    Route::get('/user-details/all-order', 'UserHomeController@allOrder');
+    Route::get('/user-details/shipment-order', 'UserHomeController@shipmentOrder');
+    Route::get('/user-details/completed-order', 'UserHomeController@completedOrder');
+    Route::get('/user-details/cancel-order', 'UserHomeController@cancelOrder');
+    Route::get('/user-details/bidding-history', 'UserHomeController@biddingHistory');
+    Route::get('/user-details/credit-buy-history', 'UserHomeController@creditBuyingHistory');
+    Route::get('/user-details/order-cancel/{order_no}', 'UserHomeController@orderCancel');
+    Route::get('/generate-invoice/{id}', 'PaymentController@generateCreditInvoice');
+    Route::get('/order-invoice/{order_no}', 'PaymentController@generateOrderInvoice');
+});
 
     Route::get('/payment-confirmation', 'PaymentController@paymentConfirmation');
     Route::post('/make-payment', 'PaymentController@makePayment');
-    Route::get('/partial-payment','PaymentController@setpartial');
     Route::get('/credit/make-payment', 'PaymentController@makeCreditPayment');
     Route::get('/credit/ssl/make-payment', 'PaymentController@sslCreditPayment');
 
@@ -109,18 +104,11 @@ Route::middleware(['init'])->group(function () {
         return view('site.pages.referral.referral');
     });
 
-    Route::get('/quiz-test','QuizTestController@test' )->name('quiz.test');
-    Route::get('/quiz-login','QuizTestController@log');
-    Route::post('/quiz-login','QuizTestController@quizlog' );
-    Route::post('/quiz-save','QuizTestController@save' );
-    Route::post('/quiz-register','QuizTestController@quizregister' );
+
 });
 
-//Route::get('facebook', function () {
-//    return view('facebook');
-//});
-//Route::get('auth/facebook', 'Auth\LoginController@redirect');
-//Route::get('auth/facebook/callback', 'Auth\LoginController@callback');
+
+
 
 Route::get('/set', function (){
     $auctions=\App\Auction::all();
@@ -129,11 +117,11 @@ Route::get('/set', function (){
         $item->delete();
     }
     foreach ($auctions as $key=>$item){
-        $item->update([
-            'up_time'=>\Carbon\Carbon::now(),
-            'is_closed'=>0,
-            'status'=>'Active'
-        ]);
+            $item->update([
+                'up_time'=>\Carbon\Carbon::now(),
+                'is_closed'=>0,
+                'status'=>'Active'
+            ]);
     }
 //    \App\Auction::find(2)->update(['is_closed'=>1]);
 //    \App\Auction::find(4)->update(['is_closed'=>1]);

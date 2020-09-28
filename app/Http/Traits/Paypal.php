@@ -7,7 +7,7 @@
  */
 
 namespace App\Http\Traits;
-use App\partialPayment;
+
 use App\Http\Controllers\PaymentController;
 use App\Package;
 use App\ShippingCost;
@@ -155,17 +155,6 @@ trait Paypal
                 }else{
                     $shippingCost = ShippingCost::orderBy('id', 'DESC')->first();
                     $orderNo = PaymentController::makeSales($request->session()->get('discount'), (float)$shippingCost->amount, 'paypal');
-
-                    $partial = $request->session()->get('partial');
-                    if($partial==null)
-                    {
-                        $partial=0;
-                    }
-
-                    $newCredit=auth()->user()->credit_balance - $partial;
-                    DB::update('update users set credit_balance = ? where id = ?',[$newCredit,auth()->user()->id]);
-                    $request->session()->flash('partial');
-
                     Cart::destroy();
                     $mailData = [
                         'name' => auth()->user()->name,

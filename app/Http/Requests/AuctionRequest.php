@@ -31,7 +31,6 @@ class AuctionRequest extends FormRequest
             'starting_price'=>'required',
             'cost_per_bid'=>'required',
             'price_increase_every_bid'=>'required',
-            'images.*'  => 'image|mimes:jpeg,png,jpg,gif|max:1024',
             'status'=>'required',
         ];
 

@@ -1,6 +1,6 @@
 @extends('site.app')
 @section('title-meta')
-    <title>Galaxy Game User </title>
+    <title>Firebidder user loged </title>
 @endsection
 
 @section('content')
@@ -9,9 +9,6 @@
 
     <section class="slider">
         <div class="container">
-            @if($errors->any())
-                <div  class="alert alert-warning"><h5 style="color:#000000;font-family: Aparajita">{{$errors->first()}}</h5></div>
-            @endif
            <div class="row">
                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                    <div class="carousel-inner">
@@ -37,17 +34,6 @@
            </div>
         </div>
     </section>
-
-
-   @if ($countPost<=1)
-
-       <button onclick="myFunction()" class="fa fa-facebook-square" style="color: #005cbf">Share</button>
-
-
-   @else
-       <button onclick="myFunction()" id="form"  class="fa fa-facebook-square" disabled>Share</button>
-   @endif
-
 
    @include('.site.login.login-partitial.nav')
 
@@ -83,39 +69,3 @@
 @section('scripts')
         {{--<script src="{{ mix('/js/home.js') }}"></script>--}}
 @endsection
-
-<script>
-    $count = 0;
-    function myFunction() {
-
-        // document.getElementById("socialModal").style.cssText="display:flex!important;"
-
-        if ($count <= 1)
-        {
-            $count++;
-
-            //     // var x = document.URL;
-
-            $.ajax({
-
-                url: "count/fb",
-                type: "post",
-                data: {
-                    '_token': $('input[name=_token]').val(),
-                },
-            });
-
-
-            var windowOptions = "toolbar=no,location=no,status=no,menubar=no,scrollbars=no,height=400,width=400,left=300,top=150"
-            window.open("http://www.facebook.com/sharer.php?u=https://galaxy.auction", "", windowOptions);
-
-
-
-            //     window.open('http://www.facebook.com/sharer.php?,','sharer','toolbar=0,status=0,width=626,height=436');return false;
-            //
-        }
-        else{
-            document.getElementById("form").disabled = true;
-        }
-    }
-</script>

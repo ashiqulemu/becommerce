@@ -31,7 +31,6 @@ class ProductRequest extends FormRequest
             'quantity'=>'required',
             'category_id'=>'required',
             'status'=>'required',
-            'images.*'  => 'image|mimes:jpeg,png,jpg,gif|max:1024',
             'is_out_of_stock'=>'required',
         ];
     }

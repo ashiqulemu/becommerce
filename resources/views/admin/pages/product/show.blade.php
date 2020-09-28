@@ -50,10 +50,6 @@
                             <div class="content"> <b>{{$product->status ? "Active" : "Inactive"}}</b> </div>
                         </div>
                         <div class="items">
-                            <div class="heading">Date</div>
-                            <div class="content"> <b>{{$product->created_at}}</b> </div>
-                        </div>
-                        <div class="items">
                             <div class="heading">Product Description</div>
                             <div class="content">  {!! $product->description !!}</div>
                         </div>

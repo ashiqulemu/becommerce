@@ -18,10 +18,9 @@
                             <th>Name</th>
                             <th>Mobile</th>
                             <th>Email</th>
-                            <th>Credit</th>
+                            <th>Address</th>
                             <th>Status</th>
-                            <th>Date</th>
-                            <th>Action</th>
+{{--                            <th>Action</th>--}}
                         </tr>
                         </thead>
                         <tbody>
@@ -31,35 +30,23 @@
                                 <td>{{$customer->name}}</td>
                                 <td>{{$customer->contact ? $customer->contact->mobile : ''}}</td>
                                 <td>{{$customer->email}}</td>
-                                <td>{{$customer->credit_balance}}</td>
-
                                 <td>
-                                    <select  class="form-control"
-                                             name="section"
-                                             id="customerStatus{{$customer->id}}"
-                                             required
-                                             placeholder="Select Section">
-                                        @foreach( [0, 1] as $item)
-                                            <option value="{{$item}}"
-                                                    @if($item == $customer->is_active) selected @endif
-                                            > {{$item == 1 ? 'Active' : 'Inactive'}}</option>
-                                        @endforeach
-                                    </select>
-                                    <a href="#" onclick="changeCustomerSatus({{$customer->id}})" title="Update">
-                                        <i class="fa fa-check"></i>
-                                    </a>
+                                    {{$customer->contact ? $customer->contact->address : ''}} <br>
+                                    Post Code: {{$customer->contact ? $customer->contact->post_code : ''}} <br>
+                                    City :{{$customer->contact ? $customer->contact->city : ''}} <br>
+                                    District : {{$customer->contact ? $customer->contact->district : ''}} <br>
                                 </td>
-                                <td> {{$customer->created_at}}</td>
-                                <td>
-                                    <div>
-                                        <a href="{{url('/admin/show-customer/'.$customer->id)}}" title="Show">
-                                            <i class="fa fa-eye"></i>
-                                        </a>
-                                        <a href="{{url('/admin/adjust-credit/?user='.$customer->id)}}" title="Credit" style="color: orangered">
-                                            <i class="fa fa-money"></i>
-                                        </a>
-                                    </div>
-                                </td>
+                                <td> {{$customer->is_active ? 'Active' : 'Inactive'}}</td>
+{{--                                <td>--}}
+{{--                                    <div>--}}
+{{--                                        <a href="{{url('/admin/category/'.$customer->id).'/edit'}}" title="Edit">--}}
+{{--                                            <i class="fa fa-edit"></i>--}}
+{{--                                        </a>--}}
+{{--                                        <a  href="#" @click.prevent="deleteMe('{{'/admin/category/'.$customer->id}}')" title="Delete">--}}
+{{--                                            <i class="fa fa-trash"></i>--}}
+{{--                                        </a>--}}
+{{--                                    </div>--}}
+{{--                                </td>--}}
 
                             </tr>
                         @endforeach

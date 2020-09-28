@@ -7,12 +7,12 @@
 ">
     <div>
         <p><b>Hi {{$data['name']}},</b></p>
-        <p> Welcome to our {{env("APP_NAME")}}, really thanks to join with us. We add some credit to your account<br>
-            you can use it and if you want to more refer some friend to <b>{{env("APP_NAME")}}</b> <br>
+        <p> Welcome to our BillboardBD, really thanks to join with us. We add some credit to your account<br>
+            you can use it and if you want to more refer some friend to <b>BillboardBD</b> <br>
             if you need any help feel free contact with us.
         </p>
         <p>Thanks<br>
-            {{env("APP_NAME")}}<br>
+            BillBoardBD<br>
         </p>
     </div>
 </div>

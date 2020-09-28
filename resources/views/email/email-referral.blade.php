@@ -7,13 +7,13 @@
 ">
     <div>
         <p><b>Hi,</b></p>
-        <p> Your friend  {{$data['name']}}, sent you a request to join <b>{{env("APP_NAME")}}</b><br>
-            If you want to join or see about <b>{{env("APP_NAME")}}</b> please visit following this url<br>
-        <a href="http://{{env("APP_NAME")}}/?ref=20100{{$data['user_id']}}">
-            http://{{env("APP_NAME")}}/?ref=20100{{$data['user_id']}} </a><br><br>
-        <p><b>Refer your friend to spread our brand you will award credit</b></p><br><br>
+        <p> Your friend  {{$data['name']}}, sent you a request to join <b>billboardbd</b><br>
+            If you want to join or see about <b>billboardbd</b> please visit following this url<br>
+        <a href="http://www.billboardbd.com/?ref=20100{{$data['user_id']}}">
+            http://www.billboardbd.com/?ref=20100{{$data['user_id']}} </a><br>
+
         <p>Thanks<br>
-            {{env("APP_NAME")}}<br>
+            BillBoardBD<br>
         </p>
     </div>
 </div>

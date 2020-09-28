@@ -67,15 +67,15 @@
                 <br>
 
                 <ul class="payments">
-                    {{--<li>--}}
-                        {{--<label class="payment-items">--}}
-                            {{--<img src="/images/bkash.png" class="img-fluid">--}}
-                            {{--<p>Bkash, Rocket, U-cash, Debit Card,--}}
-                                {{--Credit Card or Online Banking</p>--}}
-                            {{--<input type="radio" name="payments" value="ssl"--}}
-                                   {{--@if(request()->input('payment')=='ssl') checked @endif>--}}
-                        {{--</label>--}}
-                    {{--</li>--}}
+                    <li>
+                        <label class="payment-items">
+                            <img src="/images/bkash.png" class="img-fluid">
+                            <p>Bkash, Rocket, U-cash, Debit Card,
+                                Credit Card or Online Banking</p>
+                            <input type="radio" name="payments" value="ssl"
+                                   @if(request()->input('payment')=='ssl') checked @endif>
+                        </label>
+                    </li>
                     <li>
                         <label class="payment-items">
                             <img src="/images/dbbl.png" class="img-fluid">

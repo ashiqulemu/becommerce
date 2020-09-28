@@ -21,12 +21,6 @@ class CreateSettingsTable extends Migration
             $table->decimal('paypal_con_rate')->default(1);
             $table->decimal('ssl_con_rate')->default(1);
             $table->boolean('show_auction')->default(true);
-            $table->string('paypal_id')->nullable();
-            $table->string('paypal_secret')->nullable();
-            $table->string('ssl_id')->nullable();
-            $table->string('ssl_secret')->nullable();
-            $table->string('sending_email_address')->default('admin@info.com');
-            $table->string('admin_email_address')->default('admin@admin.com');
             $table->timestamps();
         });
     }

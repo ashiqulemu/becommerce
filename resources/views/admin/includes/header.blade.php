@@ -41,10 +41,10 @@
                 </div>
             </a>
             <ul class="dropdown-menu dropdown-user">
-                <li><a href="{{url('/admin/change-password')}}"><i class="fa fa-user fa-fw"></i> Change Password</a>
+                <li><a href="#"><i class="fa fa-user fa-fw"></i> Change Password</a>
                 </li>
-                <li><a href="{{url('/admin/setting/1/edit')}}"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                </li>
+{{--                <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>--}}
+{{--                </li>--}}
                 <li class="divider"></li>
                 <li>
                     <a class="d-block" href="{{ url('/admin/logout') }}"

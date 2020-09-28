@@ -33,12 +33,6 @@ class Auction extends Model
     public function payments(){
         return $this->morphMany('App\Payment', 'paymentable');
     }
-    public function getCurrentStatus($auction) {
-        if ($auction->is_closed ) return  'Closed';
-        if ($auction->up_time <= Carbon::now() && !$auction->is_closed ) return "Live";
-        if ($auction->up_time > Carbon::now() && !$auction->is_closed ) return  'Upcoming';
-
-    }
     public static function isSold($auction)
     {
         if($auction->is_closed && count($auction->bids) > 1) {

@@ -95,7 +95,7 @@ class RegisterController extends Controller
         $mailData = [
             'name' => $data['sign_username'],
         ];
-        $this->sendEmail('email.email-welcome',$mailData ,'Welcome to ', $data['sign_email']);
+        $this->sendEmail('email.email-welcome',$mailData ,'Welcome to BillboardBd', $data['sign_email']);
         return  $user;
 
     }

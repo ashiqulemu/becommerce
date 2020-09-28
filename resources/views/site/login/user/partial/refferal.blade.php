@@ -24,7 +24,7 @@
                         <table class="table-striped table">
                             <tr>
                                 <td>Referral url</td>
-                                <td>http://{{env("APP_NAME")}}/?ref=20100{{auth()->user()->id}}</td>
+                                <td>http://www.billboardbd.com/?ref=20100{{auth()->user()->id}}</td>
                             </tr>
                             <tr>
                                 <td> Referred User</td>

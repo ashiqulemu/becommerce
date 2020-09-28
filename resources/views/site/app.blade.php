@@ -1,37 +1,14 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-
-    <script type="text/javascript">
-        // Get rid of the Facebook residue hash in the URI
-        // Must be done in JS cuz hash only exists client-side
-        // IE and Chrome version of the hack
-        if (String(window.location.hash).substring(0,1) == "#") {
-            window.location.hash = "";
-            window.location.href=window.location.href.slice(0, -1);
-        }
-        // Firefox version of the hack
-        if (String(location.hash).substring(0,1) == "#") {
-            location.hash = "";
-            location.href=location.href.substring(0,location.href.length-3);
-        }
-    </script>
-
-
     <meta charset="utf-8">
-    {{--<meta name="viewport" content="width=device-width, initial-scale=1">--}}
-    <meta name="viewport" content="width=1024">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @yield('title-meta')
     <meta http-equiv="refresh" content="900"/>
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
-    <link rel="stylesheet" href="{{mix('css/app.css')}}">
-    <link rel="stylesheet" href="{{asset('css/smoothproducts.css')}}">
-    <link rel="icon" href="{{asset('images/favi.png')}}">
-    <!-- Styles -->
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    <link rel="stylesheet" href="{{asset('css/swiper-bundle.min.css')}}">
+    <script src="{{asset('js/swiper-bundle.min.js')}}"></script>
     @php
         $date = new DateTime(); $serverTime = $date->format('Y-m-d H:i:s');
         $timeZone = $date->getTimezone()->getName();
@@ -90,7 +67,7 @@
 
 {{--<script src="{{asset('js/zoom-image.js')}}"></script>--}}
 <script src="{{asset('js/main.js')}}"></script>
-{{--<script src="{{asset('js/wow.min.js')}}"></script>--}}
+<script src="{{asset('js/wow.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/custom.js')}}"></script>
 
 

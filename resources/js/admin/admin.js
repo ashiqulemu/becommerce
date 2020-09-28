@@ -14,11 +14,11 @@ const app = new Vue({
     el: '#app',
     data() {
         return {
+            message: 'I am from Vue (admin)',
             form: {},
             name: '',
             status:'Active',
             statusShow:true,
-            count: 0,
             slotRangeData: [
                 {slot_number: '', slotRange: ''}
             ],
@@ -44,8 +44,8 @@ const app = new Vue({
             if (index == 0) {
                 this.slotRangeData[index].slotRange = 0 + '-' + this.slotRangeData[index].slot_number
             } else {
-                this.slotRangeData[index].slotRange = (parseInt(this.slotRangeData[index - 1].slot_number) + 1) + '-' +
-                this.slotRangeData[index].slot_number
+                this.slotRangeData[index].slotRange = this.slotRangeData[index - 1].slot_number + '-' +
+                    this.slotRangeData[index].slot_number
             }
 
         },
@@ -59,24 +59,6 @@ const app = new Vue({
         setStatus(val){
             this.status=val
             this.statusShow=false
-        },
-        initialSlotRange(ranges) {
-            if(this.count === 0){
-                var ranges = JSON.parse(ranges)
-
-                ranges.forEach((range, index) => {
-                    if(index > 0) {
-                        this.addRow()
-                    }
-                    this.slotRangeData[index].slot_number = range.slot_number
-                    this.getSlotRage(range.slot_number, index)
-                    Vue.nextTick(() => {
-                        $('#slotDuration' + index).val(range.duration_time);
-                    })
-                })
-                this.count++
-            }
-
         }
 
     }

@@ -96,21 +96,6 @@
             </div>
         </div>
     </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse6">Quiz</a>
-            </h4>
-        </div>
-        <div id="collapse6" class="panel-collapse collapse">
-            <div class="panel-body">
-                <div class="inner">
-                    <a id="allOrder" href="{{url('/quiz-result')}}">Quiz Result</a>
-
-                </div>
-            </div>
-        </div>
-    </div>
 
 </div>
 

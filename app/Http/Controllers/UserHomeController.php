@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use App\FacebookShare;
 
 class UserHomeController extends Controller
 {
@@ -51,18 +50,11 @@ class UserHomeController extends Controller
             ->where('up_time', '>', Carbon::now()->format('Y-m-d H:i:s'))
             ->latest()
             ->get();
-        $id = auth()->user()->id;
-
-        $countPost=FacebookShare :: where('user_id',$id  )
-            ->whereDate('created_at', '>=', date('Y-m-d'))
-            ->count();
-
         return view('site.login.index', [
             'auctionList'       => $auctionList,
             'productList'       => $productList,
             'closedAuctions'    => $closedAuctions,
             'upCommingAuction'  => $upCommingAuction,
-            'countPost'         => $countPost,
         ]);
 
     }

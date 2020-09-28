@@ -8,9 +8,6 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
-use App\quizTest;
-use App\quiz;
-use App\Question;
 
 class HomeDataController extends Controller
 {
@@ -37,40 +34,11 @@ class HomeDataController extends Controller
             ->whereIsClosed(0)
             ->where('up_time', '>', Carbon::now()->format('Y-m-d H:i:s'))
             ->latest()->get();
-
-        $quiz=DB::table('quizzes')
-            ->select('*')
-            ->where('status',1)
-            ->get();
-
-
-        if(sizeof($quiz)>0)
-        {
-
-            $question = DB::table('questions')
-                ->select('*')
-                ->where('quiz_id', $quiz[0]->id)
-                ->get();
-
-
-//            return view('site.pages.quizTest', ['quiz' => $quiz, 'question' => $question]);
-
-        }
-        else {
-
-            $message="No quiz available";
-            return view('site.home-partials.quizTest', ['msg' => $message]);
-
-        }
-
         return view('site.pages.home',[
             'auctionList'=>$auctionList,
             'productList'=>$productList,
             'closedAuctions'=>$closedAuctions,
             'upCommingAuction'=>$upCommingAuction,
-            'quiz'=>$quiz,
-            'question'=>$question,
-
         ]);
     }
 }

@@ -8,15 +8,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Cart;
 use Illuminate\Support\Facades\DB;
-use Laravel\Socialite\Facades\Socialite;
-use Exception;
-use App\User;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Contracts\Auth\Authenticatable;
-use phpDocumentor\Reflection\Types\Null_;
-
-
-
 
 class LoginController extends Controller
 {
@@ -118,60 +109,4 @@ class LoginController extends Controller
             }
         }
     }
-
-    public function redirect()
-    {
-
-        return Socialite::driver('facebook')->redirect();
-
-    }
-    public function callback()
-    {
-        try {
-            $fbuser = Socialite::driver('facebook')->user();
-            $user=DB::table('users')
-                ->select('id')
-                ->where('email',$input['email'] = $fbuser->getEmail())
-                ->first();
-            $input['name'] = $fbuser->getName();
-            $input['email'] = $fbuser->getEmail();
-//              $input['provider'] = $provider;
-            $input['facebook'] = $fbuser->getId();
-
-            if($user==Null)
-            {
-
-                $user = User::create([
-                    'name' => $input['name'],
-                    'username' => $input['name'],
-                    'email' => $input['email'],
-                    'password' => Hash::make($input['facebook']),
-
-                    'credit_balance' => 1,
-                    'singUp_credit' => 1,
-
-                ]);
-
-                Auth::loginUsingId($user->id);
-                return redirect($this->redirectTo);
-            }
-            else{
-
-                Auth::loginUsingId($user->id);
-                return redirect($this->redirectTo);
-
-            }
-
-//           $authUser = $this->findOrCreate($input);
-//            Auth::loginUsingId($authUser->id);
-
-        }
-        catch (Exception $e) {
-
-            return redirect('/');
-
-        }
-    }
-
-
 }

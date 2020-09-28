@@ -4,9 +4,12 @@ export default {
     data() {
         return {
             auctions: [],
+            slotRunningCount: 0,
             serverTime: window.serverTime,
             currentPath: window.currentPath,
+            auctionObjects: [],
             renderComponent: true,
+            bidBtnHit: false,
             onBidServerTime: '',
             autoBids: [],
         }
@@ -14,13 +17,14 @@ export default {
     created() {
         this.getData()
         Echo.channel('bidChannel')
-            .listen('.BidUpdate', async (e) => {
-                await this.clearRuningTimeOut()
-                await this.clearRuningTimeOut()
-                await this.clearRuningTimeOut()
-                await this.clearRuningTimeOut()
-                // this.forceRerender()
-                $('#timer' + e.message).html('Calculating ...');
+            .listen('.BidUpdate', (e) => {
+                var ids = window.setTimeout(function () {
+                }, 0);
+                while (ids--) {
+                    window.clearTimeout(ids);
+                }
+                this.forceRerender()
+                $('#timer' + e.message).html('00:00:00');
                 $('#timer' + e.message).css("background-color", "#ffa500")
 
                 this.getData()
@@ -32,34 +36,55 @@ export default {
             });
     },
     computed: {
-
+        // doDisable(id) {
+        //     console.log(id)
+        // }
     },
     methods: {
+        doSomething() {
+            alert('hi')
+        },
         getData() {
             axios.get('/auction-data').then(res => {
                 this.auctions = res.data.auctions
                 this.onBidServerTime = res.data.serverTime
                 this.autoBids = res.data.autoBidByUser
-
             })
         },
-        async auctionTimeSlot(auction) {
+        auctionTimeSlot(upTime, slots, id, isClosed, costPerBid, price_increase_every_bid, starting_price, bids) {
 
-            await this.clearRuningTimeOut()
-            $('#timer' + auction.id).css("background-color", "")
+            var ids = window.setTimeout(function () {
+            }, 0);
+
+            while (ids--) {
+                window.clearTimeout(ids);
+            }
+
+            $('#timer' + id).css("background-color", "")
+
             var serTime = this.onBidServerTime ? this.onBidServerTime : this.serverTime
-            if (this.moment(auction.up_time).format('YYYY-MM-DD HH:mm:ss') <=
+            if (this.moment(upTime).format('YYYY-MM-DD HH:mm:ss') <=
                 this.moment(serTime).format('YYYY-MM-DD HH:mm:ss')) {
-                var newAuction = new Auction(auction, serTime);
-                if (auction.bids.length < 2) {
-                    newAuction.setTimerWithServerTime()
+
+                var currentItemAutoBids = this.autoBids.filter(data => data.auction_id == id)
+                var userIds = currentItemAutoBids.map(data => data.user_id)
+                var randUserId = userIds[Math.floor(Math.random() * userIds.length)]
+
+                var auction = new Auction(upTime, slots, id, isClosed, serTime,
+                    costPerBid, price_increase_every_bid, starting_price, bids, currentItemAutoBids,
+                    Math.floor(Math.random() * (9 - 5) + 5).toString(), randUserId, userIds);
+
+                var bids = this.auctions.filter(data => data.id == id)[0].bids
+                if (bids.length < 2) {
+                    auction.setTimerWithServerTime()
                 } else {
-                    newAuction.setTimerWithBid(auction.bids)
+                    auction.setTimerWithBid(bids)
                 }
+
                 this.$nextTick(() => {
-                    $('#timer' + auction.id).html(newAuction.currentDiffTime ?
-                        newAuction.currentDiffTime : 'calculating ...');
-                    newAuction.startTimer();
+
+                    $('#timer' + id).html(auction.currentDiffTime ? auction.currentDiffTime : '');
+                    auction.startTimer();
                 })
 
             }
@@ -71,7 +96,9 @@ export default {
                 return false;
             }
 
+
             var currentBalance = this.$root._data.user.credit_balance - costPerBid
+
             if (currentBalance >= 0) {
                 axios.post('/bid', {
                     auction_id: id,
@@ -81,7 +108,7 @@ export default {
 
                 })
             } else {
-                alert("You don't have enough credit Please buy first. Please top up.")
+                alert("You don't have enough credit Please buy first.")
             }
 
 
@@ -93,25 +120,26 @@ export default {
                 this.renderComponent = true;
             });
         },
-        clearRuningTimeOut() {
-            var ids = window.allAuctionSetTimout
-            ids.forEach(data => {
-                window.clearTimeout(data);
-                var index = window.allAuctionSetTimout.indexOf(data);
-                if (index !== -1) window.allAuctionSetTimout.splice(index, 1);
-            })
-        },
-
+        // doDisable(id){
+        //     console.log($('#timer'+id).html())
+        //     // if($('#timer'+id).html()=='00:00:01'||$('#timer'+id).html()=='00:00:00'){
+        //     //     return true
+        //     // }else{
+        //     //     return false
+        //     // }
+        //
+        // }
         getPriceDrop(item) {
             if (item) {
                 if (this.$root._data.user.hasOwnProperty('id')) {
                     var userBids = item.bids.filter(data => data.user_id == this.$root._data.user.id)
                     if (item.product) {
                         var totalExpnes = userBids.length == 0 ? 0 :
-                            userBids.length * (parseFloat(item.cost_per_bid) * 10)
+                            userBids.length * (parseFloat(item.cost_per_bid)*10)
                         return parseFloat(item.product.price - ((parseFloat(totalExpnes) *
                             item.price_drop_percentage) / 100)).toFixed(2)
                     }
+
                 } else {
                     return item.product.price
                 }

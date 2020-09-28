@@ -24,7 +24,6 @@ class CreateUsersTable extends Migration
             $table->float('credit_balance')->default(0);
             $table->float('referral_credit')->default(0);
             $table->float('singUp_credit')->default(0);
-            $table->float('admin_provided_credit')->default(0);
             $table->boolean('news_letter')->default(false);
             $table->boolean('is_active')->default(true);
             $table->enum('role',['user','admin','sub-admin']);

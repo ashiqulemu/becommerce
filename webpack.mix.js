@@ -21,4 +21,7 @@ mix.js('resources/js/admin/admin.js', 'public/js')
 
 mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
-    .browserSync({"proxy":"http://localhost:8000/"});
+    .browserSync({"proxy":"http://localhost:8000/"})
+    .options({
+        processCssUrls: false
+    });

@@ -1,74 +1,55 @@
 <section class="footer">
-    <div class="footerContent container">
-        <div class="row" style="border-bottom: 1px solid #989898;">
-            <div class="items col-lg-2 col-md-4 col-xs-12">
-                <h4>Auctions</h4>
-                <ul>
-                    <li><a href="/#auctionProductRibon"><i class="fa fa-bullhorn"></i>Live Auctions</a></li>
-                    <li><a href="/#upcoming-auctionsRibon"><i class="fa fa-clock-o"></i>Upcoming Auctions</a></li>
-                    <li><a href="/#closedAuctionsRibon"><i class="fa fa-lock"></i>Closed Auctions</a></li>
-                </ul>
-            </div>
-
-            <div class="items col-lg-2 col-md-4 col-xs-12">
-                <h4>Support</h4>
-                <ul>
-                    <li><a href="{{url('/faq')}}"><i class="fa fa-cog"></i>Help and FAQ</a></li>
-                    <li><a href="{{url('/contact')}}"><i class="fa fa-phone-square"></i>Contact Us</a></li>
-                    <li><a href="{{url('/about')}}"><i class="fa fa-maxcdn"></i>About Us</a></li>
-                </ul>
-            </div>
-
-            <div class="items col-lg-2 col-md-4 col-xs-12">
-                <h4>Follow Us</h4>
-                <ul>
-                    <li>
-                        <a href="https://facebook.com/{{env("APP_NAME")}}" target="_blank">
-                            <i class="fa fa-facebook"></i>Facebook
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://twitter.com/{{env("APP_NAME")}}" target="_blank">
-                            <i class="fa fa-tumblr"></i>Twitter
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://youtube.com/{{env("APP_NAME")}}" target="_blank">
-                            <i class="fa fa-youtube-square"></i>YouTube
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="items col-lg-2 col-md-4 col-xs-12">
-                <h4>Other</h4>
-                <ul>
-                    <li><a href="/#winners"><i class="fa fa-user"></i>Recent Winners</a></li>
-{{--                    <li><a href="#"><i class="fa fa-mobile"></i>Mobile Site</a></li>--}}
-{{--                    <li><a href="#"><i class="fa fa-rss"></i>Blog</a></li>--}}
-                </ul>
-
-            </div>
-
-            <div class="items col-md-4">
-                <h4>Secure Shopping</h4>
-                <div class="methods">
-                    <a href="#"><img src="/images/home/verified-icon.png" alt=""></a>
-                    <a href="#"><img src="/images/home/securied.png" alt=""></a>
-                    <a href="#"><img src="/images/home/PayPal-icon.png" alt=""></a>
-                    <a href="#"><img src="/images/home/comodo-secure.png" alt=""></a>
-                </div>
-            </div>
-
+    <div class="row  m-0 d-flex align-items-center flex-wrap">
+        <div class="col-lg-2">
+            <img  class='img-fluid' src="/images/home/khaasfood.png" alt="payment logo">
+            <p class="pl-2 mt-2">
+                <small class="d-block">
+                    E-commerce platform coupled with a chain of brick-and-mortar stores for safe food.
+                </small>
+            </p>
         </div>
-        <div class="row">
-            <div class="col-md-12 bottom-text">
-                 <small class="">
-                     © galaxy.games . All rights reserved.
-                 </small>
+        <div class="col-lg-10 footer-menu">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-4 footer-menu-item">
+                            <a href="/about" class="d-block " target="_self">About Us</a>
+                            <a href="/about" class="d-block" target="_self">Terms of Service</a>
+                        </div>
+                        <div class="col-md-4 footer-menu-item">
+                            <a href="/faqs"   class="d-block" target="_self">FAQ</a>
+                            <a href="/policy" class="d-block" target="_self">Privacy Policy</a>
+                        </div>
+                        <div class="col-md-4 footer-menu-item">
+                            <a href="/contact" class="d-block" target="_self">Contact Us</a>
+                        </div>
 
+                    </div>
+                </div>
+                <div class="col-lg-3 social">
+                    <p class="col-title">Be connected</p>
+
+                    <a target="_blank" href="https://www.facebook.com/khaasfood" style="margin-right: 10px">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+                    <a target="_blank" href="https://twitter.com/khaasfood" style="margin-right: 10px">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                    <a target="_blank"
+                       href="https://plus.google.com/b/104993349465118182206/104993349465118182206?pageId=104993349465118182206&amp;hl=en"
+                       style="margin-right: 10px">
+                        <i class="fa fa-google-plus"></i>
+                    </a>
+                    <a target="_blank" href="https://www.youtube.com/channel/UC9PsTAh__tMKehLeBZ7dhkw">
+                        <i class="fa fa-youtube"></i>
+                    </a>
+                </div>
+
+                <div class="col-lg-3">
+                    <p class="col-title">Payment Option</p>
+                    <img  class="img-fluid" src="/images/home/footer/SSL-Commerz-Pay-With.png" alt="payment logo">
+                </div>
             </div>
         </div>
     </div>
-
 </section>

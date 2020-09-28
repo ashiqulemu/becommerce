@@ -38,24 +38,4 @@ class User extends Authenticatable
             $builder->with(['contact']);
         });
     }
-
-    public function quizzes()
-    {
-        return $this->hasMany(quiz::class);
-    }
-
-    public function scores()
-    {
-        return $this->hasMany(Score::class);
-    }
-
-    public function publish(quiz $quiz)
-    {
-        return $this->quizzes()->save($quiz);
-    }
-
-    public function saveScore(Score $score)
-    {
-        return $this->scores()->save($score);
-    }
 }

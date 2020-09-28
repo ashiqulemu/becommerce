@@ -19,7 +19,6 @@
                             <th>Order No</th>
                             <th>Total Price</th>
                             <th>Payment Type</th>
-                            <th>Date</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -35,7 +34,6 @@
                                 </td>
                                 <td>{{$sale->total}}</td>
                                 <td>{{$sale->payment_type}}</td>
-                                <td>{{$sale->created_at}}</td>
                                 <td>
                                     <select  class="form-control"
                                              name="section"

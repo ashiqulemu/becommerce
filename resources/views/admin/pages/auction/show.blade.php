@@ -88,27 +88,6 @@
                             <div class="heading">Product Description</div>
                             <div class="content">  {!! $auction->description !!}</div>
                         </div>
-
-                        <div class="items">
-                            <div class="heading">Total Bids</div>
-                            <div class="content">{{count($auction->bids)}}</div>
-                        </div>
-                        <div class="items">
-                            <div class="heading">Auto Bids</div>
-                            <div class="content">{{count($auction->bids->where('from_auto_bid', '=', 1))}}</div>
-                        </div>
-                        <div class="items">
-                            <div class="heading">Real Bids</div>
-                            <div class="content">{{count($auction->bids->where('from_auto_bid', '=', 0))}}</div>
-                        </div>
-                        <div class="items">
-                            <div class="heading">Winner</div>
-                            <div class="content">{{(new App\Auction)->getWinner($auction) ? (new App\Auction)->getWinner($auction)->name : 'No winner'}}</div>
-                        </div>
-                        <div class="items">
-                            <div class="heading">Status</div>
-                            <div class="content">{{(new \App\Auction)->getCurrentStatus($auction)}}</div>
-                        </div>
                         <div class="items">
                             <div class="heading">Auction Images</div>
                             <div class="content">

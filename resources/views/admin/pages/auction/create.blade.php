@@ -194,9 +194,6 @@
                         <div class="form-group">
                             <label for="">Auction Image</label>
                             <input type="file" class="form-control" name="images[]" accept="image/*" multiple>
-                            @if ($errors->has('images.*'))
-                                <div class="error">{{ $errors->first('images.*') }}</div>
-                            @endif
                         </div>
                     </div>
                     <div class="col-md-4"><br>

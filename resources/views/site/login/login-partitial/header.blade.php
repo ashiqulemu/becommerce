@@ -23,7 +23,7 @@
                             <div class="counter">{{Cart::content()->count()}}</div>
                         </a>
                     </li>
-                    <li>You have  $ {{auth()->user()->credit_balance}}</li>
+                    <li>You have {{auth()->user()->credit_balance}} credits</li>
                     <li>
                         <a href="{{url('/credit-product')}}" class="btn btn-warning text-dark text-capitalize">top up credits</a>
                     </li>

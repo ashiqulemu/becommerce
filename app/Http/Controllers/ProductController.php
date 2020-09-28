@@ -116,7 +116,7 @@ class ProductController extends Controller
                $this->removeImage($media);
             }
             $product->delete();
-            return redirect('/admin/product')
+            return back()
                 ->with(['type'=>'success','message'=>'Product deleted successfully']);
         }
     }

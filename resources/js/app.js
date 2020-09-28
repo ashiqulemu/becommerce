@@ -1,16 +1,22 @@
+
 require('./bootstrap');
 window.Vue = require('vue');
+
 import VeeValidate from 'vee-validate'
 import vSelect from 'vue-select'
-
 Vue.use(VeeValidate)
+Vue.component('search-component', require('./components/search.vue').default);
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('auction-slots', require('./components/auction-slots.vue').default);
 Vue.component('auction-slots-single', require('./components/single-auction-slots.vue').default);
 Vue.component('v-select', vSelect);
-// import moment from 'moment';
-// import 'moment-timezone';
-import VueCarousel from 'vue-carousel';
+Vue.component('product-card',require('./components/productCard.vue').default);
+ import moment from 'moment';
+ import VueCarousel from 'vue-carousel';
+
+
+
+
 
 Vue.use(VueCarousel);
 Vue.prototype.moment = moment
@@ -24,12 +30,9 @@ const app = new Vue({
             serverTime: window.serverTime,
             user:{},
             termCheck:false,
-            timeZone: window.timeZone
-
         }
     },
     created() {
-        this.setAuth()
 
     },
 
@@ -71,40 +74,7 @@ const app = new Vue({
     },
 
     methods: {
-        setAuth(){
-            var authData=window.auth.replace(/&quot;/g,'\"')
-            if(authData){this.user=JSON.parse(authData)}
-        },
 
-        placeBid(){
-          alert('Place Bid under construction')
-        },
-        changeTerm(){
-            this.termCheck =!this.termCheck
-        },
-
-        countDown(id, upTime){
-
-            this.$nextTick(()=>{
-                var timeZoneFormatedUptime = this.moment.tz(upTime, this.timeZone);
-                $("#getting-started"+id).countdown(timeZoneFormatedUptime.toDate(), function (event) {
-                    if( event.strftime('%D%H%M%S')== '00000000'){
-                        axios.get('/fire-event/'+id)
-                        $(this).text(
-                            event.strftime('Its live now')
-                        );
-                    }else{
-                        $(this).text(
-
-                            event.strftime('%D days %H:%M:%S')
-                        );
-                    }
-
-
-                });
-            })
-
-        }
     },
 
 });
