@@ -30,7 +30,7 @@
         <div class="cart">
             <div class="count">23</div>
             <i class="fa fa fa-shopping-bag" ></i>
-            <span>$55.00</span>
+            <span>$255.00</span>
         </div>
     </div>
 
