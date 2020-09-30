@@ -21,7 +21,7 @@
 
     <div class="others">
         <div class="brand">
-            <a href="#">
+            <a href="/">
                 <img class='img-fluid' src="/images/home/khaasfood.png" alt="logo" style="max-width: 80%;">
             </a>
         </div>
@@ -50,7 +50,7 @@
         <div class="cart">
             <div class="inner">
                 <div class="count">23</div>
-                <i class="fa fa fa-shopping-bag"></i>
+                <i class="fa fa fa-shopping-bag"></i> <br>
                 <span>$255.00</span>
             </div>
         </div>
