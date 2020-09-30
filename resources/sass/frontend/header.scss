@@ -291,18 +291,18 @@ $theme-primary:#9ca91c ;
       padding: 7px 13px;
       color: #f1f1f1;
       &.active {
-        background: #e89f33 !important;
+        background:$theme-primary !important;
         color: #ffffff;
         &:hover {
           color: #fff !important;
         }
       }
       &:hover {
-        color: #e89f33;
+        color:$theme-primary;
       }
       &:focus {
         color: #ffffff;
-        background: #e89f33;
+        background:$theme-primary;
         outline: 0;
       }
     }
