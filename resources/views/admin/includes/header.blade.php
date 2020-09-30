@@ -25,8 +25,8 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="{{url('/admin/dashboard')}}">
-            <img src="/images/logo-admin.png" alt="" class="brand-logo">
+        <a href="{{url('/admin/dashboard')}}">
+            <img src="/images/home/khaasfood.png" style="height: 70px;    width: auto;    padding: 8px;" alt="" class="brand-logo">
         </a>
     </div>
     <!-- /.navbar-header -->
@@ -43,8 +43,8 @@
             <ul class="dropdown-menu dropdown-user">
                 <li><a href="#"><i class="fa fa-user fa-fw"></i> Change Password</a>
                 </li>
-{{--                <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>--}}
-{{--                </li>--}}
+                {{--                <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>--}}
+                {{--                </li>--}}
                 <li class="divider"></li>
                 <li>
                     <a class="d-block" href="{{ url('/admin/logout') }}"
@@ -61,7 +61,7 @@
         </li>
         <!-- /.dropdown -->
     </ul>
-    <a class="site-link" href="{{url('/')}}" style="color: #ff9a05">Visit Site</a>
+    <a class="site-link" href="{{url('/')}}" >Visit Site</a>
     <!-- /.navbar-top-links -->
     @include('admin.includes.side-bar')
 </nav>
