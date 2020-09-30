@@ -104,10 +104,20 @@ Route::middleware(['auth'])->group(function () {
         return view('site.pages.referral.referral');
     });
 
+    Route::get('/register', function () {
+        return view('site.pages.auth.register');
+    });
+    Route::get('/login', function () {
+        return view('site.pages.auth.login');
+    });
+
 
 });
 
 
+Route::get('/register-user', function () {
+    return view('site.login.user.user');
+});
 
 
 Route::get('/set', function (){

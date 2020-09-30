@@ -1,11 +1,10 @@
 @extends('site.app')
 @section('title-meta')
-    <title>Firebidder user loged </title>
+    <title>khasfood </title>
 @endsection
 
 @section('content')
-    @include('site.login.login-partitial.header')
-    @include('site.login.login-partitial.nav')
+
 
     <section class="myFirebidder">
         <div class="container">
