@@ -17,7 +17,7 @@
 
 
 
-    <!-- Styles -->
+    <!-- Styles ------>
 </head>
 <body>
     <div id="app" v-cloak >
