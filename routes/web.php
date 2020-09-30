@@ -105,11 +105,9 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::get('/register', function () {
-        return view('site.pages.auth.register');
+        return view('site.login.login-partitial.register');
     });
-    Route::get('/login', function () {
-        return view('site.pages.auth.login');
-    });
+
 
 
 });
