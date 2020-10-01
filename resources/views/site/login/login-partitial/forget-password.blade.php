@@ -4,44 +4,32 @@
 @endsection
 
 @section('content')
-    @if(auth()->user())
-        @include('site.login.login-partitial.header')
-    @endif
+
 
    <section class="forget-pass">
        <div class="container p-0">
-           <div class="row bgArea">
-               <div class="col-md-6"></div>
-               <div class="col-md-6 px-5">
-                   @if (session('status'))
-                       <div class="alert alert-success" role="alert">
-                           {{ session('status') }}
-                       </div>
-                   @endif
-                 <div class="password-right-content">
-                        <h1>forgot password ?</h1>
-                        <p>please enter your email address below</p>
-                         <form method="post" class="mt-5" action="{{ route('password.email') }}">
-                             @csrf
-                             <input type="email"
-                                    placeholder="Enter your email address"
-                                    name="email"
-                                    value="{{ old('email') }}" required autocomplete="email" autofocus
-                                    class="form-control">
+           <div class="row justify-content-center">
+               <div class="col-md-8">
+                   <div class="p-5 bg-white shadow-sm">
+                       <h2>Forgot password ?</h2>
+                       <p>please enter your email address below</p>
+                       <form method="post" class="mt-5" action="{{ route('password.email') }}">
+                           @csrf
+                           <input type="email"
+                                  placeholder="Enter your email address"
+                                  name="email"
+                                  value="{{ old('email') }}" required autocomplete="email" autofocus
+                                  class="form-control">
 
-                             @if ($errors->has('email'))
-                                 <span class="text-danger">
+                           @if ($errors->has('email'))
+                               <span class="text-danger">
                                     <strong>{{$errors->first('email') }}</strong>
                                             </span>
-                             @endif
+                           @endif
 
-                             <button class="button-global" type="submit">Submit</button>
-                             <a href="{{url('/#login-area')}}"
-                                class="button-global"
-                                style="padding: 10px; background: rgb(247, 247, 247)"
-                             >Login</a>
-                         </form>
-                 </div>
+                           <button class="btn-theme mt-3" type="submit">Submit</button>
+                       </form>
+                   </div>
                </div>
            </div>
        </div>
