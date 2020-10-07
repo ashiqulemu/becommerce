@@ -4,7 +4,34 @@
   flex-wrap: wrap;
   .sidebar{
     flex-basis: 250px;
-    overflow: hidden;
+    background: #343a41;
+    @media(max-width:768px){
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: -230px;
+      right: 150px;
+      width: 230px;
+      bottom: 0;
+      &.open{
+        left: 0;
+        transition: left 0.6s ease-in-out;
+      }
+    }
+    .mobileBox{
+      display: none;
+      @media(max-width:768px){
+        position: absolute;
+        right: 0;
+        background: #101010d1;
+        left: 229px;
+        bottom: 0;
+        top: 0;
+        z-index: 2;
+        display: none;
+        width: 100vw;
+      }
+    }
   }
   .productContainer{
     padding: 15px;
@@ -16,8 +43,6 @@
 .menuItems{
   margin: 0;
   list-style: none;
-  height: 100%;
-  background: #343a41;
   .list{
 
     &:hover{

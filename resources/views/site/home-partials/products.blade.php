@@ -3,8 +3,12 @@
 @section('content')
 
     <div class="allProducts">
-        <div class="sidebar">
-            <h6 style="color: #899419; text-shadow: 0px 1px 3px #00000030;" class="text-center my-3 font-weight-bold">
+        <div class="sidebar" id="sidebar">
+
+            <div class="mobileBox" id="mobileBox" @click.prevent="$root.closeSidebar"> </div>
+
+
+            <h6 style="color: #899419; text-shadow: 0 1px 3px #00000030;" class="text-center my-3 font-weight-bold">
                 PRODUCT CATEGORIES</h6>
             <ul class="menuItems">
                 <li class="list"><a href="">Pant</a></li>

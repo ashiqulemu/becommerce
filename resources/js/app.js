@@ -75,6 +75,21 @@ const app = new Vue({
 
     methods: {
 
+        openSidebar(){
+            let sidebar = document.getElementById("sidebar");
+            sidebar.classList.toggle('open');
+
+            let mobileBox = document.getElementById("mobileBox");
+            mobileBox.style.display='block';
+        },
+
+        closeSidebar(){
+            let sidebar = document.getElementById("sidebar");
+            let mobileBox = document.getElementById("mobileBox");
+                sidebar.classList.remove('open');
+                mobileBox.style.display='none';
+        }
+
     },
 
 });
