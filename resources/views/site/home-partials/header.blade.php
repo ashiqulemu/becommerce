@@ -72,7 +72,7 @@
                     <a class="nav-link" href="#">About Us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Products</a>
+                    <a class="nav-link" href="{{url('/products')}}">Products</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Blog</a>

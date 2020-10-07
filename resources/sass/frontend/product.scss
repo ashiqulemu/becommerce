@@ -2,43 +2,86 @@
 .allProducts{
   display: flex;
   flex-wrap: wrap;
-  height: 100vh;
   .sidebar{
     flex-basis: 250px;
-    background: lightgrey;
-    height: 100%;
-
+    overflow: hidden;
   }
   .productContainer{
     padding: 15px;
-    background: darkgrey;
+    background: #F2F2F2;
     flex: 1 ;
-    height: 100%;
   }
 }
 
 .menuItems{
   margin: 0;
   list-style: none;
+  height: 100%;
+  background: #343a41;
   .list{
+
+    &:hover{
+      a{
+        background: #383838;
+      }
+    }
+
     a{
-      padding: 7px 15px;
+      padding: 9px 15px;
       background: #343a41;
       display: block;
       text-transform: capitalize;
       color: #9ca91c;
+      border-bottom: 1px solid #4e4e4e;
+
+      &:focus{
+        background:#282e35;
+      }
+    }
+    .multilevel{
+      position: relative;
+      .aero{
+        position: absolute;
+        right: 15px;
+        top: 13px;
+        &.active{
+          transform: rotate(90deg);
+        }
+      }
     }
     .subItems{
       display: none;
       &.active{
         display: block;
+
+        li ul.subItems{
+            li{
+              a{
+                padding-left: 49px;
+
+              }
+            }
+
+        }
+
+        a.multilevel{
+          position: relative;
+          &:before{
+            content: "\203A";
+            position: absolute;
+            left: 25px;
+            font-size: 1rem;
+            top: 7px;
+          }
+        }
       }
       a{
-        padding-left: 29px;
+        padding-left: 35px;
         background: #343a41;
         display: block;
         text-transform: capitalize;
         color: #9ca91c;
+        text-decoration: none;
       }
     }
   }
