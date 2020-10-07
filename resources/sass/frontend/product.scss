@@ -58,7 +58,9 @@
             li{
               a{
                 padding-left: 49px;
-
+                &:hover{
+                  background: #232323;
+                }
               }
             }
 
