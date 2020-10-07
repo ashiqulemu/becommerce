@@ -4,27 +4,28 @@
 
     <div class="allProducts">
         <div class="sidebar">
-            <h6 class="text-center mt-5 font-weight-bold">PRODUCT CATEGORIES</h6>
+            <h6 style="color: #899419; text-shadow: 0px 1px 3px #00000030;" class="text-center my-3 font-weight-bold">
+                PRODUCT CATEGORIES</h6>
             <ul class="menuItems">
                 <li class="list"><a href="">Pant</a></li>
                 <li class="list">
                     <a href="#" class="multilevel" onClick="dropdown(event)">
-                        t-shirt
+                        খাবার সামগ্রি
                         <i class="fa fa-caret-right aero"></i>
                     </a>
                     <ul class="subItems">
                         <li>
-                            <a href="#" class="multilevel" onClick="dropdown(event)">Big</a>
+                            <a href="#" class="multilevel" onClick="dropdown(event)">ফল এবং সবজি</a>
                             <ul class="subItems">
-                                <li><a href="#">red</a></li>
-                                <li><a href="#">blue</a></li>
+                                <li><a href="#">তাজা ফল</a></li>
+                                <li><a href="#">তাজা সবজি </a></li>
                             </ul>
                         </li>
                         <li>
-                            <a href="#" class="multilevel" onClick="dropdown(event)">small</a>
+                            <a href="#" class="multilevel" onClick="dropdown(event)">নাশতা </a>
                             <ul class="subItems">
-                                <li><a href="#">black</a></li>
-                                <li><a href="#">pink</a></li>
+                                <li><a href="#"> স্থানীয় নাশতা </a></li>
+                                <li><a href="#">জ্যাম এবং স্প্রেড </a></li>
                             </ul>
                         </li>
                     </ul>
@@ -32,15 +33,16 @@
 
                 <li class="list">
                     <a href="#" class="multilevel" onClick="dropdown(event)">
-                        Mobile
+                        শিশুদের ব্যবহার্য
+
                         <i class="fa fa-caret-right aero"></i>
                     </a>
                     <ul class="subItems">
                         <li>
-                            <a href="#" class="multilevel" onClick="dropdown(event)">local</a>
+                            <a href="#" class="multilevel" onClick="dropdown(event)"> নবজাতকের প্রয়োজনীয়তা</a>
                             <ul class="subItems">
-                                <li><a href="#">tecno</a></li>
-                                <li><a href="#">sprint</a></li>
+                                <li><a href="#">ডায়পারিং </a></li>
+                                <li><a href="#">ওয়াইপ্স </a></li>
                             </ul>
                         </li>
                         <li>
@@ -63,10 +65,18 @@
             </div>
             <hr>
             <div class="row mt-5">
-                <div class="col"> <product-card></product-card></div>
-                <div class="col"> <product-card></product-card></div>
-                <div class="col"> <product-card></product-card></div>
-                <div class="col"> <product-card></product-card></div>
+                <div class="col">
+                    <product-card></product-card>
+                </div>
+                <div class="col">
+                    <product-card></product-card>
+                </div>
+                <div class="col">
+                    <product-card></product-card>
+                </div>
+                <div class="col">
+                    <product-card></product-card>
+                </div>
 
             </div>
         </div>
@@ -76,8 +86,8 @@
 
 
 <script>
-     function dropdown(event){
-           event.target.nextElementSibling.classList.toggle('active');
-           event.target.children[0].classList.toggle('active');
-     }
+    function dropdown(event) {
+        event.target.nextElementSibling.classList.toggle('active');
+        event.target.children[0].classList.toggle('active');
+    }
 </script>
