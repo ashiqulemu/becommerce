@@ -108,6 +108,10 @@ Route::middleware(['auth'])->group(function () {
         return view('site.login.login-partitial.register');
     });
 
+    Route::get('/products', function () {
+        return view('site.home-partials.products');
+    });
+
 
 
 });
