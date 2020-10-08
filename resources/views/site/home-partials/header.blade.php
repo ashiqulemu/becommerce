@@ -63,6 +63,10 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
+        <button class="categoriesMobile" id="categories" @click.prevent="$root.openSidebar">
+           All Categories
+        </button>
+
         <div class="collapse navbar-collapse" id="callNav">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item  ">
@@ -72,7 +76,7 @@
                     <a class="nav-link" href="#">About Us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Products</a>
+                    <a class="nav-link" href="{{url('/products')}}">Products</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Blog</a>
