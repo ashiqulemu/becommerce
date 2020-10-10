@@ -67,7 +67,20 @@ class CategoryController extends Controller
             'status'=>'required'
         ]);
        $category=Category::find($id);
-       $category->update($request->all());
+        $category->name=$request->name;
+        $category->description=$request->description;
+        $image_name = $request->hidden_image;
+        $image = $request->file('category_image');
+
+        if ($image != null) {
+
+            unlink(public_path('images/') . $image_name);
+            $filename = rand() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images/'), $filename);
+            $category->category_image = $filename;
+            }
+        $category->status=$request->status;
+        $category->save();
        return redirect('/admin/category')
            ->with(['type'=>'success','message'=>'Category Updated Successfully']);
     }
