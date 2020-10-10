@@ -27,7 +27,7 @@
         </div>
 
         <div class="authPanel">
-            <div class="loged_area">
+            <div class="loged_area" id="mdBlock">
 
                 @if(!($uri === 'forget-password' || strpos($uri, 'password/reset')))
                     <form method="POST" action="{{ url('/admin/login') }}" class="form-inline">
@@ -119,8 +119,8 @@
                         </a>
                     </div>
                     <div class="links">
-                        <a href="{{ url('auth/facebook') }}" class="btn btn-warning btn-sm" style="background: #3A559F;  transform: translateX(19px);">
-                            Login with <i class="fa fa-facebook"></i>
+                        <a href="{{ url('auth/facebook') }}" class="btn  btn-sm"  >
+                           <span>Login with </span> <i class="fa fa-facebook-square"></i>
                         </a>
                         @if(auth()->user())
                             <div>

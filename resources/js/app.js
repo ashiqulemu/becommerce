@@ -38,9 +38,9 @@ const app = new Vue({
 
     mounted() {
         var Swipes = new Swiper('.swiper-container', {
-            slidesPerView: 5,
-            loopedSlides:4,
-            centeredSlides: true,
+            slidesPerView: 6,
+            loopedSlides:6,
+            centeredSlides: false,
             spaceBetween: 15,
             grabCursor: true,
             loop: true,
@@ -49,10 +49,12 @@ const app = new Vue({
                 prevEl: '.swiper-button-prev',
             },
             breakpoints: {
+
                 1200: {
                     slidesPerView: 4,
                     loopedSlides: 4,
-                    spaceBetween: 10 },
+                    spaceBetween: 10
+                },
 
                 1024: {
                     slidesPerView: 3,
@@ -64,13 +66,32 @@ const app = new Vue({
                     loopedSlides: 2,
                     spaceBetween: 10 },
 
-                675: {
+                425: {
                     slidesPerView: 1,
-                    loopedSlides: 1,
-                    spaceBetween: 20 }
+                    loopedSlides: 2,
+                    spaceBetween: 20
+                },
+
+                375: {
+                    slidesPerView: 1,
+                    loopedSlides: 2,
+                    spaceBetween: 20
+                },
             }
 
         });
+
+
+    },
+
+    created: function(){
+
+        let currentUrl = window.location.pathname;
+
+        if(currentUrl==='/'){
+            document.getElementById('categories').style.display='none';
+        }
+
     },
 
     methods: {
