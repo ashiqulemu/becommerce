@@ -18,6 +18,7 @@
             </div>
                 <?php $i++; ?>
             @endforeach
+
             <div class="col-md-4">
                 <div class="cat">
                     <a href="#">
