@@ -5,7 +5,7 @@
     <div id="page-wrapper">
         <br>
         <div class="row site-forms">
-            <form method="post" action="{{url('/admin/category')}}">
+            <form method="post" action="{{url('/admin/category')}}" enctype='multipart/form-data'>
                @csrf
                 <div class="">
                     <div class="form-box-header">
@@ -31,6 +31,20 @@
                         <div class="form-group">
                             <label for="">Description</label>
                             <textarea class="form-control" name="description"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="">Image</label>
+                            <input
+                                   class="form-control"
+                                   name="category_image"
+                                   type="file"
+                                   placeholder="image">
+
+                            @if ($errors->has('category_image'))
+                                <div class="error">{{ $errors->first('category_image') }}</div>
+                            @endif
                         </div>
                     </div>
                     <div class="col-lg-12">

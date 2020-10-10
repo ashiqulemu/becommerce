@@ -32,7 +32,17 @@ class CategoryController extends Controller
             'status'=>'required'
         ]);
 
-        Category::create($request->all());
+     $category=new Category();
+     $category->name=$request->name;
+     $category->description=$request->description;
+        if ($request->hasfile('category_image')) {
+            $image = $request->file('category_image');
+            $filename = rand() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images/'), $filename);
+            $category->category_image = $filename;
+        }
+        $category->status=$request->status;
+        $category->save();
         return redirect('/admin/category/create')
             ->with(['type'=>'success','message'=>'Category created Successfully']);
     }

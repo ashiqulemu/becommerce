@@ -39,18 +39,18 @@
 
 
     @include('site.home-partials.auction-bar')
-   @include('site.home-partials.auction-products')
-   @include('site.home-partials.up-coming-auction-bar')
+   {{--@include('site.home-partials.auction-products')--}}
+   {{--@include('site.home-partials.up-coming-auction-bar')--}}
 
    {{-- Up Commint AUCTIONS PRODUCTS--}}
 
-   @include('site.home-partials.up-coming-auction')
+{{--   @include('site.home-partials.up-coming-auction')--}}
    {{--Regular products--}}
 
    @include('site.home-partials.regular-product')
     {{--products--}}
    @include('site.home-partials.closed-product-bar')
-   @include('site.home-partials.closed-products')
+{{--   @include('site.home-partials.closed-products')--}}
     {{--@include('.site.home-partials.featuredProduct')--}}
 
 {{--    @include('site.home-partials.scroller')--}}

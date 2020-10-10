@@ -8,6 +8,11 @@ class Category extends Model
 {
     protected $guarded = ['id'];
 
+    public function subcat()
+    {
+        return $this->hasMany(subcat::class);
+    }
+
     public function product()
     {
         return $this->hasMany(Product::class);

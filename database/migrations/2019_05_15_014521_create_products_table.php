@@ -20,8 +20,11 @@ class CreateProductsTable extends Migration
             $table->integer('category_id')->index()->unsigned();
             $table->foreign('category_id')->references('id')
                 ->on('categories')->onDelete('cascade');
+            $table->integer('subcat_id')->nullable();
+            $table->integer('sub_id')->nullable();
             $table->longText('description')->nullable();
             $table->decimal('price',14,2)->default(0);
+            $table->decimal('agent_price',14,2)->default(0);
             $table->float('quantity',14,2)->default(0);
             $table->boolean('is_out_of_stock')->default(false);
             $table->boolean('status')->default(true);

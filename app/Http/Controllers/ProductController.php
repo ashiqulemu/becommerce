@@ -29,7 +29,7 @@ class ProductController extends Controller
     public function create()
     {
         $categories=Category::whereStatus('Active')->get();
-       return view('admin.pages.product.create',['categories'=>$categories]);
+        return view('admin.pages.product.create',['categories'=>$categories]);
     }
 
 
@@ -59,7 +59,7 @@ class ProductController extends Controller
                     $amount=$promotion->at_least_amount;
                     $promotion=0;
                     return back()->with(['type'=>'error',
-                            'message'=>'You need to purchase at least this '.$amount.' amount']);
+                        'message'=>'You need to purchase at least this '.$amount.' amount']);
                 }
             }
 
@@ -113,7 +113,7 @@ class ProductController extends Controller
                     auction or order with this Product. Please delete auction or order first."]);
         } else {
             foreach ($product->medias as $media) {
-               $this->removeImage($media);
+                $this->removeImage($media);
             }
             $product->delete();
             return back()
@@ -151,7 +151,7 @@ class ProductController extends Controller
             });
         }
         if($request->input('order')){
-                $productList=$productList->orderBy('price',$request->input('order'));
+            $productList=$productList->orderBy('price',$request->input('order'));
 
         }
         $productList=$productList->where('quantity','>', 0)->paginate(20);

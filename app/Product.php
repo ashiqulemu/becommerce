@@ -16,11 +16,9 @@ class Product extends Model
     }
 
     public function medias(){
-        return $this->hasMany(Media::class);
+        return $this->hasMany('App\Media');
     }
-    public function auction(){
-        return $this->hasMany(Auction::class);
-    }
+
     public function payments(){
         return $this->morphMany('App\Payment', 'paymentable');
     }

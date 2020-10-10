@@ -57,8 +57,8 @@
                                 <i class="text-warning fa fa-shopping-cart fa-5x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
-                                <div class="huge">{{$totalAuctions}}</div>
-                                <div>Total Auction</div>
+                                <div class="huge">New </div>
+                                <div>Total New</div>
                             </div>
                         </div>
                     </div>
@@ -79,7 +79,7 @@
                                 <i class="text-warning fa fa-support fa-5x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
-                                <div class="huge">{{$totalUpComingAuctions}}</div>
+                                <div class="huge"></div>
                                 <div>Upcoming Auction</div>
                             </div>
                         </div>

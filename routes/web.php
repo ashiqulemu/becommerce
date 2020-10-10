@@ -4,23 +4,15 @@ use Illuminate\Contracts\Session\Session;
 Route::middleware(['init'])->group(function () {
     Route::redirect('/home', '/user-home')->name('home');
     Route::get('/', 'HomeDataController@index')->name('mainHome');
-    Route::resource('/bid', 'BidController');
-    Route::post('/auto-bid-auto', 'BidController@autoBid');
-    Route::resource('/auto-bid', 'AutoBidController');
+
     Route::get('product/details/{id}/{name}', 'ProductController@show');
-    Route::get('auction/details/{id}/{name}', 'AuctionController@show');
-    Route::get('/auction-buy/{id}', 'PaymentController@auctionPaymentConfirmation');
+
+
     Route::post('add-to-cart','CartController@addToCart');
     Route::get('/delete/cart-item/{id}','CartController@deleteCartItem');
     Route::get('/update/cart-item/{id}/{quantity}','CartController@updateCartItem');
 
-
-    Route::post('/auction/update-status','AuctionController@updateStatus');
-    Route::get('/auction-data','AuctionController@getAuctionData');
-    Route::get('/fire-event/{id}','AuctionController@fireEvent');
-    Route::get('/auction-single-data/{id}','AuctionController@getSingleAuctionData');
-
-Route::middleware(['auth'])->group(function () {
+    Route::middleware(['auth'])->group(function () {
 
     Route::get('/user-home', 'UserHomeController@index');
     Route::redirect('/user-details','/user-details/my-information');

@@ -17,6 +17,7 @@
                             <th>SL </th>
                             <th>Name</th>
                             <th>Description</th>
+                            <th>Image</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -27,6 +28,7 @@
                                 <td>{{$key+1}}</td>
                                 <td>{{$category->name}}</td>
                                 <td>{{$category->description}}</td>
+                                <td><img src="{{URL::to("/images/".$category->category_image)}}"  width="200px" height="100px" /> </td>
                                 <td>{{$category->status}}</td>
                                 <td>
                                   <div>

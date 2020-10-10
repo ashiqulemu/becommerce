@@ -17,12 +17,12 @@ class Sales extends Model
         return $total;
     }
 
-   public function product () {
-       return $this->belongsTo(Product::class);
-   }
-   public function user () {
-       return $this->belongsTo(User::class);
-   }
+    public function product () {
+        return $this->belongsTo(Product::class);
+    }
+    public function user () {
+        return $this->belongsTo(User::class);
+    }
     public function items () {
         return $this->hasMany(SaleItem::class);
     }
