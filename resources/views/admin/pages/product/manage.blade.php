@@ -33,10 +33,10 @@
                                 <td>{{$product->category->name}}</td>
                                 <td>{{$product->price}}</td>
                                 <td>{{$product->quantity}}</td>
-                                <td width="100px">
+                                <td width="200px">
                                     @foreach($product->medias as $key=>$media)
                                         @if($key==0)
-                                    <img src="{{asset("storage/$media->image")}}" alt="" >
+                                    <img src="{{asset("storage/$media->image")}}" class="img-fluid">
                                         @endif
                                     @endforeach
                                 </td>
