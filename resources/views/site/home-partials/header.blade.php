@@ -112,7 +112,7 @@
         <div class="cart">
             <div class="inner">
                 <div class="social">
-                    <div class="mb-3 homeCart">
+                    <div class="mb-3 homeCart mt-3">
                         <a href="/view-cart" title="view shopping cart" class="shoppingCart">
                             <i class="fa fa-cart-arrow-down"  ></i>
                             <div class="counter">{{Cart::content()->count()}}</div>

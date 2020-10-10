@@ -88,7 +88,7 @@ const app = new Vue({
 
         let currentUrl = window.location.pathname;
 
-        if(currentUrl==='/'){
+        if(currentUrl==='/' || currentUrl==='/about' || currentUrl==='/contact' || currentUrl==='/blog'){
             document.getElementById('categories').style.display='none';
         }
 
