@@ -38,8 +38,8 @@ const app = new Vue({
 
     mounted() {
         var Swipes = new Swiper('.swiper-container', {
-            slidesPerView: 6,
-            loopedSlides:6,
+            slidesPerView: 5,
+            loopedSlides:1,
             centeredSlides: false,
             spaceBetween: 15,
             grabCursor: true,
