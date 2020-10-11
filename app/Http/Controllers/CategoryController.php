@@ -95,6 +95,7 @@ class CategoryController extends Controller
                     'type'=>'error',
                     'message'=> "You have already ".$productCategory." product with this Category. Please delete product first."]);
         } else {
+            unlink(public_path('images/') . $category->category_image);
             $category->delete();
             return back()
                 ->with(['type'=>'success','message'=>'Category deleted successfully']);

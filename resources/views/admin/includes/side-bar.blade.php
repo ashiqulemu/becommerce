@@ -5,7 +5,7 @@
             <li>
                 <a href="{{url('/admin/dashboard')}}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
-            <li>
+
             <li>
                 <a href="#"><i class="fa fa-cubes"></i> Category<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
@@ -14,6 +14,17 @@
                     </li>
                     <li>
                         <a href="{{url('/admin/category')}}"> Manage Category</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-cubes"></i> Subcategory<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{{url('/admin/subcategory/create')}}"> Add Subategory</a>
+                    </li>
+                    <li>
+                        <a href="{{url('/admin/subcategory')}}"> Manage Subategory</a>
                     </li>
                 </ul>
             </li>
