@@ -22,11 +22,9 @@ body {
 }
 .login-section .login-box {
     border-radius: 4px;
-    -webkit-box-shadow: inset 0px 2px 15px #283b4096;
-    box-shadow: inset 0px 2px 15px #283b4096;
     position: relative;
     padding: 30px;
-    background: #313649ab;
+    background: #16797561;
     min-width: 290px;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -41,7 +39,7 @@ body {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    border: 3px solid #3c5a71;
+    border: 3px solid #41919b;
 }
 .login-section .login-box .brand {
     margin-bottom: 20px;
