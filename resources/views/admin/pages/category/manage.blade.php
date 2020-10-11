@@ -28,7 +28,8 @@
                                 <td>{{$key+1}}</td>
                                 <td>{{$category->name}}</td>
                                 <td>{{$category->description}}</td>
-                                <td><img src="{{url("/images/".$category->category_image)}}" class="thumbnail" width="100px"/> </td>
+                                <td  width="200px">
+                                    <img src="{{URL::to("/images/".$category->category_image)}}" class="img-fluid" /> </td>
                                 <td>{{$category->status}}</td>
                                 <td>
                                   <div>

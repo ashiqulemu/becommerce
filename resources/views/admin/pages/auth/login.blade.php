@@ -13,7 +13,7 @@
 <div class="login-section">
     <div class="login-box">
         <div class="brand">
-           <img src="/images/logo-admin.png" width="200px" height="auto">
+           <img src="/images/home/khaasfood.png" width="200px" height="auto">
             {{--<p class="brand-text">Fire Bidders</p>--}}
         </div>
         <form class="login-element" method="POST" action="{{ url('/admin/login') }}">
