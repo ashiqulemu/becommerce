@@ -5,29 +5,29 @@
     <div id="page-wrapper">
         <br>
         <div class="row site-forms">
-            <form method="post" action="{{url('/admin/subcategory/'.$id)}}" >
+            <form method="post" action="{{url('/admin/subsub/'.$id)}}" >
                 @csrf
                 @method('patch')
                 <div class="">
                     <div class="form-box-header">
-                        Edit Subcategory
+                        Edit Sub-subcategory
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="col-lg-12">
                         <div class="form-group">
-                            <label for="">Category ID</label>
+                            <label for="">Subcategory ID</label>
                             <select class="js-example-basic-multiple form-control"
-                                    name="category_id"  id="select1">
-                                <option value="">Select Category</option>
+                                    name="subcat_id"  id="select1">
+                                <option value="">Select Subcategory</option>
                                 @foreach($category as $cat)
                                     <option value="{{$cat->id}}"
-                                    @if (old('category_id') == $cat->id) {{ 'selected' }} @endif>
+                                    @if (old('subcat_id') == $cat->id) {{ 'selected' }} @endif>
                                         {{$cat->name}}</option>
                                 @endforeach
                             </select>
-                            @if ($errors->has('category_id'))
-                                <div class="error">{{ $errors->first('category_id') }}</div>
+                            @if ($errors->has('subcat_id'))
+                                <div class="error">{{ $errors->first('subcat_id') }}</div>
                             @endif
                         </div>
                     </div>

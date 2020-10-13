@@ -8,6 +8,7 @@ Route::middleware(['adminAuth'])->group(function () {
     Route::get('/dashboard', 'AdminDashboardController@dashboard');
     Route::resource('category','CategoryController');
     Route::resource('subcategory','SubcatController');
+    Route::resource('subsub','SubsubController');
     Route::resource('product','ProductController');
     Route::resource('auction','AuctionController');
     Route::resource('sales','SalesController');

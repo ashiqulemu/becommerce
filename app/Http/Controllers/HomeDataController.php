@@ -20,8 +20,17 @@ class HomeDataController extends Controller
         }
 
 
-        $productList=Product::with('category','medias')
-            ->whereStatus(1)->where('quantity','>', 0)->latest()->take(15)->get();
+        $latest=DB::table('products')
+                ->select('*')
+                ->where('status','=',1 )
+                ->where('quantity','>',1)
+                ->latest()->take(8)->get();
+
+        $favorite=DB::table('products')
+            ->select('*')
+            ->where('status','=',1 )
+            ->where('quantity','>',1)
+            ->where('popular','=',1)->take(8)->get();
         $category=DB::table('categories')
             ->select('*')
             ->where('status','=',1)
@@ -32,9 +41,9 @@ class HomeDataController extends Controller
 
         return view('site.pages.home',[
 
-            'productList'=>$productList,
+            'latest'=>$latest,
             'category'=>$category,
-
+            'popular'=> $favorite,
         ]);
     }
 }

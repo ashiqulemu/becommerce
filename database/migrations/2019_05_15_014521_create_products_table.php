@@ -28,8 +28,10 @@ class CreateProductsTable extends Migration
             $table->float('quantity',14,2)->default(0);
             $table->boolean('is_out_of_stock')->default(false);
             $table->boolean('status')->default(true);
+            $table->boolean('popular')->default(false);
             $table->string('meta_tag')->nullable();
             $table->text('meta_description')->nullable();
+            $table->string('product_image');
             $table->timestamps();
         });
     }

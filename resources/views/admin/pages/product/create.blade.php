@@ -65,6 +65,42 @@
                         </div>
                     </div>
                     <div class="col-md-4">
+                        <div>
+                            <label for="">Sub-Category *</label>
+                            <select class="js-example-basic-multiple form-control"
+                                    name="subcat_id"  id="select1">
+                                <option value="">Select Subcategory</option>
+                                @foreach($subcat as $subc)
+                                    <option value="{{$subc->id}}"
+                                    @if (old('subcat_id') == $subc->id) {{ 'selected' }} @endif>
+                                        {{$subc->name}}</option>
+                                @endforeach
+                            </select>
+                            @if ($errors->has('subcat_id'))
+                                <div class="error">{{ $errors->first('subcat_id') }}</div>
+                            @endif
+
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="">Sub-SubCategory *</label>
+                            <select class="js-example-basic-multiple form-control"
+                                    name="sub_id"  id="select1">
+                                <option value="">Select Sub-subcategory</option>
+                                @foreach($subsub as $category)
+                                    <option value="{{$category->id}}"
+                                    @if (old('sub_id') == $category->id) {{ 'selected' }} @endif>
+                                        {{$category->name}}</option>
+                                @endforeach
+                            </select>
+                            @if ($errors->has('sub_id'))
+                                <div class="error">{{ $errors->first('sub_id') }}</div>
+                            @endif
+
+                        </div>
+                    </div>
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label for="">Price *</label>
                             <input
@@ -74,6 +110,22 @@
                                    step="any"
                                    value="{{ old('price') }}"
                                    placeholder="Price">
+
+                            @if ($errors->has('price'))
+                                <div class="error">{{ $errors->first('price') }}</div>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="">Agent Price *</label>
+                            <input
+                                    class="form-control"
+                                    name="agent_price"
+                                    type="number"
+                                    step="any"
+                                    value="{{ old('price') }}"
+                                    placeholder="Price">
 
                             @if ($errors->has('price'))
                                 <div class="error">{{ $errors->first('price') }}</div>
@@ -123,7 +175,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="">Product Image</label>
-                            <input type="file" class="form-control" name="images[]" accept="image/*" multiple>
+                            <input type="file" class="form-control" name="product_image" >
                         </div>
 
                     </div>
@@ -163,7 +215,23 @@
                         </div>
 
                     </div>
+                    <div class="col-md-4">
+                        <div class="form-group"><br>
+                            <label for="">Popular *</label><br>
+                            <input type="radio"  name="popular" value="1" id="yes"
+                                   @if(old('popular')=='1') checked @endif>
+                            <label for="yes">Yes</label>
 
+                            <input type="radio"  name="popular" value="0" id="no"
+                                   @if(!old('popular')) checked @endif
+                                   @if(old('popular')=='0') checked @endif>
+                            <label for="no">No</label>
+                            @if ($errors->has('popular'))
+                                <div class="error">{{ $errors->first('popular') }}</div>
+                            @endif
+                        </div>
+
+                    </div>
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">

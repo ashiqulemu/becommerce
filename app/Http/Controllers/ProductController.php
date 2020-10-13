@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Auction;
+use App\subcat;
+use App\subsub;
 use App\Category;
 use App\Http\Requests\ProductRequest;
 use App\Media;
@@ -10,6 +12,7 @@ use App\Product;
 use App\Promotion;
 use App\Sales;
 use App\ShippingCost;
+
 use Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -29,14 +32,38 @@ class ProductController extends Controller
     public function create()
     {
         $categories=Category::whereStatus('Active')->get();
-        return view('admin.pages.product.create',['categories'=>$categories]);
+        $subcat=subcat::all();
+        $subsub=subsub::all();
+
+        return view('admin.pages.product.create',['categories'=>$categories,'subcat'=>$subcat,'subsub'=>$subsub]);
     }
 
 
-    public function store(ProductRequest $request)
+    public function store(Request $request)
     {
-        $product = Product::create($request->except('files','images'));
-        $this->addImage($request, $product);
+
+        $product = new Product();
+        $product->name=$request->name;
+        $product->sku_number=$request->sku_number;
+        $product->category_id=$request->category_id;
+        $product->subcat_id=$request->subcat_id;
+        $product->sub_id=$request->sub_id;
+        $product->description=$request->description;
+        $product->price=$request->price;
+        $product->agent_price=$request->agent_price;
+        $product->quantity=$request->quantity;
+        $product->is_out_of_stock=$request->is_out_of_stock;
+        $product->status=$request->status;
+        $product->popular=$request->popular;
+        $product->meta_tag=$request->meta_tag;
+        $product->meta_description=$request->meta_description;
+        if ($request->hasfile('product_image')) {
+            $image = $request->file('product_image');
+            $filename = rand() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images/products/'), $filename);
+            $product->product_image = $filename;
+        }
+        $product->save();
         return redirect('/admin/product/create')
             ->with(['type'=>'success','message'=>'Product created Successfully']);
     }
@@ -80,61 +107,73 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $category=Category::select('categories.name','categories.id')->get();
+        $subcat=subcat::select('subcats.name','subcats.id')->get();
+        $subsub=subsub::select('subsubs.name','subsubs.id')->get();
 
-        return view('admin.pages.product.edit',['category'=>$category,'product'=>$product]);
+        return view('admin.pages.product.edit',['category'=>$category,'subcat'=>$subcat,'subsub'=>$subsub,'product'=>$product]);
     }
 
 
-    public function update(ProductRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $product = Product::with('medias')->whereId($id)->select();
-        $product->first()->update($request->except('files','images','deleted_images'));
-        foreach ($product->first()->medias as $media) {
-            if(!in_array($media->id, $request->input('deleted_images')?:[])){
-                $this->removeImage($media);
-            }
+        $product = Product::find($id);
+        $product->name=$request->name;
+        $product->sku_number=$request->sku_number;
+        $product->category_id=$request->category_id;
+        $product->subcat_id=$request->subcat_id;
+        $product->sub_id=$request->sub_id;
+        $product->description=$request->description;
+        $product->price=$request->price;
+        $product->agent_price=$request->agent_price;
+        $product->quantity=$request->quantity;
+        $product->is_out_of_stock=$request->is_out_of_stock;
+        $product->status=$request->status;
+        $product->popular=$request->popular;
+        $product->meta_tag=$request->meta_tag;
+        $product->meta_description=$request->meta_description;
+        $image_name = $request->hidden_image;
+        $image = $request->file('product_image');
+
+        if ($image != null) {
+
+            unlink(public_path('images/products/') . $image_name);
+            $filename = rand() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images/products/'), $filename);
+            $product->product_image = $filename;
         }
-        $this->addImage($request, $product->first());
+        else{
+            $product->product_image = $image_name;
+        }
+        $product->save();
+
         return redirect('/admin/product')
-            ->with(['type'=>'success','message'=>'Product updated Successfully']);
+            ->with(['type'=>'success','message'=>'Product Updated Successfully']);
     }
 
     public function destroy(Product $product)
     {
+        $product=Product::find($product->id);
+        $saleProduct = DB::table('sale_items')
+                        ->select('id')
+                        ->where('product_id','=',$product->id)
+                        ->count();
 
-        $auctionProduct = Auction::whereProductId($product->id)->count();
-        $saleProduct = Sales::whereProductId($product->id)->count();
-        $totalProduct =$auctionProduct + $saleProduct;
-        if($totalProduct){
+        if( $saleProduct){
+
             return back()
                 ->with([
                     'type'=>'error',
-                    'message'=> "You have already ".$totalProduct." 
-                    auction or order with this Product. Please delete auction or order first."]);
+                    'message'=> "You have already ". $saleProduct." 
+                     order with this Product. Please delete order first."]);
         } else {
-            foreach ($product->medias as $media) {
-                $this->removeImage($media);
-            }
+
+            unlink(public_path('images/products/') . $product->product_image);
             $product->delete();
             return back()
                 ->with(['type'=>'success','message'=>'Product deleted successfully']);
-        }
-    }
-
-    public function addImage($request, $product){
-        if($request->file('images')){
-            foreach ($request->images as $key=>$item){
-                $extension = $item->getClientOriginalExtension();
-                $name='product/'.$key.time().'.'.$extension;
-                Storage::disk('public')->put($name,  File::get($item));
-                Media::create(['product_id'=>$product->id, 'image'=>$name]);
             }
-        }
-    }
-    public function removeImage($media){
-        Storage::disk('public')->delete($media->image);
-        $mediaItem =Media::find($media->id);
-        $mediaItem->delete();
+
+
     }
 
     public function getAllProduct(Request $request){

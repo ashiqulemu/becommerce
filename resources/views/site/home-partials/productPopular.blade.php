@@ -11,27 +11,7 @@
                 <div class="swiper-slide">
                     <product-card></product-card>
                 </div>
-                <div class="swiper-slide">
-                    <product-card></product-card>
-                </div>
-                <div class="swiper-slide">
-                    <product-card></product-card>
-                </div>
-                <div class="swiper-slide">
-                    <product-card></product-card>
-                </div>
-                <div class="swiper-slide">
-                    <product-card></product-card>
-                </div>
-                <div class="swiper-slide">
-                    <product-card></product-card>
-                </div>
-                <div class="swiper-slide">
-                    <product-card></product-card>
-                </div>
-                <div class="swiper-slide">
-                    <product-card></product-card>
-                </div>
+
 
             </div>
             <div class="swiper-button-next"></div>

@@ -32,6 +32,7 @@ class ProductRequest extends FormRequest
             'category_id'=>'required',
             'status'=>'required',
             'is_out_of_stock'=>'required',
+            'popular'=>'required',
         ];
     }
 }

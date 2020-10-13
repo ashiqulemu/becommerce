@@ -1,41 +1,45 @@
-<section class="productNewArrival">
-    <div class="col-md-12">
-        <h1 class="section-title">
-               NEW ARRIVAL
-        </h1>
-    </div>
-    <div class="col-md-12 ">
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <product-card></product-card>
-                </div>
-                <div class="swiper-slide">
-                    <product-card></product-card>
-                </div>
-                <div class="swiper-slide">
-                    <product-card></product-card>
-                </div>
-                <div class="swiper-slide">
-                    <product-card></product-card>
-                </div>
-                <div class="swiper-slide">
-                    <product-card></product-card>
-                </div>
-                <div class="swiper-slide">
-                    <product-card></product-card>
-                </div>
-                <div class="swiper-slide">
-                    <product-card></product-card>
-                </div>
-                <div class="swiper-slide">
-                    <product-card></product-card>
-                </div>
-
+<section>
+    <div class="container products-area regular-product" id="regularProduct">
+        <div class="row mx-auto">
+            <div class="col-lg-12 p-1">
+                <a href="{{url('/all-products')}}" class="title" style="position: relative">
+                    Regular Products
+                    {{--< class="allProductBtn">All Products</a>--}}
+                    <span class="hints">View All Products</span>
+                </a>
             </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-            <!-- Add Pagination -->
+            @foreach($latest as $product)
+                <div class="col-md-2 p-1">
+                    <div class="product wow fadeInUp default-a">
+                        <a href="{{url('product/details/'.$product->id).'/'.$product->name}}">
+                            <p class="name">{{$product->name}}</p>
+                            <div class="photo">
+
+                                        <img src="{{asset("images/products/$product->product_image")}}" alt=""
+                                             class="photo">
+
+                            </div>
+                        </a>
+                        <div class="price font-weight-bold">{{$setting->amount_sign}}{{$product->price}}</div>
+                        <div class="byNowBasket">
+                            <a class="btn closed " href="{{url('product/details/'.$product->id).'/'.$product->name}}">Details</a>
+                            <form method="post" action="{{url('/add-to-cart')}}">
+                                @csrf
+
+                                <input type="hidden" name="qty" min="1" value="1">
+                                <input type="hidden" name="id" value="{{$product->id}}">
+                                <button type="submit" class="btn  closed d-flex justify-content-center align-items-center">
+                                    <span>+</span>
+                                    <span>&nbsp;Basket</span>
+                                </button>
+                            </form>
+                            {{--<a class="btn closed" href="#"> + Basket</a>--}}
+                        </div>
+                    </div>
+
+                </div>
+            @endforeach
+
 
         </div>
     </div>

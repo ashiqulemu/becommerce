@@ -34,11 +34,7 @@
                                 <td>{{$product->price}}</td>
                                 <td>{{$product->quantity}}</td>
                                 <td width="200px">
-                                    @foreach($product->medias as $key=>$media)
-                                        @if($key==0)
-                                    <img src="{{asset("storage/$media->image")}}" class="img-fluid">
-                                        @endif
-                                    @endforeach
+                                    <img src="{{URL::to("/images/products/".$product->product_image)}}" class="img-fluid" /> </td>
                                 </td>
                                 <td>
                                    <div>
