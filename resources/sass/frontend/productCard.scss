@@ -5,11 +5,9 @@
   border-radius: 8px;
   overflow: hidden;
   min-width: 250px;
-  &:hover{
-    cursor: default;
-    .addTocart{
-      background: #a6b32a !important ;
-    }
+  max-width: 300px;
+  &:hover {
+
   }
   .photo {
     height: 225px;
@@ -24,14 +22,14 @@
     }
   }
   .base {
-    padding: 10px 25px;
+    padding: 10px 15px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background: #efefef;
     min-height: 211px;
-    .title{
+    .title {
       font-size: 1.3rem;
       color: #1d3500;
       text-align: center;
@@ -73,35 +71,35 @@
       width: 100%;
       display: flex;
       justify-content: center;
-      .addTocart {
-        color: #ffffff;
+      margin: 12px 0;
+      .details {
+        flex: 1;
+        margin: 0 4px;
+        padding: 8px;
         border: 0;
-        padding: 10px 8px;
+        background: #d6d6d6;
         border-radius: 4px;
-        background: #72bb1c;
-        display: block;
-        width: 100%;
+        color: #545454;
         font-size: 1rem;
-        transition: all 0.3s ease;
-        position: relative;
-        outline: 0;
-        .item{
-          display: inline-block;
-          left: 12px;
-          background: #4d524d;
-          position: absolute;
-          border-radius: 3px;
-          padding: 0 6px;
+        text-transform: capitalize;
+        font-weight: bold;
+        transition: all 0.6s ease;
+        &:hover{
+          background: #9bac0e;
+          color: #fff;
+              transform: translateY(-3px);
         }
       }
-      .decr{
-        outline: 0;
-        border: 0;
-        width: 45px;
-        background: #FF5722;
-        border-radius: 3px;
-        margin: 0 2px;
+      .basket {
+       @extend .details;
+        &:hover{
+          background: #e8a713;
+          color: #fff;
+        }
       }
     }
+
+
+
   }
 }

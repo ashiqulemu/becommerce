@@ -19,15 +19,8 @@
                                 <div class="price">10 Tk</div>
                             </div>
                             <div class="addCart">
-                                <button class="addTocart"  >
-                        <span class="item">
-                           10
-                        </span>
-                                    <i class="fa fa-shopping-cart mr-2"></i>
-                                    Add To Cart
-
-                                </button>
-                                <button class="decr fa fa-minus" ></button>
+                                <button class="details" >Details</button>
+                                <button class="basket"><i class="fa fa-plus"> </i> basket</button>
                             </div>
                         </div>
                     </div>
@@ -44,15 +37,8 @@
                                 <div class="price">10 Tk</div>
                             </div>
                             <div class="addCart">
-                                <button class="addTocart"  >
-                        <span class="item">
-                           10
-                        </span>
-                                    <i class="fa fa-shopping-cart mr-2"></i>
-                                    Add To Cart
-
-                                </button>
-                                <button class="decr fa fa-minus" ></button>
+                                <button class="details" >Details</button>
+                                <button class="basket"><i class="fa fa-plus"> </i> basket</button>
                             </div>
                         </div>
                     </div>
