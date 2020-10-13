@@ -12,43 +12,21 @@
             @if(auth()->user())
                 <div class="row ">
                     <div class="partners">
-                        <a href="/user-home##auctionProductRibon" class="section-links">Live Auctions</a>
-                        <a href="/user-home#upcoming-auctionsRibon" class="section-links">Upcoming Auctions</a>
-                        <a href="/user-home#closedAuctionsRibon" class="section-links">Closed Auctions</a>
-                        <a href="/all-products" class="section-links">Regular product</a>
-                        <a href="/how-it-works" class="section-links">How it works</a>
+                        {{--<a href="/user-home##auctionProductRibon" class="section-links">Live Auctions</a>--}}
+                        {{--<a href="/user-home#upcoming-auctionsRibon" class="section-links">Upcoming Auctions</a>--}}
+                        {{--<a href="/user-home#closedAuctionsRibon" class="section-links">Closed Auctions</a>--}}
+                        {{--<a href="/all-products" class="section-links">Regular product</a>--}}
+                        {{--<a href="/how-it-works" class="section-links">How it works</a>--}}
                     </div>
                 </div>
             @endif
             <div class="row bg-white">
                 <div class="col-md-8  row w-100">
                     <div class="col-lg-7 bg-white  pt-2">
-                        <div class="gallery product">
-                            @foreach($item->medias as $key=>$media)
-                                @if($key==0)
-                                    <div class="show"
-                                         href="{{asset("storage/$media->image")}}" style="z-index: 1">
+                        <div class="photo">
 
-                                        <img src="{{asset("storage/$media->image")}}" alt=""
-                                             id="show-img">
-                                    </div>
-                                @endif
-                            @endforeach
 
-                            <div class="small-img">
-                                <img src="/images/online_icon_right@2x.png"
-                                     class="icon-left" alt="" id="prev-img">
-                                <div class="small-container">
-                                    <div id="small-img-roll">
-                                        @foreach($item->medias as $key=>$media)
-                                            <img src="{{asset("storage/$media->image")}}"
-                                                 class="show-small-img" alt="">
-                                        @endforeach
-                                    </div>
-                                </div>
-                                <img src="/images/online_icon_right@2x.png"
-                                     class="icon-right" alt="" id="next-img">
-                            </div>
+                            <img src="{{asset("images/products/$item->product_image")}}" alt="" height="auto" width="300px"/>
                         </div>
                         {{--                            <div class="sp-wrap mt-3">]--}}
                         {{--                                @foreach($item->medias as $key=>$media)--}}

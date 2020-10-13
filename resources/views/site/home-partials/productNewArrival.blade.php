@@ -11,17 +11,24 @@
                     <div class="swiper-slide">
                     <div class="product">
                         <div class="photo">
-                            <img src="{{asset("storage/$media->image")}}" alt="">
+                            <img src="{{asset("images/products/$lat->product_image")}}" alt="">
                         </div>
                         <div class="base">
-                            <p class="title">Green Guava</p>
+                            <p class="title">{{$lat->name}}</p>
                             <div class="inner">
-                                <div class="weight">500mg</div>
-                                <div class="price">10 Tk</div>
+                                <div class="weight">{{$lat->meta_tag}}</div>
+                                <div class="price">{{$lat->price}} TK</div>
                             </div>
                             <div class="addCart">
-                                <button class="details" >Details</button>
-                                <button class="basket"><i class="fa fa-plus"> </i> basket</button>
+                                <a class="details" href="{{url('product/details/'.$lat->id).'/'.$lat->name}}">Details</a>
+                                <form method="post" action="{{url('/add-to-cart')}}">
+                                    @csrf
+
+                                    <input type="hidden" name="qty" min="1" value="1">
+                                    <input type="hidden" name="id" value="{{$lat->id}}">
+                                    <button class="basket"><i class="fa fa-plus"> </i> basket</button>
+                                </form>
+
                             </div>
                         </div>
                     </div>
