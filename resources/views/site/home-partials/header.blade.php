@@ -156,7 +156,7 @@
         <div class="collapse navbar-collapse" id="callNav">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item  ">
-                    <a class="nav-link active" href="#">Home </a>
+                    <a class="nav-link active" href="/">Home </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/about">About Us</a>
@@ -165,7 +165,7 @@
                     <a class="nav-link" href="{{url('/products')}}">Products</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Blog</a>
+                    <a class="nav-link" href="/blog">Blog</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/contact">Contact</a>

@@ -1,45 +1,67 @@
-<section>
-    <div class="container products-area regular-product" id="regularProduct">
-        <div class="row mx-auto">
-            <div class="col-lg-12 p-1">
-                <a href="{{url('/all-products')}}" class="title" style="position: relative">
-                    Regular Products
-                    {{--< class="allProductBtn">All Products</a>--}}
-                    <span class="hints">View All Products</span>
-                </a>
-            </div>
-            @foreach($latest as $product)
-                <div class="col-md-2 p-1">
-                    <div class="product wow fadeInUp default-a">
-                        <a href="{{url('product/details/'.$product->id).'/'.$product->name}}">
-                            <p class="name">{{$product->name}}</p>
-                            <div class="photo">
-
-                                        <img src="{{asset("images/products/$product->product_image")}}" alt=""
-                                             class="photo">
-
+<section class="productNewArrival">
+    <div class="col-md-12">
+        <h1 class="section-title">
+            NEW ARRIVAL
+        </h1>
+    </div>
+    <div class="col-md-12 ">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="product">
+                        <div class="photo">
+                            <img src="http://pngimg.com/uploads/guava/guava_PNG57.png">
+                        </div>
+                        <div class="base">
+                            <p class="title">Green Guava</p>
+                            <div class="inner">
+                                <div class="weight">500mg</div>
+                                <div class="price">10 Tk</div>
                             </div>
-                        </a>
-                        <div class="price font-weight-bold">{{$setting->amount_sign}}{{$product->price}}</div>
-                        <div class="byNowBasket">
-                            <a class="btn closed " href="{{url('product/details/'.$product->id).'/'.$product->name}}">Details</a>
-                            <form method="post" action="{{url('/add-to-cart')}}">
-                                @csrf
+                            <div class="addCart">
+                                <button class="addTocart"  >
+                        <span class="item">
+                           10
+                        </span>
+                                    <i class="fa fa-shopping-cart mr-2"></i>
+                                    Add To Cart
 
-                                <input type="hidden" name="qty" min="1" value="1">
-                                <input type="hidden" name="id" value="{{$product->id}}">
-                                <button type="submit" class="btn  closed d-flex justify-content-center align-items-center">
-                                    <span>+</span>
-                                    <span>&nbsp;Basket</span>
                                 </button>
-                            </form>
-                            {{--<a class="btn closed" href="#"> + Basket</a>--}}
+                                <button class="decr fa fa-minus" ></button>
+                            </div>
                         </div>
                     </div>
-
                 </div>
-            @endforeach
+                <div class="swiper-slide">
+                    <div class="product">
+                        <div class="photo">
+                            <img src="http://pngimg.com/uploads/guava/guava_PNG57.png">
+                        </div>
+                        <div class="base">
+                            <p class="title">Green Guava</p>
+                            <div class="inner">
+                                <div class="weight">500mg</div>
+                                <div class="price">10 Tk</div>
+                            </div>
+                            <div class="addCart">
+                                <button class="addTocart"  >
+                        <span class="item">
+                           10
+                        </span>
+                                    <i class="fa fa-shopping-cart mr-2"></i>
+                                    Add To Cart
 
+                                </button>
+                                <button class="decr fa fa-minus" ></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <!-- Add Pagination -->
 
         </div>
     </div>
