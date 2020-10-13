@@ -10,6 +10,49 @@ body {
   background: #fff !important;
 
 }
+.reportPanels{
+  .panel{
+    .panel-heading{
+      background: #79a249;
+      color:   white;
+      i.fa{
+        color: #466522;
+      }
+    }
+    .panel-footer{
+      background: #79a250;
+      color:   white;
+    }
+  }
+}
+
+#side-menu{
+  height: 100vh;
+  background: #424444;
+  li{
+    border-bottom: 1px solid #e7e7e70d;
+    a{
+      color: #bdc0c1;
+
+      &:hover {
+        background:#749d45 !important;
+      }
+      &.active {
+        background: #749d45 !important;
+        color: #d2d2d2;
+      }
+
+    }
+    &.active{
+      background: #363a3c!important;
+      a[href='#']{
+        background: #4CAF50;
+        color: #fff;
+      }
+
+    }
+  }
+}
 
 
 @media (min-width: 768px) {
@@ -117,23 +160,7 @@ body {
   border-radius: 0;
 }
 
-.nav-second-level {
-  background: #f1f1f1 !important;
-}
 
-.nav {
-  li {
-    a {
-      &:hover {
-        background: lightgrey !important;
-      }
-      &.active {
-        background: #003B1E !important;
-        color: #d2d2d2;
-      }
-    }
-  }
-}
 
 .site-link {
   background:#749c45 ;
