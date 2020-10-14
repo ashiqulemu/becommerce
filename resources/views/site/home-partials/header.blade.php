@@ -159,16 +159,15 @@
                     <a class="nav-link active" href="/">Home </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/about">About Us</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="{{url('/products')}}">Products</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/blog">Blog</a>
+                    <a class="nav-link" href="/about">About Us</a>
                 </li>
+
+
                 <li class="nav-item">
-                    <a class="nav-link" href="/contact">Contact</a>
+                    <a class="nav-link" href="/contact">Contact Us</a>
                 </li>
 
             </ul>
