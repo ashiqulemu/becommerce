@@ -21,6 +21,52 @@ body{
   font-family:'Poppins-Regular',sans-serif!important;
 }
 
+
+.write-us .intro hr {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  border-bottom: 3px solid #ffb422;
+  width: 67px;
+  margin-top: 10px;
+}
+.write-us .intro .subtitle {
+  color: #6c757d;
+}
+.write-us .contact-form {
+  color: #6c757d;
+  margin-top: 50px!important;
+}
+.write-us .block p {
+  color: #909090;
+  font-size: 14px;
+  margin-left: 27px;
+}
+.form-group {
+  margin-bottom: 1rem;
+}
+.write-us .contact-form .btn-own {
+  padding: 5px 15px;
+  border: 1px solid #00000024;
+  color: #352c2c;
+  background: #139200;
+  text-align: center;
+  color: #fff;
+  font-weight: 400;
+  border-radius: 4px;
+  box-shadow: inset 0px 0px 9px -1px #0000002e;
+}
+.write-us .block h6 i {
+  color: #007bff;
+  margin-right: 13px;
+}
+.write-us .block h6 span {
+  font-weight: bold;
+  color: #464545;
+}
+.write-us .block {
+  padding: 25px 0;
+}
 .order{
   padding: 90px 0;
   .orderPanel{
