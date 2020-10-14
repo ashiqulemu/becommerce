@@ -33,7 +33,7 @@
                                 <td>{{$product->category->name}}</td>
                                 <td>{{$product->price}}</td>
                                 <td>{{$product->quantity}}</td>
-                                <td width="200px">
+                                <td>
                                     <img src="{{URL::to("/images/products/".$product->product_image)}}" class="img-fluid" /> </td>
                                 </td>
                                 <td>

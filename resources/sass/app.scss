@@ -21,6 +21,30 @@ body{
   font-family:'Poppins-Regular',sans-serif!important;
 }
 
+.order{
+  padding: 90px 0;
+  .orderPanel{
+    background: #00391D;
+    text-decoration: none;
+    color: #fff;
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    p{
+      font-size: 4vw;
+      margin-bottom: 0;
+      font-weight: normal;
+    }
+    i{
+      font-size: 8vw;
+      margin-right: 15px;
+    }
+  }
+}
+
+
 .forget-pass{
   background: #f1f1f1;
   padding: 50px 0;
@@ -54,6 +78,10 @@ body{
   .add{
     margin:10px 0;
     text-align: center;
+    height: 200px;
+    img{
+      height: 200px;
+    }
   }
 }
 .promise{

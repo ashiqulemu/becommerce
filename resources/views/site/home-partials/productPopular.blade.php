@@ -1,4 +1,4 @@
-<section class="productNewArrival">
+<section class="productPopular">
     <div class="col-md-12">
         <h1 class="section-title">
            POPULAR PRODUCT
