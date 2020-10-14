@@ -73,9 +73,10 @@
       justify-content: center;
       margin: 12px 0;
       .details {
+        text-decoration: none;
         flex: 1;
         margin: 0 4px;
-        padding: 8px;
+        padding: 8px 16px;
         border: 0;
         background: #d6d6d6;
         border-radius: 4px;
@@ -84,6 +85,7 @@
         text-transform: capitalize;
         font-weight: bold;
         transition: all 0.6s ease;
+        text-align: center;
         &:hover{
           background: #9bac0e;
           color: #fff;

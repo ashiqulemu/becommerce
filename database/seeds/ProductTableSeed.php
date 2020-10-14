@@ -22,8 +22,11 @@ class ProductTableSeed extends Seeder
             'product/01561948323.jpg',
             'product/01561948324.jpg',
         ];
+
         $faker =Faker::create();
+
         foreach (range(1,15) as $index){
+
             $product = DB::table('products')->insertGetId([
                 'name' => $faker->name,
                 'sku_number' => $faker->text(50),
@@ -38,6 +41,7 @@ class ProductTableSeed extends Seeder
                 'created_at' => $faker->dateTime($max = 'now', $timezone = null),
                 'updated_at' =>$faker->dateTime($max = 'now', $timezone = null),
             ]);
+
             foreach (range(1,2) as $index) {
                 DB::table('media')->insert([
                     'product_id' => $product,

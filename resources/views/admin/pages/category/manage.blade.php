@@ -28,9 +28,11 @@
                                 <td>{{$key+1}}</td>
                                 <td>{{$category->name}}</td>
                                 <td>{{$category->description}}</td>
-                                <td  width="200px">
+                                <td>
                                     <img src="{{URL::to("/images/".$category->category_image)}}" class="img-fluid" /> </td>
-                                <td>{{$category->status}}</td>
+                                <td>
+                                    {{$category->status}}
+                                </td>
                                 <td>
                                   <div>
                                       <a href="{{url('/admin/category/'.$category->id).'/edit'}}" title="Edit">

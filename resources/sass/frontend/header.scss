@@ -5,6 +5,36 @@ $theme-primary:#9ca91c ;
   color:#9ca91c ;
 }
 
+.userNavigation{
+  background: #43464a;
+  padding: 15px;
+  width: 100%;
+.shoppingCart{
+  position: relative;
+  i{
+    font-size: 2rem;
+    color: #9ca91b;
+  }
+  .counter {
+    background: #fb3838;
+    color: #ffffff !important;
+    font-size: 10px;
+    text-align: center;
+    border-radius: 50%;
+    position: absolute;
+    top: -2px;
+    left: 27px;
+    padding: 0 !important;
+    height: 17px;
+    width: 17px;
+    display: flex !important;
+    font-weight: bold;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+}
+}
+
 .btn-theme{
   background:$theme-primary !important;
   color: #fff;
