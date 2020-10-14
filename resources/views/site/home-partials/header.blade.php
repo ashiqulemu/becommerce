@@ -177,6 +177,30 @@
         </div>
         {{--<search-component></search-component>--}}
     </nav>
+
+    <div class="userNavigation">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-3">
+                    <img src="/images/flooop.png" class="img-fluid" style="width: 80%">
+                </div>
+
+                <div class="col-md-9 d-flex align-items-center justify-content-end text-white">
+                  <h5> <i class="fa fa-user"></i> user name</h5>
+                    <a href="/view-cart" title="view shopping cart" class="shoppingCart mx-5">
+                        <i class="fa fa-cart-arrow-down"  ></i>
+                        <div class="counter">{{Cart::content()->count()}}</div>
+                    </a>
+                    <a class="btn bg-danger text-center text-white" href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
+                        Logout
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </section>
 
 
