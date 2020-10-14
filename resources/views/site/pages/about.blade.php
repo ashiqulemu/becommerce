@@ -11,7 +11,7 @@
     <div class="container bg-white aboutUS">
         <div class="row p-5 header">
             <h1>About us </h1>
-            <h4> qwe wqe wqe wqe wq eqw qwe </h4>
+            <h4> Subtitle goes here !</h4>
             <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est eveniet id quaerat temporibus. Est
                 molestias pariatur quia. Aliquam, ea eaque illum iure necessitatibus officiis recusandae ut velit. Eaque
                 ipsum maxime sequi soluta. Esse, nesciunt, quae! Accusamus, ad aliquam animi beatae corporis cum esse,
@@ -27,8 +27,6 @@
             </p>
 
         </div>
-
-
     </div>
 
 @endsection
