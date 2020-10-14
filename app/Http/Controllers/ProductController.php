@@ -194,12 +194,25 @@ class ProductController extends Controller
 
         }
         $productList=$productList->where('quantity','>', 0)->paginate(20);
+//        $categories=DB::table('categories')
+//            ->join('products','categories.id','=','products.category_id')
+//            ->select('categories.name','categories.id as catId',DB::raw('count(*) as catCount'))
+//            ->groupBy('products.category_id','categories.name','categories.id')
+//            ->get();
+////        return view('site.pages.product.allProducts',['categories'=>$categories,'productList'=>$productList]);
+//        return view('site.home-partials.products',['categories'=>$categories,'productList'=>$productList]);
         $categories=DB::table('categories')
-            ->join('products','categories.id','=','products.category_id')
-            ->select('categories.name','categories.id as catId',DB::raw('count(*) as catCount'))
-            ->groupBy('products.category_id','categories.name','categories.id')
+            ->select('id','name')
             ->get();
-        return view('site.pages.product.allProducts',['categories'=>$categories,'productList'=>$productList]);
+        $subcat=DB::table('subcats')
+            ->select('id','name','category_id')
+            ->get();
+        $subsub=DB::table('subsubs')
+            ->select('*')
+            ->get();
+
+//        return view('site.pages.product.allProducts',['categories'=>$categories,'productList'=>$productList]);
+        return view('site.home-partials.products',['categories'=>$categories,'productList'=>$productList,'subcat'=>$subcat,'subsub'=>$subsub]);
     }
 
 }

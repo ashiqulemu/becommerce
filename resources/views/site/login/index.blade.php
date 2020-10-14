@@ -1,12 +1,12 @@
 @extends('site.app')
 @section('title-meta')
-    <title>Firebidder user loged </title>
+    <title>user loged in</title>
 @endsection
 
 @section('content')
 
    @include('.site.login.login-partitial.header')
-
+   @include('.site.login.login-partitial.nav')
     <section class="slider">
         <div class="container">
            <div class="row">
@@ -35,36 +35,10 @@
         </div>
     </section>
 
-   @include('.site.login.login-partitial.nav')
-
-
-    @include('site.home-partials.auction-bar')
-   {{--@include('site.home-partials.auction-products')--}}
-   {{--@include('site.home-partials.up-coming-auction-bar')--}}
-
-   {{-- Up Commint AUCTIONS PRODUCTS--}}
-
-{{--   @include('site.home-partials.up-coming-auction')--}}
-   {{--Regular products--}}
-
    @include('site.home-partials.regular-product')
-    {{--products--}}
-   @include('site.home-partials.closed-product-bar')
-{{--   @include('site.home-partials.closed-products')--}}
-    {{--@include('.site.home-partials.featuredProduct')--}}
-
-{{--    @include('site.home-partials.scroller')--}}
-
-
-
-
-
-
 
 
 @endsection
-
-
 
 @section('scripts')
         {{--<script src="{{ mix('/js/home.js') }}"></script>--}}

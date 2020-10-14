@@ -6,9 +6,9 @@
 @section('content')
     @if(auth()->user())
         @include('site.login.login-partitial.header')
-{{--        @include('site.login.login-partitial.nav')--}}
+        @include('site.login.login-partitial.nav')
     @endif
-
+    @include('site.login.login-partitial.nav')
 
     <div class="container bg-white products-area regular-product  p-0 my-2" id="regularProduct">
       <div class="col-md-12" style="background: #FFA034;">
@@ -28,37 +28,6 @@
                  >Search </a>
           </div>
       </div>
-            <div class="col-md-12 p-0 mt-3">
-                <div class="proGallery ">
-                    <a href="{{url("/all-products?catName=mobile")}}"
-                       class="{{request()->input('catName') == 'mobile' ? 'active': ''}}">
-                        <img src="/images/products/mobile.png">
-                    </a>
-                    <a href="{{url("/all-products?catName=kids")}}"
-                       class="{{request()->input('catName') == 'kids' ? 'active': ''}}">
-                        <img src="/images/products/kids.png">
-                    </a>
-                    <a href="{{url("/all-products?catName=laptop")}}"
-                       class="{{request()->input('catName') == 'laptop' ? 'active': ''}}">
-                        <img src="/images/products/laptop.png">
-                    </a>
-                    <a href="{{url("/all-products?catName=mens")}}"
-                       class="{{request()->input('catName') == 'mens' ? 'active': ''}}"
-                    >
-                        <img src="/images/products/mens.png">
-                    </a>
-                    <a href="{{url("/all-products?catName=sports")}}"
-                       class="{{request()->input('catName') == 'sports' ? 'active': ''}}"
-                    >
-                        <img src="/images/products/tv.png">
-                    </a>
-                    <a href="{{url("/all-products?catName=women")}}"
-                       class="{{request()->input('catName') == 'women' ? 'active': ''}}"
-                    >
-                        <img src="/images/products/women.png">
-                    </a>
-                </div>
-            </div>
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-3 sidebarFilter">

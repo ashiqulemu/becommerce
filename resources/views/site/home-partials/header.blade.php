@@ -1,4 +1,5 @@
 <section class="site-header">
+    @if(!auth()->user())
     <div class="topbar">
         <div class="barInner">
             <div class="items">
@@ -50,20 +51,6 @@
                                     @endif
 
 
-                                    {{--<input id="email"--}}
-                                    {{--type="text"--}}
-                                    {{--class="form-control{{ $errors->has('username') || $errors->has('email') ? ' is-invalid' : '' }}"--}}
-                                    {{--name="email"--}}
-                                    {{--value="{{ old('email') }}"--}}
-                                    {{--required autocomplete="email"--}}
-                                    {{--autofocus--}}
-                                    {{--placeholder="Email">--}}
-                                    {{--@error('email')--}}
-                                    {{--<div class="invalid-feedback" role="alert">--}}
-                                    {{--<strong>{{ $message }}</strong>--}}
-                                    {{--</div>--}}
-                                    {{--@enderror--}}
-
                                 </div>
                                 <div>
 
@@ -94,9 +81,7 @@
                                 <div>
                                     Forgot password? <a href="{{url('/forget-password')}}">Click Here</a>
                                 </div>
-                                {{--<div>--}}
-                                {{--New? <a href="/#sign-up">Sign Up</a>--}}
-                                {{--</div>--}}
+
                             </div>
 
 
@@ -104,7 +89,7 @@
 
                     </form>
 
-                @endif()
+                @endif
             </div>
 
         </div>
@@ -122,84 +107,16 @@
                         <a href="{{ url('auth/facebook') }}" class="btn  btn-sm"  >
                            <span>Login with </span> <i class="fa fa-facebook-square"></i>
                         </a>
-                        @if(auth()->user())
-                            <div>
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                    Logout
-                                </a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                      style="display: none;">
-                                    @csrf
-                                </form>
-                            </div>
-                        @endif
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#callNav"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <button class="categoriesMobile" id="categories" @click.prevent="$root.openSidebar">
-           All Categories
-        </button>
-
-        <div class="collapse navbar-collapse" id="callNav">
-            <ul class="navbar-nav mx-auto">
-                <li class="nav-item  ">
-                    <a class="nav-link active" href="/">Home </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url('/products')}}">Products</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/about">About Us</a>
-                </li>
+    @endif
 
 
-                <li class="nav-item">
-                    <a class="nav-link" href="/contact">Contact Us</a>
-                </li>
-
-            </ul>
-
-
-        </div>
-        {{--<search-component></search-component>--}}
-    </nav>
-
-    <div class="userNavigation">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-3 text-center">
-                    <a href="/"><img src="/images/flooop.png" class="img-fluid" style="width:200px"></a>
-                </div>
-
-                <div class="col-md-9 d-flex align-items-center justify-content-end text-white">
-                  <h5 class="mb-0"> <i class="fa fa-user"></i> user name</h5>
-                    <a href="/view-cart" title="view shopping cart" class="shoppingCart mx-5">
-                        <i class="fa fa-cart-arrow-down"  ></i>
-                        <div class="counter">{{Cart::content()->count()}}</div>
-                    </a>
-                    <a class="btn bg-danger text-center text-white" href="{{ route('logout') }}"
-                           onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();">
-                        Logout
-                    </a>
-                </div>
-
-            </div>
-        </div>
-    </div>
 </section>
 
 

@@ -10,7 +10,7 @@
             @foreach($category as $cat)
             <div class="col-md-4">
                 <div class="cat">
-                    <a href="#">
+                    <a href={{url('/all-products')}}>
                         <img class="img-fluid" src="{{URL::to('/')}}/images/{{$category[$i]->category_image}}" alt="" />
                     </a>
                     <div class="nameBar">{{$category[$i]->name}}</div>

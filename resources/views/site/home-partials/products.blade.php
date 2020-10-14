@@ -9,57 +9,37 @@
 
 
             <h6 style="color: #899419; text-shadow: 0 1px 3px #00000030;" class="text-center my-3 font-weight-bold">
-                PRODUCT CATEGORIES</h6>
+
             <ul class="menuItems">
-                <li class="list"><a href="">Pant</a></li>
+                @foreach($categories as $category)
                 <li class="list">
                     <a href="#" class="multilevel" onClick="dropdown(event)">
-                        খাবার সামগ্রি
-                        <i class="fa fa-caret-right aero"></i>
-                    </a>
-                    <ul class="subItems">
-                        <li>
-                            <a href="#" class="multilevel" onClick="dropdown(event)">ফল এবং সবজি</a>
-                            <ul class="subItems">
-                                <li><a href="#">তাজা ফল</a></li>
-                                <li><a href="#">তাজা সবজি </a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="multilevel" onClick="dropdown(event)">নাশতা </a>
-                            <ul class="subItems">
-                                <li><a href="#"> স্থানীয় নাশতা </a></li>
-                                <li><a href="#">জ্যাম এবং স্প্রেড </a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="list">
-                    <a href="#" class="multilevel" onClick="dropdown(event)">
-                        শিশুদের ব্যবহার্য
+                       {{$category->name}}
 
                         <i class="fa fa-caret-right aero"></i>
                     </a>
+                    @foreach($subcat as $subc)
+                        @if( $subc->category_id == $category->id)
                     <ul class="subItems">
                         <li>
-                            <a href="#" class="multilevel" onClick="dropdown(event)"> নবজাতকের প্রয়োজনীয়তা</a>
+                            <a href="#" class="multilevel" onClick="dropdown(event)"> {{$subc->name}}</a>
+                            @foreach($subsub as $sub)
+                                @if( $sub->subcat_id == $subc->id)
                             <ul class="subItems">
-                                <li><a href="#">ডায়পারিং </a></li>
-                                <li><a href="#">ওয়াইপ্স </a></li>
+
+                                <li><a href="#">{{$sub->name}} </a></li>
                             </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="multilevel" onClick="dropdown(event)">Brand</a>
-                            <ul class="subItems">
-                                <li><a href="#">Apple i phone</a></li>
-                                <li><a href="#">Blackberry</a></li>
-                            </ul>
+                                @endif
+                            @endforeach
                         </li>
                     </ul>
-                </li>
+                        @endif
+                    @endforeach
 
+                </li>
+                @endforeach
             </ul>
+            </h6>
         </div>
         <div class="productContainer">
             <div class="row">
@@ -69,10 +49,11 @@
             </div>
             <hr>
             <div class="row mt-5">
+                @foreach($productList as $product)
                 <div class="col">
                     <div class="product">
                         <div class="photo">
-                            <img src="http://pngimg.com/uploads/guava/guava_PNG57.png">
+                            <img src="{{asset("images/products/$product->product_image")}}" alt=""/>
                         </div>
                         <div class="base">
                             <p class="title">Green Guava</p>
@@ -87,60 +68,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="product">
-                        <div class="photo">
-                            <img src="http://pngimg.com/uploads/guava/guava_PNG57.png">
-                        </div>
-                        <div class="base">
-                            <p class="title">Green Guava</p>
-                            <div class="inner">
-                                <div class="weight">500mg</div>
-                                <div class="price">10 Tk</div>
-                            </div>
-                            <div class="addCart">
-                                <button class="details" >Details</button>
-                                <button class="basket"><i class="fa fa-plus"> </i> basket</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="product">
-                        <div class="photo">
-                            <img src="http://pngimg.com/uploads/guava/guava_PNG57.png">
-                        </div>
-                        <div class="base">
-                            <p class="title">Green Guava</p>
-                            <div class="inner">
-                                <div class="weight">500mg</div>
-                                <div class="price">10 Tk</div>
-                            </div>
-                            <div class="addCart">
-                                <button class="details" >Details</button>
-                                <button class="basket"><i class="fa fa-plus"> </i> basket</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="product">
-                        <div class="photo">
-                            <img src="http://pngimg.com/uploads/guava/guava_PNG57.png">
-                        </div>
-                        <div class="base">
-                            <p class="title">Green Guava</p>
-                            <div class="inner">
-                                <div class="weight">500mg</div>
-                                <div class="price">10 Tk</div>
-                            </div>
-                            <div class="addCart">
-                                <button class="details" >Details</button>
-                                <button class="basket"><i class="fa fa-plus"> </i> basket</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>

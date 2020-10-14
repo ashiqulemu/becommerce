@@ -4,7 +4,7 @@
 @endsection
 
 @section('content')
-
+    @include('site.home-partials.nav-bar')
     @include('site.home-partials.banner')
     @include('site.home-partials.advertisement')
     @include('site.home-partials.productNewArrival')

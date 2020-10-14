@@ -5,10 +5,8 @@
     <div class="container">
         <div class="header">
             <div>
-                <div class="brand">
-                    <a href="/user-home">
-                        <img src="/images/logo.png" class="img-fluid d-block">
-                    </a>
+                <div class="col-md-3 text-center">
+                    <a href="{{url('/user-home')}}"><img src="/images/flooop.png" class="img-fluid" style="width:200px"></a>
                 </div>
             </div>
             <div>
@@ -26,10 +24,7 @@
                             <div class="counter">{{Cart::content()->count()}}</div>
                         </a>
                     </li>
-                    <li>You have {{auth()->user()->credit_balance}} credits</li>
-                    <li>
-                        <a href="{{url('/credit-product')}}" class="btn btn-warning text-dark text-capitalize">top up credits</a>
-                    </li>
+
                 </ul>
             </div>
             @if(auth()->user())
