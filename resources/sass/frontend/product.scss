@@ -56,6 +56,7 @@
     }
 
     a{
+      text-decoration: none;
       padding: 9px 15px;
       background: #343a41;
       display: block;
@@ -69,6 +70,7 @@
     }
     .multilevel{
       position: relative;
+
       .aero{
         position: absolute;
         right: 15px;
@@ -96,6 +98,7 @@
         }
 
         a.multilevel{
+          text-decoration: none;
           position: relative;
           &:before{
             content: "\203A";
