@@ -7,7 +7,7 @@
     @if(auth()->user())
         @include('.site.login.login-partitial.header')
     @endif
-    <section>
+    <section class="detailsProduct">
         <div class="container">
             @if(auth()->user())
                 <div class="row ">
@@ -20,12 +20,10 @@
                     </div>
                 </div>
             @endif
-            <div class="row bg-white">
+            <div class="row bg-white mt-5">
                 <div class="col-md-8  row w-100">
-                    <div class="col-lg-7 bg-white  pt-2">
+                    <div class="col-lg-6 bg-white  pt-2">
                         <div class="photo">
-
-
                             <img src="{{asset("images/products/$item->product_image")}}" alt="" height="auto" width="300px"/>
                         </div>
                         {{--                            <div class="sp-wrap mt-3">]--}}
@@ -40,9 +38,10 @@
 
 
                     </div>
-                    <div class="col-lg-5 bg-white pt-2">
+                    <div class="col-lg-6 bg-white pt-2">
                         <div class="product-varient mt-5">
                             <div class="product-title">{{$item->name}}</div>
+
                             <div class="product-price">Price: <span>{{$setting->amount_sign}}{{$item->price}}</span>
                             </div>
                             <form method="post" action="{{url('/add-to-cart')}}">
@@ -52,7 +51,7 @@
                                     <input type="text" name="qty" min="1" value="1">
                                     <input type="hidden" name="id" value="{{$item->id}}">
                                 </div>
-                                <button type="submit" class="cart">add to cart</button>
+                                <button type="submit" class="btn-theme mt-2">add to cart</button>
                             </form>
                         </div>
                     </div>
@@ -77,7 +76,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 ml-5 bg-white p-0 pt-2 pr-2">
+                <div class="col-lg-4 bg-white p-0 pt-2 pr-2">
                     <div class="your-basket  mt-3">
                         <header>
                             your basket
@@ -266,4 +265,8 @@
 
     </script>
 @endsection
+
+<style lang="scss" >
+
+</style>
 

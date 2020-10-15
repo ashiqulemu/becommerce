@@ -1,6 +1,6 @@
 
-<section class="mid">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<section class="">
+    <nav class="navbar navbar-expand-lg navbar-dark " id="navUser">
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#callNav"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

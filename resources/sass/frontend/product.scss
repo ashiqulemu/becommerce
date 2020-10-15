@@ -50,8 +50,10 @@
   .list{
 
     &:hover{
+      cursor: pointer;
       a{
-        background: #383838;
+        background: #CDDC39;
+        color: #000;
       }
     }
 

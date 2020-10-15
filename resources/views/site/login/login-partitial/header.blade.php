@@ -5,7 +5,7 @@
     <div class="container">
         <div class="header">
             <div>
-                <div class="col-md-3 text-center">
+                <div class=" text-center">
                     <a href="{{url('/user-home')}}"><img src="/images/flooop.png" class="img-fluid" style="width:200px"></a>
                 </div>
             </div>
@@ -18,7 +18,7 @@
                     </li>
                     <li>
                         <a href="{{url('/view-cart')}}" title="view shopping cart" class="shoppingCart">
-                            <i class="fa fa-cart-plus text-warning" style="font-size: 34px">
+                            <i class="fa fa-cart-plus" style="font-size: 34px">
 
                             </i>
                             <div class="counter">{{Cart::content()->count()}}</div>
@@ -29,7 +29,7 @@
             </div>
             @if(auth()->user())
                 <div>
-                    <a class="btn btn-outline-primary" href="{{ url('admin/logout') }}"
+                    <a class="btn btn-danger" href="{{ url('admin/logout') }}"
                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                         Logout
@@ -44,3 +44,9 @@
         </div>
     </div>
 </section>
+
+<style>
+    .shoppingCart .counter{
+        top: -19px!important;
+    }
+</style>
