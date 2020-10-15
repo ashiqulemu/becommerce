@@ -893,9 +893,9 @@ input[type=number]::-webkit-outer-spin-button {
   justify-content: space-between;
   .confirmPay {
     &.shopping {
-      background: #ecbc00;
+      background: #139200;
       &:hover {
-        background: #d09517;
+        background: #2d7318;
       }
     }
     display: inline-block;
@@ -956,10 +956,10 @@ input[type=number]::-webkit-outer-spin-button {
 
 .basket {
   .title {
-    background: #fdc500;
-    color: #000;
+    background: #70a354;
+    color: #fff;
     text-transform: uppercase;
-    padding: 6px;
+    padding: 8px;
     text-align: center;
     font-weight: bold;
     margin-bottom: 0;
@@ -982,7 +982,7 @@ input[type=number]::-webkit-outer-spin-button {
         padding: 5px 6px;
         justify-content: space-between;
         margin-bottom: 0;
-        background: #f6c40440;
+        background:#bbf60440;
         border-bottom: 1px dashed #b1b1b1;
         span {
           &:first-child {

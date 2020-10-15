@@ -207,7 +207,7 @@
 
                             <a href="{{url('/all-products')}}"
                                class="confirmPay shopping"
-                               style="color: black;text-decoration: none"
+                               style="color: #fff;text-decoration: none"
                             >Continue Shopping!</a>
 
                         <button type="submit" class="confirmPay">Confirm Order!</button>
