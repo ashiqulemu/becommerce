@@ -18,23 +18,25 @@
 
                         <i class="fa fa-caret-right aero"></i>
                     </a>
-                    @foreach($subcat as $subc)
-                        @if( $subc->category_id == $category->id)
+
                     <ul class="subItems">
+                        @foreach($subcat as $subc)
+                            @if( $subc->category_id == $category->id)
                         <li>
                             <a href="#" class="multilevel" onClick="dropdown(event)"> {{$subc->name}}</a>
-                            @foreach($subsub as $sub)
-                                @if( $sub->subcat_id == $subc->id)
-                            <ul class="subItems">
 
+                            <ul class="subItems">
+                                @foreach($subsub as $sub)
+                                    @if( $sub->subcat_id == $subc->id)
                                 <li><a href="#">{{$sub->name}} </a></li>
+                                @endif
+                                @endforeach
                             </ul>
                                 @endif
                             @endforeach
                         </li>
                     </ul>
-                        @endif
-                    @endforeach
+
 
                 </li>
                 @endforeach
