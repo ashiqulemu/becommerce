@@ -4,16 +4,12 @@
 
     <div class="allProducts">
         <div class="sidebar" id="sidebar">
-
             <div class="mobileBox" id="mobileBox" @click.prevent="$root.closeSidebar"> </div>
-
-
-            <h6 style="color: #899419; text-shadow: 0 1px 3px #00000030;" class="text-center my-3 font-weight-bold">
 
             <ul class="menuItems">
                 @foreach($categories as $category)
                 <li class="list">
-                    <a href="#" class="multilevel" onClick="dropdown(event)">
+                    <a  class="multilevel" onClick="dropdown(event)">
                        {{$category->name}}
 
                         <i class="fa fa-caret-right aero"></i>
@@ -23,7 +19,7 @@
                         @foreach($subcat as $subc)
                             @if( $subc->category_id == $category->id)
                         <li>
-                            <a href="#" class="multilevel" onClick="dropdown(event)"> {{$subc->name}}</a>
+                            <a  class="multilevel" onClick="dropdown(event)"> {{$subc->name}}</a>
 
                             <ul class="subItems">
                                 @foreach($subsub as $sub)
@@ -41,7 +37,7 @@
                 </li>
                 @endforeach
             </ul>
-            </h6>
+
         </div>
         <div class="productContainer">
             <div class="row">

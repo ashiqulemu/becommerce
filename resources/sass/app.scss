@@ -20,7 +20,21 @@
 body{
   font-family:'Poppins-Regular',sans-serif!important;
 }
-
+#navUser{
+  background:#3F652C;
+  .nav-link{
+    margin: 0 6px;
+    color: #ffffff;
+    font-weight: bold;
+    border-radius: 4px;
+    &.active{
+      background: #e6b522;
+    }
+    &:hover{
+      color:#e6b522;
+    }
+  }
+}
 
 .write-us .intro hr {
   position: relative;
@@ -140,6 +154,7 @@ body{
     background:#3e3e3e;
     margin-bottom: 20px;
     text-align: center;
+    height: 250px;
     .nameBar{
       padding: 10px;
       position: absolute;
