@@ -214,5 +214,28 @@ class ProductController extends Controller
 //        return view('site.pages.product.allProducts',['categories'=>$categories,'productList'=>$productList]);
         return view('site.home-partials.products',['categories'=>$categories,'productList'=>$productList,'subcat'=>$subcat,'subsub'=>$subsub]);
     }
+    public function categoryProduct($id)
+    {
+        $productList=DB::table('products')
+                    ->select('*')
+                    ->where('category_id','=',$id)
+                    ->get();
+
+//
+//        $categories=DB::table('categories')
+//            ->select('id','name')
+//            ->get();
+//        $subcat=DB::table('subcats')
+//            ->select('id','name','category_id')
+//            ->get();
+//        $subsub=DB::table('subsubs')
+//            ->select('*')
+//            ->get();
+
+
+        return redirect()->back()->with('productList',$productList);
+
+
+    }
 
 }

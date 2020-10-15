@@ -18,6 +18,7 @@ class CreateCategoriesTable extends Migration
             $table->string('name');
             $table->string('description')->nullable();
             $table->string('category_image');
+            $table->enum('cat_order',['only','sub-category','sub_sub_category']);
             $table->enum('status',['Active','Inactive']);
             $table->timestamps();
         });

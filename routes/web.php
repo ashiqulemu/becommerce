@@ -6,7 +6,7 @@ Route::middleware(['init'])->group(function () {
     Route::get('/', 'HomeDataController@index')->name('mainHome');
 
     Route::get('product/details/{id}/{name}', 'ProductController@show');
-
+    Route::get('category-pro/{id}', 'ProductController@categoryProduct');
 
     Route::post('add-to-cart','CartController@addToCart');
     Route::get('/delete/cart-item/{id}','CartController@deleteCartItem');
