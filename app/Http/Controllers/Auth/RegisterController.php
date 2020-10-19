@@ -77,26 +77,26 @@ class RegisterController extends Controller
             'email' => $data['sign_email'],
             'password' => Hash::make($data['sign_password']),
             'mobile' => $data['mobile'],
-            'credit_balance' => $setting->sign_up_credit,
-            'singUp_credit' => $setting->sign_up_credit,
-            'referral_id' => $ref ? $ref : null
-        ]);
-        if($ref) {
-            $referUser = User::find($ref);
-            $countOfReferral = User::whereReferral_id($ref)->count();
-            if($countOfReferral < 20) {
-                $referUser->update([
-                    'credit_balance' => ($referUser->credit_balance + $setting->referral_get_credit),
-                    'referral_credit' => ($referUser->referral_credit + $setting->referral_get_credit)
+//            'credit_balance' => $setting->sign_up_credit,
+//            'singUp_credit' => $setting->sign_up_credit,
+//            'referral_id' => $ref ? $ref : null
+//        ]);
+//        if($ref) {
+//            $referUser = User::find($ref);
+//            $countOfReferral = User::whereReferral_id($ref)->count();
+//            if($countOfReferral < 20) {
+//                $referUser->update([
+//                    'credit_balance' => ($referUser->credit_balance + $setting->referral_get_credit),
+//                    'referral_credit' => ($referUser->referral_credit + $setting->referral_get_credit)
                 ]);
-            }
-            Session::forget('ref');
-        }
-        $mailData = [
-            'name' => $data['sign_username'],
-        ];
-        $this->sendEmail('email.email-welcome',$mailData ,'Welcome to BillboardBd', $data['sign_email']);
-        return  $user;
+//            }
+//            Session::forget('ref');
+//        }
+//        $mailData = [
+//            'name' => $data['sign_username'],
+//        ];
+//        $this->sendEmail('email.email-welcome',$mailData ,'Welcome to BillboardBd', $data['sign_email']);
+//        return  $user;
 
     }
 }

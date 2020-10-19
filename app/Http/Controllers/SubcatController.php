@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Product;
 use App\subcat;
+use App\subsub;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -123,6 +124,12 @@ class SubcatController extends Controller
 
            $subcat=subcat::find($id);
            $subcat->delete();
+           $subsub=DB::table('subsubs')
+               ->select('id')
+               ->wehere('subcat_id','=',$id)
+               ->get();
+           $sub=subsub::find((int)$subsub);
+           $sub->delete();
             return back()
                 ->with(['type'=>'success','message'=>'Subcategory deleted successfully']);
         }

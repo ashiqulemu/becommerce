@@ -4,6 +4,7 @@
 @endsection
 
 @section('content')
+    @include('site.home-partials.header')
     @include('site.home-partials.nav-bar')
     @include('site.home-partials.banner')
     @include('site.home-partials.advertisement')

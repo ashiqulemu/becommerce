@@ -44,7 +44,7 @@
         </div>
     @endif
 
-    @include('site.home-partials.header')
+
     @yield('content')
     @include('site.home-partials.footer')
 

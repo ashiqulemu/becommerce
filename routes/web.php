@@ -7,6 +7,8 @@ Route::middleware(['init'])->group(function () {
 
     Route::get('product/details/{id}/{name}', 'ProductController@show');
     Route::get('category-pro/{id}', 'ProductController@categoryProduct');
+    Route::get('subcat-pro/{id}', 'ProductController@subcatProduct');
+    Route::get('subsub-pro/{id}', 'ProductController@subsubProduct');
 
     Route::post('add-to-cart','CartController@addToCart');
     Route::get('/delete/cart-item/{id}','CartController@deleteCartItem');
@@ -47,10 +49,12 @@ Route::middleware(['init'])->group(function () {
     Route::post('/ssl/payment-done','PaymentController@afterPaymentSsl');
     Route::post('/ssl/payment-fail','PaymentController@failPaymentSsl');
     Route::post('/ssl/payment-cancel','PaymentController@cancelPaymentSsl');
+    Route::post('/admin/register','AdminAuthController@create');
 
     Route::get('/user-details/point', function () {
         return view('site.login.user.partial.point');
     });
+    Route::post('/registration','Auth/RegisterController@create');
 
     Route::get('/user-details/earned-discount', function () {
         return view('site.login.user.partial.discount');

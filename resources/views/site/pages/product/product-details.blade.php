@@ -6,20 +6,12 @@
 @section('content')
     @if(auth()->user())
         @include('.site.login.login-partitial.header')
+        @else
+        @include('site.home-partials.header')
     @endif
     <section class="detailsProduct">
         <div class="container">
-            @if(auth()->user())
-                <div class="row ">
-                    <div class="partners">
-                        {{--<a href="/user-home##auctionProductRibon" class="section-links">Live Auctions</a>--}}
-                        {{--<a href="/user-home#upcoming-auctionsRibon" class="section-links">Upcoming Auctions</a>--}}
-                        {{--<a href="/user-home#closedAuctionsRibon" class="section-links">Closed Auctions</a>--}}
-                        {{--<a href="/all-products" class="section-links">Regular product</a>--}}
-                        {{--<a href="/how-it-works" class="section-links">How it works</a>--}}
-                    </div>
-                </div>
-            @endif
+            @include('site.home-partials.nav-bar')
             <div class="row bg-white mt-5">
                 <div class="col-md-8  row w-100">
                     <div class="col-lg-6 bg-white  pt-2">

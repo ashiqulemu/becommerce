@@ -49,6 +49,21 @@
                     </div>
                     <div class="col-lg-12">
                         <div class="form-group">
+                            <label for="">Category Order</label><br>
+                            <input type="radio" checked name="cat_order" value="only" id="only">
+                            <label for="active">Only</label>
+                            <input type="radio" name="cat_order" value="sub-category" id="sub-category">
+                            <label for="inactive">Subcategory</label>
+                            <input type="radio"  name="cat_order" value="sub_sub_category" id="sub-category">
+                            <label for="inactive">Sub Sub category</label>
+                            @if ($errors->has('cat_order'))
+                                <div class="error">{{ $errors->first('cat_order') }}</div>
+                            @endif
+                        </div>
+
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
                             <label for="">Status</label><br>
                             <input type="radio" checked name="status" value="Active" id="active">
                             <label for="active">Active</label>

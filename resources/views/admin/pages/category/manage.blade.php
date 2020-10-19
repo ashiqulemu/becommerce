@@ -29,7 +29,7 @@
                                 <td>{{$category->name}}</td>
                                 <td>{{$category->description}}</td>
                                 <td>
-                                    <img src="{{URL::to("/images/".$category->category_image)}}" class="img-fluid" /> </td>
+                                    <img src="{{asset("/images/".$category->category_image)}}" class="img-fluid" /> </td>
                                 <td>
                                     {{$category->status}}
                                 </td>

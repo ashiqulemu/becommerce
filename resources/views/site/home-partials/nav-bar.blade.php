@@ -5,9 +5,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <button class="categoriesMobile" id="categories" @click.prevent="$root.openSidebar">
-        All Categories
-    </button>
+
 
     <div class="collapse navbar-collapse" id="callNav">
         <ul class="navbar-nav mx-auto">

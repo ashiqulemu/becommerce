@@ -158,7 +158,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="">Meta Tag</label>
+                            <label for="">(Weight/Liter/etc)</label>
                             <input
                                     class="form-control"
                                     name="meta_tag"

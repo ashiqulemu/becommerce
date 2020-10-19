@@ -39,8 +39,17 @@ class ProductController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store( Request $request)
     {
+        $request->validate([
+            'name'=>'required',
+            'sku_number'=>'required',
+            'price'=>'required',
+            'agent_price'=>'required',
+            'quantity'=>'required',
+            'description'=>'required',
+            'meta_tag'=>'required',
+        ]);
 
         $product = new Product();
         $product->name=$request->name;
@@ -63,6 +72,7 @@ class ProductController extends Controller
             $image->move(public_path('images/products/'), $filename);
             $product->product_image = $filename;
         }
+
         $product->save();
         return redirect('/admin/product/create')
             ->with(['type'=>'success','message'=>'Product created Successfully']);
@@ -133,16 +143,24 @@ class ProductController extends Controller
         $product->meta_description=$request->meta_description;
         $image_name = $request->hidden_image;
         $image = $request->file('product_image');
+        if ( $image_name== null) {
+            if ($image != null) {
 
-        if ($image != null) {
-
-            unlink(public_path('images/products/') . $image_name);
-            $filename = rand() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('images/products/'), $filename);
-            $product->product_image = $filename;
+                $filename = rand() . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path('images/products/'), $filename);
+                $product->product_image = $filename;
+            }
         }
-        else{
-            $product->product_image = $image_name;
+        else {
+            if ($image != null) {
+
+                unlink(public_path('images/products/') . $image_name);
+                $filename = rand() . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path('images/products/'), $filename);
+                $product->product_image = $filename;
+            } else {
+                $product->product_image = $image_name;
+            }
         }
         $product->save();
 
@@ -176,34 +194,18 @@ class ProductController extends Controller
 
     }
 
-    public function getAllProduct(Request $request){
-        $productList=Product::with('category','medias');
-        if($request->input('search')){
-            $productList=$productList->where('name','LIKE','%'.$request->input('search').'%');
-        }
-        if($request->input('catId')){
-            $productList=$productList->whereCategoryId($request->input('catId'));
-        }
-        if($request->input('catName')){
-            $productList = $productList->whereHas('category', function ($productList) use ($request) {
-                $productList->where('name','like', $request->input('catName'));
-            });
-        }
-        if($request->input('order')){
-            $productList=$productList->orderBy('price',$request->input('order'));
+    public function getAllProduct(){
+        $productList=DB::table('products')
+            ->select('*')
+            ->where('quantity','>', 0)
+            ->paginate(20);
 
-        }
-        $productList=$productList->where('quantity','>', 0)->paginate(20);
-//        $categories=DB::table('categories')
-//            ->join('products','categories.id','=','products.category_id')
-//            ->select('categories.name','categories.id as catId',DB::raw('count(*) as catCount'))
-//            ->groupBy('products.category_id','categories.name','categories.id')
-//            ->get();
-////        return view('site.pages.product.allProducts',['categories'=>$categories,'productList'=>$productList]);
-//        return view('site.home-partials.products',['categories'=>$categories,'productList'=>$productList]);
+
         $categories=DB::table('categories')
-            ->select('id','name')
+            ->select('*')
+            ->where('status','=','Active')
             ->get();
+
         $subcat=DB::table('subcats')
             ->select('id','name','category_id')
             ->get();
@@ -219,21 +221,71 @@ class ProductController extends Controller
         $productList=DB::table('products')
                     ->select('*')
                     ->where('category_id','=',$id)
+                    ->where('status','=',1)
                     ->get();
 
-//
-//        $categories=DB::table('categories')
-//            ->select('id','name')
-//            ->get();
-//        $subcat=DB::table('subcats')
-//            ->select('id','name','category_id')
-//            ->get();
-//        $subsub=DB::table('subsubs')
-//            ->select('*')
-//            ->get();
 
 
-        return redirect()->back()->with('productList',$productList);
+        $categories=DB::table('categories')
+            ->select('*')
+            ->get();
+        $subcat=DB::table('subcats')
+            ->select('id','name','category_id')
+            ->get();
+        $subsub=DB::table('subsubs')
+            ->select('*')
+            ->get();
+
+        return view('site.home-partials.products',['categories'=>$categories,'productList'=>$productList,'subcat'=>$subcat,'subsub'=>$subsub]);
+
+
+
+    }
+    public function subcatProduct($id)
+    {
+        $productList=DB::table('products')
+            ->select('*')
+            ->where('subcat_id','=',$id)
+            ->where('status','=',1)
+            ->get();
+
+
+
+        $categories=DB::table('categories')
+            ->select('*')
+            ->get();
+        $subcat=DB::table('subcats')
+            ->select('id','name','category_id')
+            ->get();
+        $subsub=DB::table('subsubs')
+            ->select('*')
+            ->get();
+
+        return view('site.home-partials.products',['categories'=>$categories,'productList'=>$productList,'subcat'=>$subcat,'subsub'=>$subsub]);
+
+
+    }
+    public function subsubProduct($id)
+    {
+        $productList=DB::table('products')
+            ->select('*')
+            ->where('sub_id','=',$id)
+            ->where('status','=',1)
+            ->get();
+
+
+
+        $categories=DB::table('categories')
+            ->select('*')
+            ->get();
+        $subcat=DB::table('subcats')
+            ->select('id','name','category_id')
+            ->get();
+        $subsub=DB::table('subsubs')
+            ->select('*')
+            ->get();
+
+        return view('site.home-partials.products',['categories'=>$categories,'productList'=>$productList,'subcat'=>$subcat,'subsub'=>$subsub]);
 
 
     }

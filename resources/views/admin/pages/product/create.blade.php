@@ -156,13 +156,13 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="">Meta Tag</label>
+                            <label for="">(Weight/Liter/etc)</label>
                             <input
                                    class="form-control"
                                    name="meta_tag"
                                    type="text"
                                    value="{{ old('meta_tag') }}"
-                                   placeholder="Meta Tag">
+                                   placeholder="Product Weight Like KG or LTR">
                         </div>
                     </div>
                     <div class="col-md-6">

@@ -53,6 +53,42 @@
                     </div>
                     <div class="col-lg-12">
                         <div class="form-group">
+                            <label for="">Category Order</label><br>
+                            @if($category->cat_order=="only")
+
+                                <input type="radio" name="cat_order" value="only" id="only"  checked>
+                                <label for="active">Only</label>
+                                <input type="radio"  name="cat_order" value="sub-category" id="sub-category">
+                                <label for="inactive">Subcategory</label>
+                                <input type="radio"  name="cat_order" value="sub_sub_category" id="sub-category">
+                                <label for="inactive">Sub Sub category</label>
+                            @elseif($category->cat_order=="sub-category")
+
+                                <input type="radio"  name="cat_order" value="only" id="only">
+                                <label for="active">Only</label>
+                                <input type="radio"  name="cat_order" value="sub-category" id="sub-category" checked>
+                                <label for="inactive">Subcategory</label>
+                                <input type="radio"  name="cat_order" value="sub_sub_category" id="sub-category">
+                                <label for="inactive">Sub Sub category</label>
+                                @else
+
+                                <input type="radio"  name="cat_order" value="only" id="only">
+                                <label for="active">Only</label>
+                                <input type="radio"  name="cat_order" value="sub-category" id="sub-category">
+                                <label for="inactive">Subcategory</label>
+                                <input type="radio"  name="cat_order" value="sub_sub_category" id="sub-category" checked>
+                                <label for="inactive">Sub Sub category</label>
+                                @endif
+
+                            @if ($errors->has('status'))
+                                <div class="error">{{ $errors->first('status') }}</div>
+                            @endif
+
+                        </div>
+
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
                             <label for="">Status</label>
                             @if($category->status=='Active')
                                 <input type="radio" name="status" checked value="Active" id="active">
@@ -64,7 +100,7 @@
                                 <label for="active">Active</label>
                                 <input type="radio" name="status" checked value="Inactive" id="inactive">
                                 <label for="inactive">Inactive</label>
-                                @endif
+                            @endif
 
                             @if ($errors->has('status'))
                                 <div class="error">{{ $errors->first('status') }}</div>
@@ -73,7 +109,6 @@
                         </div>
 
                     </div>
-
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
