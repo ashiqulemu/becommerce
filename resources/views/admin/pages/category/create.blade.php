@@ -4,7 +4,7 @@
 
     <div id="page-wrapper">
         <br>
-        <div class="row site-forms">
+
             <form method="post" action="{{url('/admin/category')}}" enctype='multipart/form-data'>
                @csrf
                 <div class="">

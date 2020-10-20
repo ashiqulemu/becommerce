@@ -52,9 +52,9 @@ class SubcatController extends Controller
 
         ]);
         $subcat=new subcat();
-       $subcat->name=$request->name;
-       $subcat->category_id=$request->category_id;
-       $subcat->save();
+        $subcat->name=$request->name;
+        $subcat->category_id=$request->category_id;
+        $subcat->save();
         return redirect('/admin/subcategory/create')
             ->with(['type'=>'success','message'=>'Subcategory created Successfully']);
     }

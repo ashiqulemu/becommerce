@@ -5,6 +5,18 @@
             <li>
                 <a href="{{url('/admin/dashboard')}}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
+            <li>
+                <a href="#"><i class="fa fa-users"></i> Agent <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                                        <li>
+                                            <a href="{{url('/admin/agent/create')}}">Add Agent</a>
+                                        </li>
+                    <li>
+                        <a href="{{url('/admin/agent')}}">Manage Agent</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
 
             <li>
                 <a href="#"><i class="fa fa-cubes"></i> Category<span class="fa arrow"></span></a>

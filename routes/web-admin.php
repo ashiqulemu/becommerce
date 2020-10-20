@@ -17,6 +17,7 @@ Route::middleware(['adminAuth'])->group(function () {
     Route::resource('promotion','PromotionController');
     Route::resource('package','PackageController');
     Route::resource('cms','CmsController');
+    Route::resource('agent','AgentController');
     Route::get('/show-product/{id}','ProductController@showProduct');
     Route::get('/show-auction/{id}','AuctionController@showAuction');
     Route::get('/manage-auto-bid','AutoBidController@manageAutoBid');

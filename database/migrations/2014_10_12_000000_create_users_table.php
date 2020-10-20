@@ -26,7 +26,7 @@ class CreateUsersTable extends Migration
             $table->float('singUp_credit')->default(0);
             $table->boolean('news_letter')->default(false);
             $table->boolean('is_active')->default(true);
-            $table->enum('role',['user','admin','sub-admin']);
+            $table->enum('role',['user','admin','sub-admin','agent']);
             $table->integer('referral_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
