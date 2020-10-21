@@ -81,19 +81,14 @@
                                     <a href="{{ url('auth/facebook') }}" class="btn  btn-sm"  >
                                         <span>Login with </span> <i class="fa fa-facebook"></i>
                                     </a>
-
                                 </div>
                             </div>
                             <div class="middle-bottom">
                                 <div>
                                     Forgot password? <a href="{{url('/forget-password')}}">Click Here</a>
                                 </div>
-
                             </div>
-
-
                         </div>
-
                     </form>
 
                 @endif

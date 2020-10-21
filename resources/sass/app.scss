@@ -21,6 +21,27 @@ body{
   font-family:'Poppins-Regular',sans-serif!important;
 }
 
+
+.navbar-nav{
+  &.custom{
+    .nav-item{
+      .nav-link{
+        margin: 0 9px;
+        font-size: 14px;
+        text-transform: uppercase;
+        font-weight: bold;
+        color: #bcbdb0!important;
+        &.active{
+          color: #9faf03!important;
+        }
+        &:hover{
+          color: #9faf03!important;
+        }
+      }
+    }
+  }
+}
+
 .use-btn{
   border-radius: 3px;
   box-shadow: 0 0 2px 1px rgba(255, 255, 255, 0.5) inset;
@@ -380,8 +401,6 @@ body{
   .add{
     margin:10px 0;
     text-align: center;
-    height: 200px;
-
   }
 }
 .promise{

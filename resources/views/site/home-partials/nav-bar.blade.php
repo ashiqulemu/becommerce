@@ -8,9 +8,24 @@
 
 
     <div class="collapse navbar-collapse" id="callNav">
-        <ul class="navbar-nav mx-auto">
-            <li class="nav-item  ">
+        <ul class="navbar-nav custom">
+            <li class="nav-item">
                 <a class="nav-link active" href="/">Home </a>
+            </li>
+            <li class="nav-item">
+                <input type="search" class="form-control" placeholder="Search products">
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="#">All product </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="#">Popular Product </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="#">Latest Product </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="#">Offer </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{url('/products')}}">Products</a>

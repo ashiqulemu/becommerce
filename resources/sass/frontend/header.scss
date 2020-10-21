@@ -183,6 +183,7 @@ $theme-primary: #139200;
           .form-control,.login  {
             width: 100%!important;
             margin: 3px 0;
+            height: 35px!important;
           }
         }
       }
@@ -448,12 +449,15 @@ $theme-primary: #139200;
       .links{
         a{
           display: flex;
-          justify-content: space-between;
+          justify-content: center;
           align-items: center;
           margin-left: 4px;
           background-color: #CDDC39;
           border-color: #b9ca15;
           height: 29px;
+          @media (max-width: 650px) {
+            height: 35px;
+          }
           i{
             color: #3469AD;
             margin-left: 5px;
