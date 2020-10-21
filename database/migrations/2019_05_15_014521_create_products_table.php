@@ -22,6 +22,7 @@ class CreateProductsTable extends Migration
                 ->on('categories')->onDelete('cascade');
             $table->integer('subcat_id')->nullable();
             $table->integer('sub_id')->nullable();
+            $table->integer('offer_id')->nullable();
             $table->longText('description')->nullable();
             $table->decimal('price',14,2)->default(0);
             $table->decimal('agent_price',14,2)->default(0);
