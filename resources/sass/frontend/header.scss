@@ -173,13 +173,27 @@ $theme-primary: #139200;
       flex: 1;
     }
     .authPanel {
+      @media (max-width: 650px) {
+         width: 100%;
+         #mdBlock{
+           width: 100%;
+         }
+        .loged_area{
+          width: 100%;
+          .form-control,.login  {
+            width: 100%!important;
+            margin: 3px 0;
+            height: 35px!important;
+          }
+        }
+      }
       #mdBlock{
         @media(min-width: 769px){
           border-right: 1px solid rgba(243, 243, 243, 0.9490196078)!important;
           border-left: 1px solid rgba(243, 243, 243, 0.9490196078)!important;
         }
       }
-      padding: 15px 10px!important;
+      padding: 4px!important;
 
       height: 100%;
       display: flex;
@@ -231,33 +245,28 @@ $theme-primary: #139200;
   .cart {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     position: relative;
     @media(max-width: 768px) {
       margin-bottom: 15px;
     }
+    @media(max-width: 768px) {
+      width: 100%;
+    }
      .inner{
+       flex: 1;
        .social{
          display: flex;
          justify-content: center;
          align-items: center;
-         .links{
-           a{
-             display: flex;
-             justify-content: space-between;
-             align-items: center;
-             width: 125px;
-             margin-left: 33px;
-             background-color: #CDDC39;
-             border-color: #b9ca15;
-             i{
-               color: #3469AD;
-             }
-             &:hover{
-               background: #d3e23e;
-             }
+         flex-direction: column;
+         .user{
+           margin-bottom: 15px;
+           @media(max-width: 650px) {
+             margin-bottom: 4px;
            }
          }
+
        }
        .count {
          width: 22px;
@@ -284,6 +293,44 @@ $theme-primary: #139200;
          color: #464646;
        }
      }
+    .signup{
+      text-align: center;
+      flex: 1;
+      .titleBar{
+        article{
+          background: #FFFED8;
+          padding: 5px 10px;
+          display: inline;
+          position: relative;
+          z-index: 1;
+          font-size: 15px;
+        }
+        margin-bottom: 11px !important;
+        width: 100%;
+        text-align: center;
+        padding: 5px;
+        color: #727d05;
+        position: relative;
+        &:after{
+          content: "";
+          height: 1px;
+          width: 74%;
+          background: #cddc39;
+          position: absolute;
+          top: 15px;
+          left: 12%;
+          margin: 0 auto;
+          z-index: 0;
+        }
+      }
+      a{
+
+        margin-left: 4px;
+        background-color: #CDDC39;
+        border-color: #b9ca15;
+        height: 29px;
+      }
+    }
   }
   .topbar {
     padding: 7px;
@@ -396,10 +443,28 @@ $theme-primary: #139200;
     .loged_area {
       display: flex;
       justify-content: space-between;
-      @media (min-width: 768px) {
-        .col-md-6 {
-          flex: 0 0 100%;
-          max-width: 100%;
+      @media (max-width: 650px) {
+        flex-direction: column;
+      }
+      .links{
+        a{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-left: 4px;
+          background-color: #CDDC39;
+          border-color: #b9ca15;
+          height: 29px;
+          @media (max-width: 650px) {
+            height: 35px;
+          }
+          i{
+            color: #3469AD;
+            margin-left: 5px;
+          }
+          &:hover{
+            background: #d3e23e;
+          }
         }
       }
 
@@ -450,6 +515,32 @@ $theme-primary: #139200;
           background-color: transparent;
           font-size: 12px;
         }
+      }
+    }
+    .titleBar{
+     article{
+       background: #fefed4;
+       padding: 5px 10px;
+       display: inline;
+       position: relative;
+       z-index: 1;
+       font-size: 15px;
+     }
+      margin-bottom: 11px !important;
+      width: 97%;
+      text-align: center;
+      padding: 5px;
+      color: #727d05;
+      position: relative;
+      &:after{
+        content: "";
+        height: 1px;
+        width: 50%;
+        background: #cddc39;
+        position: absolute;
+        top: 15px;
+        left: 24%;
+        margin: 0 auto;
       }
     }
   }

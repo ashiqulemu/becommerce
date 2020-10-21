@@ -9,13 +9,13 @@
            <div class="col-md-6">
               <div class="add">
                   <a href="#">
-                      <img class="img-fluid" src="{{asset('images/home/add1.jpg')}}" alt="">
+                      <img class="img-fluid" src="{{asset('images/home/add1.jpg')}}">
                   </a>
               </div>
            </div><div class="col-md-6">
               <div class="add">
                   <a href="#">
-                      <img class="img-fluid" src="{{asset('images/home/add2.jpg')}}" alt="">
+                      <img class="img-fluid" src="{{asset('images/home/add2.jpg')}}">
                   </a>
               </div>
            </div>
