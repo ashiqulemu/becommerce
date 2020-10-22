@@ -1,4 +1,4 @@
-<section class="productPopular">
+<section class="productPopular" id="popularProduct">
     <div class="col-md-12">
         <h1 class="section-title">
            POPULAR PRODUCT

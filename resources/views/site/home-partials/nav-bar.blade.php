@@ -31,7 +31,7 @@
                 <a class="nav-link " href="#">All product </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="#">Popular Product </a>
+                <a class="nav-link " href="#popularProduct">Popular Product </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link " href="#">Latest Product </a>
