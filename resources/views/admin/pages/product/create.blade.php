@@ -30,24 +30,26 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="">SKU Number *</label>
-                            <input
-                                   class="form-control"
-                                   name="sku_number"
-                                   type="text"
-                                   placeholder="SKU Number"
-                                   value="{{ old('sku_number') }}"
-                            >
+                        {{--<div class="form-group">--}}
+                            {{--<label for="">Offer</label>--}}
+                            {{--<select class="js-example-basic-multiple form-control"--}}
+                                    {{--name="offer_id"  id="select1">--}}
+                                {{--<option value="">Select Offer</option>--}}
+                                {{----}}
+                                    {{--<option value="{{$off->id}}"--}}
+                                    {{--@if (old('offer_id') == $off->id) {{ 'selected' }} @endif>--}}
+                                        {{--{{$off->name}}</option>--}}
+                                {{----}}
+                            {{--</select>--}}
+                            {{--@if ($errors->has('offer_id'))--}}
+                                {{--<div class="error">{{ $errors->first('offer_id') }}</div>--}}
+                            {{--@endif--}}
 
-                            @if ($errors->has('sku_number'))
-                                <div class="error">{{ $errors->first('sku_number') }}</div>
-                            @endif
-                        </div>
+                        {{--</div>--}}
                     </div>
 
                     <div class="col-md-4">
-                        <div>
+                        <div class="form-group">
                             <label for="">Category *</label>
                             <select class="js-example-basic-multiple form-control"
                                     name="category_id"  id="select1">
@@ -65,7 +67,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div>
+                        <div class="form-group">
                             <label for="">Sub-Category *</label>
                             <select class="js-example-basic-multiple form-control"
                                     name="subcat_id"  id="select1">

@@ -32,10 +32,10 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="">SKU Number *</label>
+                            <label for="">Offer ID</label>
                             <input
                                     class="form-control"
-                                    name="sku_number"
+                                    name="offer_id"
                                     type="text"
                                     placeholder="SKU Number"
                                     value="{{ old('sku_number',$product->sku_number)}}"

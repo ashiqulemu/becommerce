@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Auction;
+use App\offer;
 use App\subcat;
 use App\subsub;
 use App\Category;
@@ -35,6 +36,7 @@ class ProductController extends Controller
         $subcat=subcat::all();
         $subsub=subsub::all();
 
+
         return view('admin.pages.product.create',['categories'=>$categories,'subcat'=>$subcat,'subsub'=>$subsub]);
     }
 
@@ -43,7 +45,6 @@ class ProductController extends Controller
     {
         $request->validate([
             'name'=>'required',
-            'sku_number'=>'required',
             'price'=>'required',
             'agent_price'=>'required',
             'quantity'=>'required',
@@ -53,7 +54,7 @@ class ProductController extends Controller
 
         $product = new Product();
         $product->name=$request->name;
-        $product->sku_number=$request->sku_number;
+        $product->offer_id=null;
         $product->category_id=$request->category_id;
         $product->subcat_id=$request->subcat_id;
         $product->sub_id=$request->sub_id;
@@ -128,7 +129,7 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $product->name=$request->name;
-        $product->sku_number=$request->sku_number;
+        $product->sku_number=null;
         $product->category_id=$request->category_id;
         $product->subcat_id=$request->subcat_id;
         $product->sub_id=$request->sub_id;
@@ -194,7 +195,24 @@ class ProductController extends Controller
 
     }
 
-    public function getAllProduct(){
+    public function getAllProduct(Request $request){
+
+        $productList=Product::all();
+        if($request->input('search')){
+            $productList=$productList->where('name','LIKE','%'.$request->input('search').'%');
+        }
+        if($request->input('catId')){
+            $productList=$productList->whereCategoryId($request->input('catId'));
+        }
+        if($request->input('catName')){
+            $productList = $productList->whereHas('category', function ($productList) use ($request) {
+                $productList->where('name','like', $request->input('catName'));
+            });
+        }
+        if($request->input('order')){
+            $productList=$productList->orderBy('price',$request->input('order'));
+
+        }
         $productList=DB::table('products')
             ->select('*')
             ->where('quantity','>', 0)

@@ -13,7 +13,19 @@
                 <a class="nav-link active" href="/">Home </a>
             </li>
             <li class="nav-item">
-                <input type="search" class="form-control" placeholder="Search products">
+                <input type="search"
+                       name=""
+                       onkeyup="setSearchLink()"
+                       onchange="setSearchLink()"
+                       id="searchProduct"
+                       class="productSearch"
+                       value="{{request()->input('search')}}"
+                       placeholder="What are you looking for ..."
+                >
+                <a href="/all-products"
+                   id="searchLink"
+                   class="productsrcBtn"
+                >Search </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link " href="#">All product </a>

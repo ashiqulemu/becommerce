@@ -52,6 +52,17 @@
                 </ul>
             </li>
             <li>
+                <a href="#"><i class="fa fa-cubes"></i> Offer Product<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{{url('/admin/offer/create')}}"> Add Offer</a>
+                    </li>
+                    <li>
+                        <a href="{{url('/admin/offer')}}"> Manage Offer</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
                 <a href="#"><i class="fa fa-gift"></i> Product<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
@@ -62,28 +73,7 @@
                     </li>
                 </ul>
             </li>
-            <li>
-                <a href="#"><i class="fa fa-magic"></i> Auction<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="{{url('/admin/auction/create')}}">Add Auction</a>
-                    </li>
-                    <li>
-                        <a href="{{url('/admin/auction')}}">Manage Auction</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="#"><i class="fa fa-magic"></i> Bids<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="{{url('/admin/manage-bid-history')}}">Manage Bids</a>
-                    </li>
-                    <li>
-                        <a href="{{url('/admin/manage-auto-bid')}}">Manage Auto Bid</a>
-                    </li>
-                </ul>
-            </li>
+
             <li>
                 <a href="#"><i class="fa fa-files-o fa-fw"></i> Sale<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
