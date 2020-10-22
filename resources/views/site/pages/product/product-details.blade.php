@@ -38,7 +38,7 @@
                         <div class="product-varient ">
                             <div class="product-title">Name: {{$item->name}}</div>
 
-                            <div class="product-price">Price: <span>@if(auth()->user()->role=="agent"){{$item->agent_price}} @else{{$item->price}}@endif TK</span>
+                            <div class="product-price">Price: <span>@if(auth()->user() && auth()->user()->role=="agent"){{$item->agent_price}} @else{{$item->price}}@endif TK</span>
                             </div>
                             <form method="post" action="{{url('/add-to-cart')}}">
                                 @csrf
@@ -259,7 +259,7 @@
                                                 <p class="title">{{$rel->name}}</p>
                                                 <div class="inner">
                                                     <div class="weight">{{$rel->meta_tag}}</div>
-                                                    <div class="price">@if(auth()->user()->role=="agent"){{$rel->agent_price}} @else{{$rel->price}}@endif TK</div>
+                                                    <div class="price">@if(auth()->user() && auth()->user()->role=="agent"){{$rel->agent_price}} @else{{$rel->price}}@endif TK</div>
                                                 </div>
                                                 <div class="addCart">
                                                     <a class="details" href="{{url('product/details/'.$rel->id).'/'.$rel->name}}">Details</a>
