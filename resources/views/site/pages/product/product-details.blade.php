@@ -14,7 +14,7 @@
             @include('site.home-partials.nav-bar')
             <div class="d-flex flex-wrap bg-white mt-5">
                 <div class="col-lg-3 bg-white p-0 pt-2 pr-2">
-                   category will be call here !
+                  @include('site.home-partials.sidebar')
 {{--                    @include('site.home-partials.products')--}}
                 </div>
                 <div class="col-md-9 row">
@@ -38,7 +38,7 @@
                         <div class="product-varient ">
                             <div class="product-title">Name: {{$item->name}}</div>
 
-                            <div class="product-price">Price: <span>{{$setting->amount_sign}}{{$item->price}}</span>
+                            <div class="product-price">Price: <span>@if(auth()->user()->role=="agent"){{$item->agent_price}} @else{{$item->price}}@endif TK</span>
                             </div>
                             <form method="post" action="{{url('/add-to-cart')}}">
                                 @csrf
@@ -249,22 +249,25 @@
                         <div class="swiper-container">
                             <div class="swiper-wrapper" style="height: auto" >
 
-                                    <div class="swiper-slide">
+                                @foreach($related as $rel)
+                                <div class="swiper-slide">
                                         <div class="product">
                                             <div class="photo">
-                                                <img src=" " alt="">
+                                                <img src="{{asset("images/products/$rel->product_image")}}" alt="">
                                             </div>
                                             <div class="base">
-                                                <p class="title">xfcg</p>
+                                                <p class="title">{{$rel->name}}</p>
                                                 <div class="inner">
-                                                    <div class="weight">fdg</div>
-                                                    <div class="price">45 TK</div>
+                                                    <div class="weight">{{$rel->meta_tag}}</div>
+                                                    <div class="price">@if(auth()->user()->role=="agent"){{$rel->agent_price}} @else{{$rel->price}}@endif TK</div>
                                                 </div>
                                                 <div class="addCart">
-                                                    <a class="details" href=" ">Details</a>
-                                                    <form method="post" action=" ">
+                                                    <a class="details" href="{{url('product/details/'.$rel->id).'/'.$rel->name}}">Details</a>
+                                                    <form method="post" action="{{url('/add-to-cart')}}">
+                                                        @csrf
+
                                                         <input type="hidden" name="qty" min="1" value="1">
-                                                        <input type="hidden" name="id" value="">
+                                                        <input type="hidden" name="id" value="{{$rel->id}}">
                                                         <button class="basket"><i class="fa fa-plus"> </i> basket</button>
                                                     </form>
 
@@ -272,7 +275,7 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                @endforeach
                             </div>
                             <div class="swiper-button-next"></div>
                             <div class="swiper-button-prev"></div>
