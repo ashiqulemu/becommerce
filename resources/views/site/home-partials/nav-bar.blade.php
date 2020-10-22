@@ -12,19 +12,19 @@
             <li class="nav-item">
                 <a class="nav-link active" href="/">Home </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item d-flex ">
                 <input type="search"
                        name=""
                        onkeyup="setSearchLink()"
                        onchange="setSearchLink()"
                        id="searchProduct"
-                       class="productSearch"
+                       class="productSearch form-control"
                        value="{{request()->input('search')}}"
                        placeholder="What are you looking for ..."
                 >
                 <a href="/all-products"
                    id="searchLink"
-                   class="productsrcBtn"
+                   class="btn  btn-success ml-2"
                 >Search </a>
             </li>
             <li class="nav-item">

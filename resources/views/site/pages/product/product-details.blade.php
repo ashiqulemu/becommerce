@@ -14,7 +14,7 @@
             @include('site.home-partials.nav-bar')
             <div class="d-flex flex-wrap bg-white mt-5">
                 <div class="col-lg-3 bg-white p-0 pt-2 pr-2">
-                   category will be call here !
+                   <b class="text-danger text-center d-block">category will be call here !</b>
 {{--                    @include('site.home-partials.products')--}}
                 </div>
                 <div class="col-md-9 row">
@@ -203,18 +203,25 @@
                             </article>
 
                             <footer>
-                                @if(request()->input('pcode'))
-                                    <a href="{{url('/payment-confirmation?pcode='.request()->
-                                input('pcode'))}}"
-                                       class="checkout"
-                                       style="margin-bottom: 5px;
+
+                                <a href="/checkout"
+                                   class="checkout"
+                                   style="margin-bottom: 5px;
                                    text-decoration: none">go to checkout</a>
-                                @else
-                                    <a href="{{url('/payment-confirmation')}}"
-                                       class="checkout"
-                                       style="margin-bottom: 5px;
-                                   text-decoration: none">go to checkout</a>
-                                @endif
+
+
+                                {{--@if(request()->input('pcode'))--}}
+                                    {{--<a href="{{url('/payment-confirmation?pcode='.request()->--}}
+                                {{--input('pcode'))}}"--}}
+                                       {{--class="checkout"--}}
+                                       {{--style="margin-bottom: 5px;--}}
+                                   {{--text-decoration: none">go to checkout</a>--}}
+                                {{--@else--}}
+                                    {{--<a href="{{url('/payment-confirmation')}}"--}}
+                                       {{--class="checkout"--}}
+                                       {{--style="margin-bottom: 5px;--}}
+                                   {{--text-decoration: none">go to checkout</a>--}}
+                                {{--@endif--}}
 
                                 <a href="{{url('/all-products')}}"
                                    class="checkout shopping" style="text-decoration: none">Continue

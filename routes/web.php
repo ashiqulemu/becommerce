@@ -108,6 +108,10 @@ Route::middleware(['init'])->group(function () {
         return view('site.home-partials.products');
     });
 
+    Route::get('/checkout', function () {
+        return view('site.pages.cart.checkout');
+    });
+
 
 
 });
