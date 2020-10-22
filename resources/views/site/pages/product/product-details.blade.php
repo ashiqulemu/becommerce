@@ -10,11 +10,15 @@
         @include('site.home-partials.header')
     @endif
     <section class="detailsProduct">
-        <div class="container">
+        <div class="">
             @include('site.home-partials.nav-bar')
-            <div class="row bg-white mt-5">
-                <div class="col-md-8  row w-100">
-                    <div class="col-lg-6 bg-white  pt-2">
+            <div class="d-flex flex-wrap bg-white mt-5">
+                <div class="col-lg-3 bg-white p-0 pt-2 pr-2">
+                   category will be call here !
+{{--                    @include('site.home-partials.products')--}}
+                </div>
+                <div class="col-md-9 row">
+                    <div class="col-lg-4 bg-white  mt-2">
                         <div class="photo">
                             <img src="{{asset("images/products/$item->product_image")}}" alt="" height="auto" width="300px"/>
                         </div>
@@ -30,9 +34,9 @@
 
 
                     </div>
-                    <div class="col-lg-6 bg-white pt-2">
-                        <div class="product-varient mt-5">
-                            <div class="product-title">{{$item->name}}</div>
+                    <div class="col-lg-4 bg-white mt-2">
+                        <div class="product-varient ">
+                            <div class="product-title">Name: {{$item->name}}</div>
 
                             <div class="product-price">Price: <span>{{$setting->amount_sign}}{{$item->price}}</span>
                             </div>
@@ -47,13 +51,185 @@
                             </form>
                         </div>
                     </div>
+                    <div class="col-lg-4 bg-white  mt-2">
+                        <div class="your-basket  mt-3">
+                            <header>
+                                your basket
+                            </header>
+                            <article>
+                                <div class="max-input">
+                                    <table class="product-list">
+                                        @php
+                                            $count=1;
+                                            $subTotal=0;
+                                        @endphp
+                                        @foreach($cartItems as $item)
+
+                                            <tr>
+                                                <td>{{$count}}. {{$item->name}}</td>
+                                                <td>
+                                                    <input type="number"
+                                                           min="1"
+                                                           onchange="setCartUpdateUrl({{$item->id.",'".$item->rowId."'"}})"
+                                                           onkeyup="setCartUpdateUrl({{$item->id.",'".$item->rowId."'"}})"
+                                                           id="cartQuantity{{$item->id}}"
+                                                           disabled
+                                                           value="{{$item->qty}}"
+                                                           style="width: 40px">
+
+                                                </td>
+                                                <td>{{$setting->amount_sign}}{{$item->price}}</td>
+                                                <td>{{$setting->amount_sign}}{{$item->price*$item->qty}}</td>
+                                                <td>
+                                                    <i class="fa fa-edit"
+                                                       title="Edit"
+                                                       onclick="editCartItem({{$item->id.",'".$item->rowId."'"}})"
+                                                       id="cartEditBtn{{$item->id}}">
+
+                                                    </i>
+                                                    <a href="#" id="cartUpdateUrl{{$item->id}}">
+                                                        <i class="fa fa-check"
+                                                           title="Update"
+                                                           id="cartUpdateBtn{{$item->id}}"
+                                                           style="display: none">
+
+                                                        </i>
+                                                    </a>
+                                                    <a href="{{url('/delete/cart-item/'.$item->rowId)}}">
+                                                        <i class="fa fa-trash text-danger" title="Delete"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            @php
+                                                $count++;
+                                                 $subTotal+=$item->price*$item->qty;
+                                            @endphp
+                                        @endforeach
+                                    </table>
+                                </div>
+
+                                <table class="additional-list">
+                                    <tr>
+                                        <td>
+                                            Promo Code
+                                        </td>
+                                        <td>
+                                            <div class="promoSection">
+                                                <input type="text"
+                                                       onchange="setPromoLink({{$item->id.",'".$item->name."'"}})"
+                                                       onkeyup="setPromoLink({{$item->id.",'".$item->name."'"}})"
+                                                       class="promo"
+                                                       required
+                                                       id="promoInput"
+                                                >
+                                                <a href="#" id="promoLink"
+                                                   class="btn btn-sm btn-warning use-btn"
+                                                >use</a>
+                                            </div>
+
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>Sub total</td>
+                                        <td>{{$setting->amount_sign}}{{$subTotal}}</td>
+                                    </tr>
+                                    @if(count($cartItems))
+                                        <tr>
+                                            <td>(+) Delivery cost</td>
+                                            @if($shippingCost)
+                                                <td>{{$setting->amount_sign}}{{$shippingCost->amount}}</td>
+                                            @else
+                                                <td>{{$setting->amount_sign}}0</td>
+                                            @endif
+                                        </tr>
+                                    @else
+                                        <tr>
+                                            <td>(+) Delivery cost</td>
+                                            <td>{{$setting->amount_sign}}0</td>
+                                        </tr>
+                                    @endif
+                                    <tr>
+                                        @if($promotion)
+
+                                            <td>(-) Discount {{$promotion->sign=='Percentage'?
+                                        '('.$promotion->amount.'%)':''}}</td>
+                                            @if($promotion->sign=='Percentage')
+                                                @php
+                                                    $discountAmount=($subTotal*
+                                                $promotion->amount)/100
+                                                @endphp
+                                                <td>{{$setting->amount_sign}}{{$discountAmount}}</td>
+                                            @else
+                                                @php
+                                                    $discountAmount=$promotion->amount
+                                                @endphp
+                                                <td>{{$setting->amount_sign}}{{$promotion->amount}}</td>
+                                            @endif
+
+                                        @else
+                                            @php
+                                                $discountAmount=0
+                                            @endphp
+                                            <td>(-) Discount</td>
+                                            <td>{{$setting->amount_sign}}0</td>
+                                        @endif
+
+                                    </tr>
+                                    @if(count($cartItems))
+                                        <tr>
+                                            <td>Grand total</td>
+                                            @if($shippingCost)
+                                                @if($promotion)
+                                                    <td>
+                                                        {{$setting->amount_sign}}{{($subTotal+$shippingCost->amount)
+                                                    -$discountAmount}}</td>
+                                                @else
+                                                    <td>{{$setting->amount_sign}}{{$subTotal+$shippingCost->amount}}</td>
+                                                @endif
+
+                                            @else
+                                                <td>{{$setting->amount_sign}}{{$subTotal}}</td>
+                                            @endif
+                                        </tr>
+                                    @else
+                                        <tr>
+                                            <td>Grand total</td>
+                                            <td>{{$setting->amount_sign}}{{$subTotal}}</td>
+                                        </tr>
+                                    @endif
+                                </table>
+
+                            </article>
+
+                            <footer>
+                                @if(request()->input('pcode'))
+                                    <a href="{{url('/payment-confirmation?pcode='.request()->
+                                input('pcode'))}}"
+                                       class="checkout"
+                                       style="margin-bottom: 5px;
+                                   text-decoration: none">go to checkout</a>
+                                @else
+                                    <a href="{{url('/payment-confirmation')}}"
+                                       class="checkout"
+                                       style="margin-bottom: 5px;
+                                   text-decoration: none">go to checkout</a>
+                                @endif
+
+                                <a href="{{url('/all-products')}}"
+                                   class="checkout shopping" style="text-decoration: none">Continue
+                                    Shopping!</a>
+
+                            </footer>
+                        </div>
+                    </div>
                     <div class=" p-0 col-md-12">
                         <div class="product_details">
                             <div class="productDescription p-3">
                                 <br>
                                 <ul class="nav nav-tabs" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link active" data-toggle="tab" href="#home">Description</a>
+                                        <a class="nav-link active" data-toggle="tab" href="#">Description</a>
                                     </li>
                                 </ul>
                                 <!-- Tab panes -->
@@ -67,179 +243,45 @@
 
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 bg-white p-0 pt-2 pr-2">
-                    <div class="your-basket  mt-3">
-                        <header>
-                            your basket
-                        </header>
-                        <article>
-                            <div class="max-input">
-                                <table class="product-list">
-                                    @php
-                                        $count=1;
-                                        $subTotal=0;
-                                    @endphp
-                                    @foreach($cartItems as $item)
+                    <div class="col-md-12 mb-5">
+                        <h2>Related Product </h2>
+                        <hr>
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper" style="height: auto" >
 
-                                        <tr>
-                                            <td>{{$count}}. {{$item->name}}</td>
-                                            <td>
-                                                <input type="number"
-                                                       min="1"
-                                                       onchange="setCartUpdateUrl({{$item->id.",'".$item->rowId."'"}})"
-                                                       onkeyup="setCartUpdateUrl({{$item->id.",'".$item->rowId."'"}})"
-                                                       id="cartQuantity{{$item->id}}"
-                                                       disabled
-                                                       value="{{$item->qty}}"
-                                                       style="width: 40px">
+                                    <div class="swiper-slide">
+                                        <div class="product">
+                                            <div class="photo">
+                                                <img src=" " alt="">
+                                            </div>
+                                            <div class="base">
+                                                <p class="title">xfcg</p>
+                                                <div class="inner">
+                                                    <div class="weight">fdg</div>
+                                                    <div class="price">45 TK</div>
+                                                </div>
+                                                <div class="addCart">
+                                                    <a class="details" href=" ">Details</a>
+                                                    <form method="post" action=" ">
+                                                        <input type="hidden" name="qty" min="1" value="1">
+                                                        <input type="hidden" name="id" value="">
+                                                        <button class="basket"><i class="fa fa-plus"> </i> basket</button>
+                                                    </form>
 
-                                            </td>
-                                            <td>{{$setting->amount_sign}}{{$item->price}}</td>
-                                            <td>{{$setting->amount_sign}}{{$item->price*$item->qty}}</td>
-                                            <td>
-                                                <i class="fa fa-edit"
-                                                   title="Edit"
-                                                   onclick="editCartItem({{$item->id.",'".$item->rowId."'"}})"
-                                                   id="cartEditBtn{{$item->id}}">
-
-                                                </i>
-                                                <a href="#" id="cartUpdateUrl{{$item->id}}">
-                                                    <i class="fa fa-check"
-                                                       title="Update"
-                                                       id="cartUpdateBtn{{$item->id}}"
-                                                       style="display: none">
-
-                                                    </i>
-                                                </a>
-                                                <a href="{{url('/delete/cart-item/'.$item->rowId)}}">
-                                                    <i class="fa fa-trash text-danger" title="Delete"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        @php
-                                            $count++;
-                                             $subTotal+=$item->price*$item->qty;
-                                        @endphp
-                                    @endforeach
-                                </table>
-                            </div>
-
-                            <table class="additional-list">
-                                <tr>
-                                    <td>
-                                        Promo Code
-                                    </td>
-                                    <td>
-                                        <div class="promoSection">
-                                            <input type="text"
-                                                   onchange="setPromoLink({{$item->id.",'".$item->name."'"}})"
-                                                   onkeyup="setPromoLink({{$item->id.",'".$item->name."'"}})"
-                                                   class="promo"
-                                                   required
-                                                   id="promoInput"
-                                            >
-                                            <a href="#" id="promoLink"
-                                               class="btn btn-sm btn-warning use-btn"
-                                            >use</a>
+                                                </div>
+                                            </div>
                                         </div>
+                                    </div>
 
-                                    </td>
+                            </div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                            {{--<!-- Add Pagination -->--}}
 
-                                </tr>
-                                <tr>
-                                    <td>Sub total</td>
-                                    <td>{{$setting->amount_sign}}{{$subTotal}}</td>
-                                </tr>
-                                @if(count($cartItems))
-                                    <tr>
-                                        <td>(+) Delivery cost</td>
-                                        @if($shippingCost)
-                                            <td>{{$setting->amount_sign}}{{$shippingCost->amount}}</td>
-                                        @else
-                                            <td>{{$setting->amount_sign}}0</td>
-                                        @endif
-                                    </tr>
-                                @else
-                                    <tr>
-                                        <td>(+) Delivery cost</td>
-                                        <td>{{$setting->amount_sign}}0</td>
-                                    </tr>
-                                @endif
-                                <tr>
-                                    @if($promotion)
-
-                                        <td>(-) Discount {{$promotion->sign=='Percentage'?
-                                        '('.$promotion->amount.'%)':''}}</td>
-                                        @if($promotion->sign=='Percentage')
-                                            @php
-                                                $discountAmount=($subTotal*
-                                            $promotion->amount)/100
-                                            @endphp
-                                            <td>{{$setting->amount_sign}}{{$discountAmount}}</td>
-                                        @else
-                                            @php
-                                                $discountAmount=$promotion->amount
-                                            @endphp
-                                            <td>{{$setting->amount_sign}}{{$promotion->amount}}</td>
-                                        @endif
-
-                                    @else
-                                        @php
-                                            $discountAmount=0
-                                        @endphp
-                                        <td>(-) Discount</td>
-                                        <td>{{$setting->amount_sign}}0</td>
-                                    @endif
-
-                                </tr>
-                                @if(count($cartItems))
-                                    <tr>
-                                        <td>Grand total</td>
-                                        @if($shippingCost)
-                                            @if($promotion)
-                                                <td>
-                                                    {{$setting->amount_sign}}{{($subTotal+$shippingCost->amount)
-                                                    -$discountAmount}}</td>
-                                            @else
-                                                <td>{{$setting->amount_sign}}{{$subTotal+$shippingCost->amount}}</td>
-                                            @endif
-
-                                        @else
-                                            <td>{{$setting->amount_sign}}{{$subTotal}}</td>
-                                        @endif
-                                    </tr>
-                                @else
-                                    <tr>
-                                        <td>Grand total</td>
-                                        <td>{{$setting->amount_sign}}{{$subTotal}}</td>
-                                    </tr>
-                                @endif
-                            </table>
-
-                        </article>
-
-                        <footer>
-                            @if(request()->input('pcode'))
-                                <a href="{{url('/payment-confirmation?pcode='.request()->
-                                input('pcode'))}}"
-                                   class="checkout"
-                                   style="margin-bottom: 5px;
-                                   text-decoration: none">go to checkout</a>
-                            @else
-                                <a href="{{url('/payment-confirmation')}}"
-                                   class="checkout"
-                                   style="margin-bottom: 5px;
-                                   text-decoration: none">go to checkout</a>
-                            @endif
-
-                            <a href="{{url('/all-products')}}"
-                               class="checkout shopping" style="text-decoration: none">Continue
-                                Shopping!</a>
-
-                        </footer>
+                        </div>
                     </div>
                 </div>
+
             </div>
 
         </div>
