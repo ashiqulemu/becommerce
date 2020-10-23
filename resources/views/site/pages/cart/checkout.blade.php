@@ -60,7 +60,7 @@
                             <li>
                                 <label class="payment-items">
                                     <img src="/images/bkash.png" class="img-fluid">
-                                    <p>Bkash, Rocket, U-cash, Debit Card, Credit Card or Online Banking</p>
+                                    <p>Payment By Bkash</p>
                                     <input
                                             type="radio" name="payment_method" value="ssl" required="required">
                                 </label>
