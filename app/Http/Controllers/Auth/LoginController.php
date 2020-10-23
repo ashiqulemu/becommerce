@@ -74,7 +74,7 @@ class LoginController extends Controller
             return redirect('/admin/dashboard');
 
 
-        }else if($user->role === 'user' && $request->input('from') == 'st'){
+        }else if($user->role === 'user' || $user->role==='agent' && $request->input('from') == 'st'){
             Cart::merge(auth()->user()->id);
             return redirect('/user-home');
 

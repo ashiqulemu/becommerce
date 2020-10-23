@@ -103,14 +103,57 @@ class ProductController extends Controller
 
 
         }
-        $item=Product::with('category')->whereId($id)->first();
+        $item=DB::table('products')
+            ->select('*')
+            ->where('id','=',$id)
+            ->first();
         $shippingCost=ShippingCost::orderBy('id', 'desc')->first();
         $cartItems=Cart::content();
+        $categories=DB::table('categories')
+            ->select('*')
+            ->where('status','=','Active')
+            ->get();
+
+        $subcat=DB::table('subcats')
+            ->select('id','name','category_id')
+            ->get();
+        $subsub=DB::table('subsubs')
+            ->select('*')
+            ->get();
+        $catid=DB::table('products')
+        ->select('category_id')
+        ->where('id','=',$id)
+        ->get();
+
+        $subcatid=DB::table('products')
+            ->select('subcat_id')
+            ->where('id','=',$id)
+            ->get();
+
+        $subsubid=DB::table('products')
+            ->select('sub_id')
+            ->where('id','=',$id)
+            ->get();
+
+        $related=DB::table('products')
+            ->select('*')
+            ->where('category_id','=',$catid[0]->category_id)
+            ->where('subcat_id','=',$subcatid[0]->subcat_id)
+            ->where('sub_id','=',$subsubid[0]->sub_id)
+            ->where('id','!=',$id)
+            ->limit(4)
+            ->get();
+
+
         return view('site.pages.product.product-details',[
             'item'=>$item,
             'shippingCost'=>$shippingCost,
             'cartItems'=>$cartItems,
-            'promotion'=>$promotion
+            'promotion'=>$promotion,
+            'categories'=>$categories,
+            'subcat'=>$subcat,
+            'subsub'=>$subsub,
+            'related'=>$related,
         ])->with(['type'=>'success','message'=>'Product created Successfully']);
     }
 
@@ -197,26 +240,24 @@ class ProductController extends Controller
 
     public function getAllProduct(Request $request){
 
-        $productList=Product::all();
+
         if($request->input('search')){
-            $productList=$productList->where('name','LIKE','%'.$request->input('search').'%');
-        }
-        if($request->input('catId')){
-            $productList=$productList->whereCategoryId($request->input('catId'));
-        }
-        if($request->input('catName')){
-            $productList = $productList->whereHas('category', function ($productList) use ($request) {
-                $productList->where('name','like', $request->input('catName'));
-            });
-        }
-        if($request->input('order')){
-            $productList=$productList->orderBy('price',$request->input('order'));
+            $productList=DB::table('products')
+                ->select('*')
+                ->where('name','LIKE','%'.$request->input('search').'%')
+                ->where('quantity','>', 0)
+                ->paginate(20);
+
+            }
+        else{
+            $productList=DB::table('products')
+                ->select('*')
+                ->where('quantity','>', 0)
+                ->paginate(20);
 
         }
-        $productList=DB::table('products')
-            ->select('*')
-            ->where('quantity','>', 0)
-            ->paginate(20);
+
+
 
 
         $categories=DB::table('categories')
