@@ -4,16 +4,16 @@
 @endsection
 
 @section('content')
-    <section>
-        <div class="container bg-white">
+    <section class="py-5 checkoutArea">
+        <div class="container bg-white p-4" style="border-top: 5px solid #b1b12b;">
             <form method="post" action="">
                 <input type="hidden" name="_token"
                        value="jtqCXskrObdifA9H9ZOeMNpFvWGkfztCu18XtFYJ">
                 <div class="row py-2 header">
                     <div class="col-md-4">
                         <br>
-                        <h6 class="font-weight-bold">Delivery Information </h6>
-                        <p></p>
+                        <h6 class="checkTitle">Delivery Information </h6>
+                        <hr>
                         <div class="deliverInfo">
                             <div class="form-group">
                                 <label for="">Full Name <span class="text-danger">*</span></label>
@@ -54,8 +54,8 @@
                     </div>
                     <div class="col-md-4">
                         <br>
-                        <h6 class="font-weight-bold">Select a Payment Method</h6>
-                        <p></p>
+                        <h6 class="checkTitle">Select a payment method </h6>
+                        <hr>
                         <ul class="payments">
                             <li>
                                 <label class="payment-items">
@@ -74,6 +74,9 @@
                                 </label>
                             </li>
                         </ul>
+                        <center>
+                            <img align="center" src="/images/home/cash-on-delivery.svg" width="150px" class="mt-5">
+                        </center>
                     </div>
                     <div class="col-md-4">
                         <br>
@@ -87,7 +90,7 @@
                                     <p><span>1. Lunea Booker</span> <span>1</span> <span>471</span></p>
                                 </div>
                                 <div class="fix">
-                                    <p><span>Sub total </span><span>471</span></p>
+                                    <p><span> <b>Sub total</b> </span><span>471</span></p>
                                     <p><span>(+) Delivery cost </span> <span>90.49</span></p>
                                     <p><span>(-) Discount</span> <span>0</span></p>
                                     <p class="mt-2 font-weight-bold"><span>Grand Total </span>
@@ -101,6 +104,7 @@
                                 Continue Shopping!</a>
                             <button type="submit" class="confirmPay">Confirm Order!</button>
                         </div>
+
                     </div>
                 </div>
             </form>
