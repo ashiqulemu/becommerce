@@ -6,7 +6,7 @@
 @section('content')
     @if(auth()->user())
         @include('.site.login.login-partitial.header')
-        @else
+    @else
         @include('site.home-partials.header')
     @endif
     <section class="detailsProduct">
@@ -14,13 +14,14 @@
             @include('site.home-partials.nav-bar')
             <div class="d-flex flex-wrap bg-white mt-5">
                 <div class="col-lg-3 bg-white p-0 pt-2 pr-2">
-                  @include('site.home-partials.sidebar')
-{{--                    @include('site.home-partials.products')--}}
+                    @include('site.home-partials.sidebar')
+                    {{--                    @include('site.home-partials.products')--}}
                 </div>
                 <div class="col-md-9 row">
                     <div class="col-lg-4 bg-white  mt-2">
                         <div class="photo">
-                            <img src="{{asset("images/products/$item->product_image")}}" alt="" height="auto" width="300px"/>
+                            <img src="{{asset("images/products/$item->product_image")}}" alt="" height="auto"
+                                 width="300px"/>
                         </div>
                         {{--                            <div class="sp-wrap mt-3">]--}}
                         {{--                                @foreach($item->medias as $key=>$media)--}}
@@ -38,7 +39,9 @@
                         <div class="product-varient ">
                             <div class="product-title">Name: {{$item->name}}</div>
 
-                            <div class="product-price">Price: <span>@if(auth()->user() && auth()->user()->role=="agent"){{$item->agent_price}} @else{{$item->price}}@endif TK</span>
+                            <div class="product-price">Price:
+                                <span>@if(auth()->user() && auth()->user()->role=="agent"){{$item->agent_price}} @else{{$item->price}}@endif
+                                    TK</span>
                             </div>
                             <form method="post" action="{{url('/add-to-cart')}}">
                                 @csrf
@@ -145,7 +148,7 @@
                                         </tr>
                                     @else
                                         <tr>
-                                            <td>(+) Delivery cost</td>
+                                            <td>(+) Delivery </td>
                                             <td>{{$setting->amount_sign}}0</td>
                                         </tr>
                                     @endif
@@ -211,23 +214,33 @@
 
 
                                 {{--@if(request()->input('pcode'))--}}
-                                    {{--<a href="{{url('/payment-confirmation?pcode='.request()->--}}
+                                {{--<a href="{{url('/pay
+                                ment-confirmation?pcode='.request()->--}}
                                 {{--input('pcode'))}}"--}}
-                                       {{--class="checkout"--}}
-                                       {{--style="margin-bottom: 5px;--}}
-                                   {{--text-decoration: none">go to checkout</a>--}}
+                                {{--class="checkout"--}}
+                                {{--style="margin-bottom: 5px;--}}
+                                {{--text-decoration: none">go to checkout</a>--}}
                                 {{--@else--}}
-                                    {{--<a href="{{url('/payment-confirmation')}}"--}}
-                                       {{--class="checkout"--}}
-                                       {{--style="margin-bottom: 5px;--}}
-                                   {{--text-decoration: none">go to checkout</a>--}}
+                                {{--<a href="{{url('/payment-confirmation')}}"--}}
+                                {{--class="checkout"--}}
+                                {{--style="margin-bottom: 5px;--}}
+                                {{--text-decoration: none">go to checkout</a>--}}
                                 {{--@endif--}}
 
                                 <a href="{{url('/all-products')}}"
                                    class="checkout shopping" style="text-decoration: none">Continue
                                     Shopping!</a>
 
+
                             </footer>
+                        </div>
+                        <div class="notice">
+                            <p>You are currently in Guest user mode. Please Login for better buying experience.</p>
+                             <div>
+                                 <a href="#" class="btn btn-sm btn-success">Login</a>
+                                 <a href="/auth/facebook" class="btn  btn-sm btn-primary"><span>Login with </span>
+                                     <i class="fa fa-facebook"></i></a>
+                             </div>
                         </div>
                     </div>
                     <div class=" p-0 col-md-12">
@@ -254,10 +267,10 @@
                         <h2>Related Product </h2>
                         <hr>
                         <div class="swiper-container">
-                            <div class="swiper-wrapper" style="height: auto" >
+                            <div class="swiper-wrapper" style="height: auto">
 
                                 @foreach($related as $rel)
-                                <div class="swiper-slide">
+                                    <div class="swiper-slide">
                                         <div class="product">
                                             <div class="photo">
                                                 <img src="{{asset("images/products/$rel->product_image")}}" alt="">
@@ -266,16 +279,20 @@
                                                 <p class="title">{{$rel->name}}</p>
                                                 <div class="inner">
                                                     <div class="weight">{{$rel->meta_tag}}</div>
-                                                    <div class="price">@if(auth()->user() && auth()->user()->role=="agent"){{$rel->agent_price}} @else{{$rel->price}}@endif TK</div>
+                                                    <div class="price">@if(auth()->user() && auth()->user()->role=="agent"){{$rel->agent_price}} @else{{$rel->price}}@endif
+                                                        TK
+                                                    </div>
                                                 </div>
                                                 <div class="addCart">
-                                                    <a class="details" href="{{url('product/details/'.$rel->id).'/'.$rel->name}}">Details</a>
+                                                    <a class="details"
+                                                       href="{{url('product/details/'.$rel->id).'/'.$rel->name}}">Details</a>
                                                     <form method="post" action="{{url('/add-to-cart')}}">
                                                         @csrf
 
                                                         <input type="hidden" name="qty" min="1" value="1">
                                                         <input type="hidden" name="id" value="{{$rel->id}}">
-                                                        <button class="basket"><i class="fa fa-plus"> </i> basket</button>
+                                                        <button class="basket"><i class="fa fa-plus"> </i> basket
+                                                        </button>
                                                     </form>
 
                                                 </div>
@@ -310,7 +327,7 @@
     </script>
 @endsection
 
-<style lang="scss" >
+<style lang="scss">
 
 </style>
 

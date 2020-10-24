@@ -6,7 +6,7 @@
         <div class="header">
             <div>
                 <div class=" text-center">
-                    <a href="{{url('/user-home')}}"><img src="/images/flooop.png" class="img-fluid" style="width:200px"></a>
+                    <a href="{{url('/user-home')}}"><img src="/images/home/khaasfood.png" class="img-fluid" style="width:200px"></a>
                 </div>
             </div>
             <div>
