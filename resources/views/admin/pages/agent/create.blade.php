@@ -4,7 +4,7 @@
 
     <div id="page-wrapper" style="overflow-x: hidden">
 
-        <div class="row site-forms mt-4">
+        <div class="row site-forms mt-2">
             @if (isset($errors) && count($errors))
 
                 @foreach($errors->all() as $error)
