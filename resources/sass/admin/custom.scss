@@ -10,6 +10,15 @@ body {
   background: #fff !important;
 
 }
+
+.btn-submit{
+  background: #79a249;
+  color: #fff;
+  &:hover{
+    background: #547138;
+    color: #fff!important;
+  }
+}
 .reportPanels{
   .panel{
     .panel-heading{
