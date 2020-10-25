@@ -104,6 +104,11 @@
                                 Continue Shopping!</a>
                             <button type="submit" class="confirmPay">Confirm Order!</button>
                         </div>
+                        
+                        <p class="ddate mt-5">
+                            Delivery Date : <br>
+                            <input type="date" name="" id="" class="mt-2">
+                        </p>
 
                     </div>
                 </div>

@@ -12,12 +12,11 @@
     <section class="detailsProduct">
         <div class="">
             @include('site.home-partials.nav-bar')
-            <div class="d-flex flex-wrap bg-white mt-5">
-                <div class="col-lg-3 bg-white p-0 pt-2 pr-2">
+            <div class="d-flex flex-wrap bg-white">
+                <div class="col-lg-3 bg-white p-0 pr-2">
                     @include('site.home-partials.sidebar')
-                    {{--                    @include('site.home-partials.products')--}}
                 </div>
-                <div class="col-md-9 row">
+                <div class="col-md-9 row pt-5">
                     <div class="col-lg-4 bg-white  mt-2">
                         <div class="photo">
                             <img src="{{asset("images/products/$item->product_image")}}" alt="" height="auto"

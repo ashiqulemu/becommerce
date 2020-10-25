@@ -2,7 +2,7 @@
 
 <div class="sidebar" id="sidebar">
     <div class="mobileBox" id="mobileBox" @click.prevent="$root.closeSidebar"> </div>
-
+        <p class="categoriesTitle">All Categories</p>
     <ul class="menuItems">
         @foreach($categories as $category)
             <li class="list">

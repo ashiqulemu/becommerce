@@ -8,10 +8,9 @@
 
 
     <div class="collapse navbar-collapse" id="callNav">
-        <ul class="navbar-nav custom">
-            <li class="nav-item">
-                <a class="nav-link active" href="/">Home </a>
-            </li>
+
+        <ul class="navbar-nav custom mr-auto">
+
             <li class="nav-item d-flex ">
                 <input type="search"
                        name=""
@@ -27,6 +26,13 @@
                    class="btn  btn-success ml-2"
                 >Search </a>
             </li>
+        </ul>
+        <ul class="navbar-nav custom ml-auto">
+
+            <li class="nav-item">
+                <a class="nav-link active" href="/">Home </a>
+            </li>
+
             <li class="nav-item">
                 <a class="nav-link " href="#">All product </a>
             </li>
@@ -36,12 +42,12 @@
             <li class="nav-item">
                 <a class="nav-link " href="#">Latest Product </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link " href="#">Offer </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{url('/products')}}">Products</a>
-            </li>
+            {{--<li class="nav-item">--}}
+                {{--<a class="nav-link " href="#">Offer </a>--}}
+            {{--</li>--}}
+            {{--<li class="nav-item">--}}
+                {{--<a class="nav-link" href="{{url('/products')}}">Products</a>--}}
+            {{--</li>--}}
             <li class="nav-item">
                 <a class="nav-link" href="{{url('/about')}}">About Us</a>
             </li>
