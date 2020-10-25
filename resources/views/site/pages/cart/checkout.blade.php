@@ -110,7 +110,7 @@
                         
                         <p class="ddate mt-5">
                             Delivery Date : <br>
-                            <input type="date" name="" id="" class="mt-2">
+                            <input type="date" class="form-control" name="" id="" class="mt-2">
                         </p>
 
                     </div>
