@@ -17,7 +17,7 @@
                 <div class="col-md-12 mx-auto">
                     <br>
                     <h3 class="shoppingTitle"
-                        style=" background: rgb(112 163 84 / 32%);  color: #5b8246;">At a glance Your Shopping cart</h3><br>
+                        style=" background:darkolivegreen;  color: #5b8246;">At a glance Your Shopping cart</h3><br>
                     <div class="basket">
                         <p class="title">Your Basket</p>
                         <div class="confirmCart">
