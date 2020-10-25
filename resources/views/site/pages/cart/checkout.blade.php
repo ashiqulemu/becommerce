@@ -4,6 +4,9 @@
 @endsection
 
 @section('content')
+    <section class="breadCrumb checkout">
+        <h1>checkout</h1>
+    </section>
     <section class="py-5 checkoutArea">
         <div class="container bg-white p-4" style="border-top: 5px solid #b1b12b;">
             <form method="post" action="">
