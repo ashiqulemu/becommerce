@@ -14,7 +14,7 @@
                 @endforeach
             @endif
 
-                <div class="form-box-header">
+                    <div class="form-box-header">
                         + Agent
                     </div>
             <form class="form-horizontal manipulate" method="POST" action="{{ url('/admin/agent') }}">

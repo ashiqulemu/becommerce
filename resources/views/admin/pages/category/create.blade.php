@@ -5,14 +5,15 @@
     <div id="page-wrapper">
         <br>
 
+        <div class="row site-forms">
+
             <form method="post" action="{{url('/admin/category')}}" enctype='multipart/form-data'>
                @csrf
-                <div class="">
+
                     <div class="form-box-header">
                         + Add Category
                     </div>
-                </div>
-                <div class="col-md-12">
+                <div class="col-md-12 mt-2">
                     <div class="col-lg-12">
                         <div class="form-group">
                             <label for="">Name</label>
@@ -77,7 +78,7 @@
                     </div>
 
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-12 mt-2">
                     <div class="form-group">
                         <button class="btn btn-primary ml-2" type="submit">submit</button>
                     </div>
@@ -85,8 +86,9 @@
             </form>
 
         </div>
-
     </div>
+
+
     <!-- /#page-wrapper -->
 
 @endsection
