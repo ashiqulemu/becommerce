@@ -237,6 +237,7 @@ $theme-primary: #139200;
     }
     .cart {
       flex: 1;
+      transform: translateY(-16px);
     }
   }
   .navbar {
@@ -261,7 +262,7 @@ $theme-primary: #139200;
          align-items: center;
          flex-direction: column;
          .user{
-           margin-bottom: 15px;
+           margin-top: 18px;
            @media(max-width: 650px) {
              margin-bottom: 4px;
            }
