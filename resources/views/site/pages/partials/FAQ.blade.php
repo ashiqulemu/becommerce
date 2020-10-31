@@ -5,8 +5,11 @@
 
 @section('content')
     @if(auth()->user())
-        @include('.site.login.login-partitial.header')
+        @include('site.login.login-partitial.header')
+    @else
+        @include('site.home-partials.header')
     @endif
+    @include('site.home-partials.nav-bar')
     <div class="container bg-white">
         <div class="row py-3 ">
             <div class="col-md-12">

@@ -13,7 +13,7 @@
                                 <i class="text-warning fa fa-comments fa-5x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
-                                <div class="huge">{{$totalOrders}}</div>
+                                <div class="huge">@if($totalOrders){{$totalOrders}}@endif</div>
                                 <div>Total Orders</div>
                             </div>
                         </div>
@@ -35,7 +35,7 @@
                                 <i class="text-warning fa fa-tasks fa-5x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
-                                <div class="huge">{{$totalTodayOrders}}</div>
+                                <div class="huge">@if($totalTodayOrders){{$totalTodayOrders}}@endif</div>
                                 <div>Today Orders</div>
                             </div>
                         </div>

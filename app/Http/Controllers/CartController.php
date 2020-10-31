@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 class CartController extends Controller
 {
     public function goToCartPage(Request $request){
+
         $promotion=0;
         if($request->input('pcode')){
             $promotion=Promotion::whereCode($request->input('pcode'))->first();
@@ -41,14 +42,18 @@ class CartController extends Controller
         ]);
     }
     public function addToCart(Request $request){
+
         $product=Product::find($request->id);
+
         $currentQuantity = 0;
         $currentCartProduct= Cart::search(function ($cartItem, $rowId) use ($product){
             return $cartItem->id === $product->id ;
         });
         foreach($currentCartProduct as $item) {
             $currentQuantity += (int)str_replace(",","",$item->qty);
+
         }
+
         if (($request->qty + $currentQuantity) > $product->quantity ){
             return redirect()->back()
                 ->with(['type'=>'error',
@@ -65,14 +70,25 @@ class CartController extends Controller
                         'message'=>'Auction product can buy only one.']);
             }
         }
+        if( auth()->user()->role=="agent")
+        {
+            $price = $request->price;
 
-        $price = $request->price;
+            $pro=(double)$product->agent_price;
+
+        }
+
+        else{
+            $price = $request->price;
+            $pro=(double)$product->price;
+        }
+
         $source = $request->source;
         Cart::add([
             'id' => $product->id,
             'name' => $product->name,
             'qty' => $request->qty,
-            'price' => $price ? $price : $product->price,
+            'price' => $price ? $price : $pro,
             'weight'=>5,
             'options' => [
                 'source' => $source ? $source : 'product',

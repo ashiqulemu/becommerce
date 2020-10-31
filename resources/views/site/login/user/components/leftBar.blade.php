@@ -16,22 +16,7 @@
             </div>
         </div>
     </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">My Auctions</a>
-            </h4>
-        </div>
-        <div id="collapse1" class="panel-collapse collapse in">
-            <div class="panel-body">
-                <div class="inner">
-                    <a id="statistic" href="{{url('/user-details/statistic')}}">Statistics</a>
-                    <a id="biddingHistory" href="{{url('/user-details/bidding-history')}}">Bidding History</a>
-                    <a id="creditBuyingHistory" href="{{url('/user-details/credit-buy-history')}}">Credit buying history</a>
-                </div>
-            </div>
-        </div>
-    </div>
+
     <div class="panel panel-default">
         <div class="panel-heading">
             <h4 class="panel-title">

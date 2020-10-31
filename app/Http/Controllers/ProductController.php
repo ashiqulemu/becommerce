@@ -13,7 +13,6 @@ use App\Product;
 use App\Promotion;
 use App\Sales;
 use App\ShippingCost;
-
 use Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -348,5 +347,53 @@ class ProductController extends Controller
 
 
     }
+    public function popular ()
+    {
+            $productList=DB::table('products')
+                ->select('*')
+               ->where('status','=',1 )
+               ->where('quantity','>',1)
+               ->where('popular','=',1)
+               ->get();
 
+
+            $categories=DB::table('categories')
+            ->select('*')
+            ->where('status','=','Active')
+            ->get();
+
+            $subcat=DB::table('subcats')
+            ->select('id','name','category_id')
+            ->get();
+            $subsub=DB::table('subsubs')
+            ->select('*')
+            ->get();
+
+
+            return view('site.home-partials.products',['categories'=>$categories,'productList'=>$productList,'subcat'=>$subcat,'subsub'=>$subsub]);
+    }
+    public function latest ()
+    {
+        $productList=DB::table('products')
+            ->select('*')
+            ->where('status','=',1 )
+            ->where('quantity','>',1)
+            ->latest()
+            ->get();
+
+        $categories=DB::table('categories')
+            ->select('*')
+            ->where('status','=','Active')
+            ->get();
+
+        $subcat=DB::table('subcats')
+            ->select('id','name','category_id')
+            ->get();
+        $subsub=DB::table('subsubs')
+            ->select('*')
+            ->get();
+
+
+        return view('site.home-partials.products',['categories'=>$categories,'productList'=>$productList,'subcat'=>$subcat,'subsub'=>$subsub]);
+    }
 }

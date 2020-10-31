@@ -2,6 +2,12 @@
 @extends('site.app')
 
 @section('content')
+    @if(auth()->user())
+        @include('site.login.login-partitial.header')
+    @else
+        @include('site.home-partials.header')
+    @endif
+    @include('site.home-partials.nav-bar')
     <section class="register">
 
         <div class="container">

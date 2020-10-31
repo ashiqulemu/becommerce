@@ -20,7 +20,7 @@
                             <th>Email</th>
                             <th>Address</th>
                             <th>Status</th>
-{{--                            <th>Action</th>--}}
+                            <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -37,16 +37,16 @@
                                     District : {{$customer->contact ? $customer->contact->district : ''}} <br>
                                 </td>
                                 <td> {{$customer->is_active ? 'Active' : 'Inactive'}}</td>
-{{--                                <td>--}}
-{{--                                    <div>--}}
-{{--                                        <a href="{{url('/admin/category/'.$customer->id).'/edit'}}" title="Edit">--}}
-{{--                                            <i class="fa fa-edit"></i>--}}
-{{--                                        </a>--}}
-{{--                                        <a  href="#" @click.prevent="deleteMe('{{'/admin/category/'.$customer->id}}')" title="Delete">--}}
-{{--                                            <i class="fa fa-trash"></i>--}}
-{{--                                        </a>--}}
-{{--                                    </div>--}}
-{{--                                </td>--}}
+                                <td>
+                                    <div>
+                                        <a href="{{url('/admin/category/'.$customer->id).'/edit'}}" title="Edit">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                        <a  href="#" @click.prevent="deleteMe('{{'/admin/category/'.$customer->id}}')" title="Delete">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                    </div>
+                                </td>
 
                             </tr>
                         @endforeach

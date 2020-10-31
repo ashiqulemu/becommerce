@@ -34,13 +34,13 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link " href="#">All product </a>
+                <a class="nav-link " href="{{url('/all-products')}}">All product </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="#popularProduct">Popular Product </a>
+                <a class="nav-link " href="{{url('/popular-products')}}">Popular Product </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="#">Latest Product </a>
+                <a class="nav-link " href="{{url('/latest-products')}}">Latest Product </a>
             </li>
             {{--<li class="nav-item">--}}
                 {{--<a class="nav-link " href="#">Offer </a>--}}

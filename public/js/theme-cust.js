@@ -46,3 +46,10 @@ $(document).ready(function () {
         $('.flash-message').fadeOut('fast');
     }, 1000);
 })
+
+function changeOrderStatus(orderId) {
+    event.preventDefault();
+    var status = $('#orderStatus'+orderId).val()
+    var url    = "/admin/update-order-status/"+orderId+"/"+status
+    window.location.href = url
+}

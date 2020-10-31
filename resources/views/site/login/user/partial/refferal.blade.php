@@ -39,5 +39,5 @@
         </div>
         </div>
     </section>
-    @component('site.login.user.components.user-sub-footer') @endcomponent
+
 @endsection

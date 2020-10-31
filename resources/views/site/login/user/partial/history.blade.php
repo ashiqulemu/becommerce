@@ -4,8 +4,11 @@
 @endsection
 
 @section('content')
-    @include('.site.login.login-partitial.header')
-    @include('.site.login.login-partitial.nav')
+    @if(auth()->user())
+        @include('site.login.login-partitial.header')
+
+    @endif
+    @include('site.home-partials.nav-bar')
 
     <section class="myFirebidder">
         <div class="container">

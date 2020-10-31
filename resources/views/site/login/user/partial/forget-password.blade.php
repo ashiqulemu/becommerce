@@ -6,7 +6,9 @@
 @section('content')
     @if(auth()->user())
         @include('site.login.login-partitial.header')
+
     @endif
+    @include('site.home-partials.nav-bar')
 
    <section class="forget-pass">
        <div class="container p-0">

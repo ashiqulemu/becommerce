@@ -16,8 +16,8 @@ class CreateSalesTable extends Migration
         Schema::create('sales', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('order_no')->index();
-            $table->integer('user_id')->index();
-            $table->string('user_name')->index();
+            $table->integer('user_id')->nullable();
+            $table->string('name')->nullable();
             $table->string('mobile');
             $table->string('post_code')->nullable();
             $table->string('city')->nullable();
@@ -27,6 +27,7 @@ class CreateSalesTable extends Migration
             $table->decimal('shipping_cost')->default(0);
             $table->enum('payment_type',['cash on delivery', 'ssl', 'paypal']);
             $table->enum('order_status',['On Process', 'Shipped', 'Delivered', 'Cancel']);
+            $table->date('delivery_date');
             $table->timestamps();
         });
     }

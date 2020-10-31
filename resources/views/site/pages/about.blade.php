@@ -6,9 +6,12 @@
 @section('content')
     @if(auth()->user())
         @include('.site.login.login-partitial.header')
+        @else
+        @include('.site.home-partials.header')
     @endif
-
+    @include('.site.home-partials.nav-bar')
     <div class="container bg-white aboutUS">
+
         <div class="row p-5 header">
             <h1>About us </h1>
             <h4> Subtitle goes here !</h4>

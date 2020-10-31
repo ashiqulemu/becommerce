@@ -6,8 +6,10 @@
 @section('content')
     @if(auth()->user())
         @include('site.login.login-partitial.header')
-        @include('site.login.login-partitial.nav')
+    @else
+        @include('site.home-partials.header')
     @endif
+    @include('site.home-partials.nav-bar')
 
 
 

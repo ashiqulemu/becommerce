@@ -45,6 +45,8 @@ Route::middleware(['init'])->group(function () {
 
     Route::get('/view-cart', 'CartController@goToCartPage');
     Route::get('/all-products','ProductController@getAllProduct');
+    Route::get('/popular-products','ProductController@popular');
+    Route::get('/latest-products','ProductController@latest');
     Route::get('/payment-done','PaymentController@afterPayment');
     Route::post('/ssl/payment-done','PaymentController@afterPaymentSsl');
     Route::post('/ssl/payment-fail','PaymentController@failPaymentSsl');

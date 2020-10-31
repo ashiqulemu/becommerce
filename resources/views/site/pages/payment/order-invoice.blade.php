@@ -5,7 +5,7 @@
 
 @section('content')
     @include('site.login.login-partitial.header')
-
+    @include('site.home-partials.nav-bar')
 
     <div class="container bg-white mt-5">
 
@@ -15,7 +15,7 @@
         <div id="orderInvoice" class="invoiceArea">
             <div class="rows">
                 <div class="column">
-                    <img width='190px' src="/images/logo.png" alt="">
+                    <img width='190px' src="/images/home/khaasfood.png" alt="">
 {{--                    <br> <strong><h6 class="ml-5"> <i>slogan  will be here</i> </h6></strong>--}}
                 </div>
                 <div class="column">
@@ -31,7 +31,7 @@
                 <div class="column">
                     Invoice to:<br>
                     <strong>
-                        {{$order->user_name}}<br>
+                        {{$order->name}}<br>
                         Phone: {{$order->mobile}}<br>
                     </strong>
                     <br>
@@ -106,8 +106,8 @@
 
 
             <strong>
-                <h6 align='center'> www.billboardbd.com Dhaka Bangladesh Phone: 77665544222, Email:
-                    order@billboardbd.com
+                <h6 align='center'> www.adi.com.bd .Dhaka Bangladesh Phone: 77665544222, Email:
+                    info@adi.com.bd
                 </h6>
             </strong>
 

@@ -4,14 +4,16 @@
 @endsection
 
 @section('content')
-    @include('.site.login.login-partitial.header')
-    @include('.site.login.login-partitial.nav')
+    @if(auth()->user())
+        @include('site.login.login-partitial.header')
+    @endif
+    @include('site.home-partials.nav-bar')
 
     <section class="myFirebidder">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2>My Firebidders</h2>
+                    <h2>My Info</h2>
                     <hr>
                 </div>
                 <div class="col-lg-3">
@@ -136,5 +138,5 @@
         </div>
         </div>
     </section>
-    @component('site.login.user.components.user-sub-footer') @endcomponent
+
 @endsection

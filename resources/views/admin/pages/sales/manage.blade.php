@@ -40,11 +40,11 @@
                                              id="orderStatus{{$sale->id}}"
                                              required
                                              placeholder="Select Section">
-                                                @foreach( ['On Process', 'Shipped', 'Delivered', 'Cancel'] as $item)
-                                                    <option value="{{$item}}"
-                                                            @if($item == $sale->order_status) selected @endif
-                                                    > {{$item}}</option>
-                                                @endforeach
+                                        @foreach( ['On Process', 'Shipped', 'Delivered', 'Cancel'] as $item)
+                                            <option value="{{$item}}"
+                                                    @if($item == $sale->order_status) selected @endif
+                                            > {{$item}}</option>
+                                        @endforeach
                                     </select>
                                 </td>
                                 <td>
@@ -52,9 +52,9 @@
                                         <a href="#" onclick="changeOrderStatus({{$sale->id}})" title="Update">
                                             <i class="fa fa-check"></i>
                                         </a>
-{{--                                        <a  href="#" @click.prevent="deleteMe('{{'/admin/sales/'.$category->id}}')" title="Delete">--}}
-{{--                                            <i class="fa fa-trash"></i>--}}
-{{--                                        </a>--}}
+                                        {{--                                        <a  href="#" @click.prevent="deleteMe('{{'/admin/sales/'.$category->id}}')" title="Delete">--}}
+                                        {{--                                            <i class="fa fa-trash"></i>--}}
+                                        {{--                                        </a>--}}
                                     </div>
                                 </td>
                             </tr>

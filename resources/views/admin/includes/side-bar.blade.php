@@ -122,18 +122,18 @@
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
-            <li>
-                <a href="#"><i class="fa fa-list-alt"></i> Package<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="{{url('/admin/package/create')}}">Add Package</a>
-                    </li>
-                    <li>
-                        <a href="{{url('/admin/package')}}">Manage Package</a>
-                    </li>
-                </ul>
-                <!-- /.nav-second-level -->
-            </li>
+            {{--<li>--}}
+                {{--<a href="#"><i class="fa fa-list-alt"></i> Package<span class="fa arrow"></span></a>--}}
+                {{--<ul class="nav nav-second-level">--}}
+                    {{--<li>--}}
+                        {{--<a href="{{url('/admin/package/create')}}">Add Package</a>--}}
+                    {{--</li>--}}
+                    {{--<li>--}}
+                        {{--<a href="{{url('/admin/package')}}">Manage Package</a>--}}
+                    {{--</li>--}}
+                {{--</ul>--}}
+                {{--<!-- /.nav-second-level -->--}}
+            {{--</li>--}}
             <li>
                 <a href="#"><i class="fa fa-certificate"></i> CMS<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
@@ -142,6 +142,18 @@
                     </li>
                     <li>
                         <a href="{{url('/admin/cms')}}">Manage CMS</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-money"></i> Delivery Date<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{{url('/admin/delivery/create')}}">Add Delivery Date</a>
+                    </li>
+                    <li>
+                        <a href="{{url('/admin/delivery')}}">Manage Delivery date</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->

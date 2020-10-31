@@ -68,6 +68,7 @@
                                         @foreach($cartItems as $item)
 
                                             <tr>
+
                                                 <td>{{$count}}. {{$item->name}}</td>
                                                 <td>
                                                     <input type="number"
@@ -104,7 +105,12 @@
                                             </tr>
                                             @php
                                                 $count++;
-                                                 $subTotal+=$item->price*$item->qty;
+
+
+                                                  $subTotal+=$item->price*$item->qty;
+
+
+
                                             @endphp
                                         @endforeach
                                     </table>
@@ -206,7 +212,7 @@
 
                             <footer>
 
-                                <a href="/checkout"
+                                <a href="{{url('/payment-confirmation')}}"
                                    class="checkout"
                                    style="margin-bottom: 5px;
                                    text-decoration: none">go to checkout</a>
@@ -233,6 +239,7 @@
 
                             </footer>
                         </div>
+                        @if(!auth()->user())
                         <div class="notice">
                             <p>You are currently in Guest user mode. Please Login for better buying experience.</p>
                              <div>
@@ -241,6 +248,7 @@
                                      <i class="fa fa-facebook"></i></a>
                              </div>
                         </div>
+                            @endif
                     </div>
                     <div class=" p-0 col-md-12">
                         <div class="product_details">
