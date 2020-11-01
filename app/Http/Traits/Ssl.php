@@ -17,13 +17,17 @@ use App\User;
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Session;
 use Cart;
+use App\deliverydate;
+use Illuminate\Support\Facades\DB;
 
 trait Ssl
 {
 
     public function sslPayment($request, $grandTotal, $paymentableId,$promoId,$from=null,$discount)
     {
+
         $store=StoreIntial::whereId(1);
+
         if($store->count()){
             $store=StoreIntial::whereId(1);
             $store->update([
@@ -40,6 +44,7 @@ trait Ssl
               'data_4'=>$discount,
           ]);
         }
+
         $post_data = array();
         $post_data['store_id'] = env('SSL_ID');
         $post_data['store_passwd'] = env('SSL_SECRET');
@@ -84,6 +89,7 @@ trait Ssl
         $post_data['value_d'] = "";
 
 # CART PARAMETERS
+
         $post_data['cart'] = json_encode(array(
             array("product" => $paymentableId, "amount" => $promoId),
         ));
@@ -93,7 +99,7 @@ trait Ssl
 //        $post_data['convenience_fee'] = "3";
 
 
-        
+
         $direct_api_url = "https://sandbox.sslcommerz.com/gwprocess/v3/api.php";
 
         $handle = curl_init();
@@ -130,7 +136,16 @@ trait Ssl
         } else {
             echo "JSON Data parsing error!";
         }
+        $delivery=DB::table('deliverydates')
+            ->select('id','quantity')
+            ->where("deilivary_date",'=',$request->delivery_date)
+            ->get();
 
+        dd("dfjg fjdkgjfd gjfdkj");
+        $quantity=$delivery[0]->quantity-1;
+        $date=deliverydate::find($delivery[0]->id);
+        $date->quantity=$quantity;
+        $date->save();
 
     }
 
@@ -216,11 +231,14 @@ trait Ssl
             }else{
                 $shippingCost = ShippingCost::orderBy('id', 'DESC')->first();
                 $orderNo = PaymentController::makeSales($store->data_4, (float)$shippingCost->amount, 'ssl');
+
+
                 Cart::destroy();
                 $mailData = [
                     'name' => auth()->user()->name,
                     'order_no' => $orderNo,
                 ];
+
                 $this->sendEmail('email.email-order-confirmation', $mailData,'Order Confirmation',  auth()->user()->email);
                 $this->sendEmail('email.email-admin-order-confirmation', $mailData,'New Order',  env('ADMIN_MAIL_ADDRESS'));
                 return redirect('/user-details/all-order')->with([

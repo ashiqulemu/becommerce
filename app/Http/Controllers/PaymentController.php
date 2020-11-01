@@ -116,16 +116,27 @@ class PaymentController extends Controller
 //        );
 }
         if ($request->input('payment_method') == 'ssl') {
+
             return $this->sslPayment($request, $grandTotal, null, $promoId, 'product', $discount);
         }  elseif ($request->input('payment_method') == 'cash_on_delivery') {
 
             if(auth()->user()) {
                 $orderNo = $this->makeSales($request,$discount, (float)$shippingCost->amount, 'cash on delivery');
+                $delivery=DB::table('deliverydates')
+                    ->select('id','quantity')
+                    ->where("deilivary_date",'=',$request->delivery_date)
+                    ->get();
+                $quantity=$delivery[0]->quantity-1;
+                $date=deliverydate::find($delivery[0]->id);
+                $date->quantity=$quantity;
+                $date->save();
+
                 Cart::destroy();
 //                $mailData = [
 //                    'name' => auth()->user()->name,
 //                    'order_no' => $orderNo,
 //                ];
+
 //                $this->sendEmail('email.email-order-confirmation', $mailData, 'Order Confirmation', auth()->user()->email);
 //                $this->sendEmail('email.email-admin-order-confirmation', $mailData, 'New Order', env('ADMIN_MAIL_ADDRESS'));
                 return redirect('/user-details/all-order')->with([
@@ -173,7 +184,17 @@ class PaymentController extends Controller
 
                     $product= Product::find($item->id);
                     $product->update(['quantity' => $product->quantity - (int)$item->qty]);
+                    $delivery=DB::table('deliverydates')
+                        ->select('id','quantity')
+                        ->where("deilivary_date",'=',$request->delivery_date)
+                        ->get();
+                    $quantity=$delivery[0]->quantity-1;
+                    $date=deliverydate::find($delivery[0]->id);
+                    $date->quantity=$quantity;
+                    $date->save();
+
                     Cart::destroy();
+
                     return redirect('/all-products')->with([
                         'type' => 'success',
                         'message' => "Thank you " .$request->name . ", You order has been received.  
@@ -302,6 +323,7 @@ class PaymentController extends Controller
           $product= Product::find($item->id);
           $product->update(['quantity' => $product->quantity - (int)$item->qty]);
         }
+
         return $order_no;
     }
 

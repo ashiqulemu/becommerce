@@ -70,7 +70,8 @@ class CartController extends Controller
                         'message'=>'Auction product can buy only one.']);
             }
         }
-        if( auth()->user()->role=="agent")
+
+        if( auth()->user() && auth()->user()->role=="agent")
         {
             $price = $request->price;
 
@@ -79,11 +80,15 @@ class CartController extends Controller
         }
 
         else{
+
             $price = $request->price;
             $pro=(double)$product->price;
+
         }
 
+
         $source = $request->source;
+
         Cart::add([
             'id' => $product->id,
             'name' => $product->name,
