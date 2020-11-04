@@ -18,7 +18,7 @@
             <hr>
             <div class="row mt-5">
                 @foreach($productList as $product)
-                <div class="col">
+                <div class="col d-flex justify-content-center ">
                     <div class="product">
                         <div class="photo">
                             <img src="{{asset("images/products/$product->product_image")}}" alt=""/>

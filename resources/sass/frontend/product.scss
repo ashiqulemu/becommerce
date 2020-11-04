@@ -41,6 +41,10 @@
     flex: 1 ;
     .product{
       max-width: 300px;
+      @media(min-width:1280px) and (max-width: 1366px){
+        max-width: unset;
+        min-width: unset;
+      }
       @media(max-width:768px){
         max-width: 100%;
       }
