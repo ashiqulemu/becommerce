@@ -16,9 +16,9 @@
                 </div>
             </div>
             <hr>
-            <div class="row mt-5">
+            <div class="row mt-5 mobile">
                 @foreach($productList as $product)
-                <div class="col d-flex justify-content-center ">
+                <div class="col d-flex">
                     <div class="product">
                         <div class="photo">
                             <img src="{{asset("images/products/$product->product_image")}}" alt=""/>

@@ -42,13 +42,65 @@
     .product{
       max-width: 300px;
       @media(min-width:1280px) and (max-width: 1366px){
-        max-width: unset;
+        max-width: 230px;
         min-width: unset;
       }
       @media(max-width:768px){
         max-width: 100%;
+
       }
     }
+
+
+    .mobile{
+      @media(max-width: 767px){
+        .col{
+          max-width: 50%;
+          flex: 0.5;
+          padding: 2px;
+        }
+        .product{
+          min-width: 100%;
+          .basket,.details{
+            text-decoration: none;
+            flex: 1;
+            margin: 0 4px;
+            padding: 4px 7px;
+          }
+        }
+      }
+      @media(min-width: 768px)and (max-width:1024px){
+        .col{
+          max-width: 33%;
+          padding: 2px;
+        }
+        .product{
+          min-width: 100%;
+          .basket,.details{
+            text-decoration: none;
+            flex: 1;
+            margin: 0 4px;
+            padding: 4px 7px;
+          }
+        }
+      }
+      @media(min-width: 1280px){
+        .col{
+          max-width: 25%;
+          padding: 12px;
+        }
+        .product{
+          min-width: 100%;
+          .basket,.details{
+            text-decoration: none;
+            flex: 1;
+            margin: 0 4px;
+            padding: 4px 7px;
+          }
+        }
+      }
+    }
+
   }
 }
 
