@@ -89,6 +89,9 @@ Route::middleware(['init'])->group(function () {
     Route::get('/contact', function () {
         return view('site.pages.partials.contact');
     });
+    Route::get('/order', function () {
+        return view('site.pages.partials.order');
+    });
 
     Route::get('/forget-password', function () {
         return view('site.login.login-partitial.forget-password');

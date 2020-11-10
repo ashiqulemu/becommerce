@@ -57,6 +57,10 @@
                 <a class="nav-link"  href="{{url('/contact')}}">Contact Us</a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link"  href="{{url('/order')}}">View all order</a>
+            </li>
+
         </ul>
 
 
